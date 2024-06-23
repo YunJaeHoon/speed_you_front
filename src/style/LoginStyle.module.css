@@ -1,0 +1,435 @@
+#background {
+    height: 100vh;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    width: 500px;
+    background-color: #ffffff;
+    z-index: 10;
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#container-agreeTerm {
+    width: 650px;
+    background-color: #ffffff;
+    z-index: 10;
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#container-join {
+    width: 550px;
+    background-color: #ffffff;
+    z-index: 10;
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#container-join-finish {
+    width: 900px;
+    background-color: #ffffff;
+    z-index: 10;
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#title {
+    text-align: center;
+    font-size: 50px;
+    color: #32383e;
+
+    margin: 20px 0px 40px;
+}
+
+#title-join {
+    text-align: center;
+    color: #32383e;
+    font-size: 50px;
+
+    margin: 12px 0px;
+}
+
+#title-pair-big {
+    text-align: center;
+    color: #32383e;
+    font-size: 50px;
+
+    margin: 5px 0px;
+}
+
+#title-pair-small {
+    text-align: center;
+    font-size: 30px;
+    color: #32383e;
+
+    padding: 0px 0px 20px;
+    margin: 15px 0px;
+}
+
+.input {
+    width: 100%;
+    background: #f2f2f2;
+    outline: 0;
+
+    font-size: 16px;
+
+    padding: 15px;
+    border: 1px solid #20201E;
+    margin: 7px 0px;
+}
+
+.input-join {
+   background: #f2f2f2;
+   width: 90%;
+   height: 50px;
+   outline: 0;
+   font-size: 16px;
+   color: #32383e;
+
+   padding: 15px;
+   margin: 7px 0px;
+}
+
+.input-join-valid {
+   border: 1px solid #20201E;
+}
+
+.input-join-invalid {
+   border: 1px solid #f75205;
+}
+
+.input-reset-password {
+    width: 450px;
+    background: #f2f2f2;
+    outline: 0;
+
+    font-size: 16px;
+
+    padding: 15px;
+    border: 1px solid #20201E;
+    margin: 7px 0px;
+}
+
+#rememberMe-and-resetPassword-block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 15px 0px 25px;
+}
+
+#rememberMe-block {
+    display: flex;
+    align-items: center
+}
+
+#rememberMe-description {
+    font-size: 16px;
+    color: #32383e;
+
+    margin-right: 10px;
+}
+
+input.checkbox {
+    display: none;
+}
+
+input.checkbox + label {
+    width: 17px;
+    height: 17px;
+    content: "";
+
+    display: inline-block;
+
+    border: 2px solid #2f3542;
+}
+
+#resetPassword {
+    text-decoration: underline;
+    font-size: 16px;
+    font-variation-settings: "wght" 600;
+    color: #32383e;
+}
+
+#errorMessage {
+    text-align: center;
+    font-size: 18px;
+    font-variation-settings: "wght" 700;
+    color: #f75205;
+
+    margin: 7px 0;
+}
+
+#submit-button {
+    width: 100%;
+    cursor: pointer;
+
+    font-size: 24px;
+    font-variation-settings: "wght" 650;
+    color: #FFFFFF;
+
+    padding: 15px;
+    border: 0;
+    margin: 7px 0px;
+}
+
+#or-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 20px 0px;
+}
+
+.or-line {
+    width: 40%;
+    height: 1px;
+    background-color: #dbdbdb;
+
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+
+#or {
+    font-size: 15px;
+    color: #6f6f6b;
+}
+
+#join-button-block {
+    display: flex;
+    align-items: center;
+
+    text-align: center;
+}
+
+#join-button {
+    width: 100%;
+
+    text-decoration: none;
+    font-size: 24px;
+    font-variation-settings: "wght" 650;
+    color: #FFFFFF;
+
+    padding: 15px;
+    border: 0;
+    margin: 7px 0px;
+}
+
+.term-block {
+    width: 100%;
+}
+
+.term-description-block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.term-description {
+    font-size: 16px;
+    font-variation-settings: "wght" 600;
+    color: #151515;
+}
+
+.term-text {
+    width: 100%;
+    height: 130px;
+    overflow: auto;
+    background-color: #ffffff;
+
+    border: 1px solid #20201E;
+    padding: 20px;
+}
+
+.term-text::-webkit-scrollbar {
+  width: 10px;
+}
+
+.term-text::-webkit-scrollbar-thumb {
+  background-color: #20201E;
+}
+
+.term-text::-webkit-scrollbar-track {
+  background-color: grey;
+}
+
+#agree-button-block {
+    display: flex;
+    justify-content: center;
+}
+
+#agree-button {
+    width: 300px;
+    cursor: pointer;
+
+    font-size: 20px;
+    font-variation-settings: "wght" 650;
+    color: #ffffff;
+
+    padding: 15px;
+    border: 0;
+    margin: 7px 0px;
+}
+
+.form-block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#email-button {
+    width: 70%;
+    height: 50px;
+    cursor: pointer;
+
+    font-size: 24px;
+    font-variation-settings: "wght" 650;
+    color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+    border: 0;
+    margin: 12px 0px;
+}
+
+#reset-password-button {
+    width: 450px;
+    height: 50px;
+    cursor: pointer;
+
+    font-size: 24px;
+    font-variation-settings: "wght" 650;
+    color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+    border: 0;
+    margin: 12px 0px;
+}
+
+.input-disabled-description {
+    width: 90%;
+
+    text-align: start;
+    font-size: 18px;
+    font-variation-settings: "wght" 650;
+    color: #32383e;
+}
+
+.input-disabled {
+    width: 90%;
+    height: 50px;
+    background: #c1c1c1;
+    outline: 0;
+
+    font-size: 16px;
+    color: #32383e;
+
+    padding: 15px;
+    border: 0;
+    margin: 7px 0px;
+}
+
+.input-description-block {
+    width: 90%;
+    height: 30px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-description {
+    font-size: 18px;
+    font-variation-settings: "wght" 650;
+    color: #32383e;
+}
+
+.input-invalid-message {
+   font-size: 16px;
+   color: #f75205;
+}
+
+.viewPassword-block {
+    width: 90%;
+
+    display: flex;
+    align-items: center;
+
+    margin: 7px 0px 20px;
+}
+
+.viewPassword-description {
+    font-size: 18px;
+    font-variation-settings: "wght" 650;
+    color: #32383e;
+
+    margin-right: 8px;
+}
+
+#submit-button-join {
+    width: 70%;
+    height: 55px;
+    font-size: 24px;
+    font-variation-settings: "wght" 650;
+    color: #ffffff;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+    border: 0;
+    margin: 12px 0px;
+}
+
+.finish-button-block {
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#finish-button {
+    text-decoration: none;
+    width: 30%;
+    font-size: 24px;
+    font-variation-settings: "wght" 600;
+    color: #ffffff;
+
+    padding: 10px 0px;
+    border: 0;
+    margin: 10px 0px;
+}
