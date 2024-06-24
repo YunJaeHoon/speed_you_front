@@ -4,22 +4,25 @@ import { Link } from 'react-router-dom';
 import Header from '../component/Header';
 import GameIntroduction from '../component/GameIntroduction';
 import Divider from '../component/Divider';
+import BackgroundMusicPlayer from '../component/BackgroundMusicPlayer';
 
 import style from '../style/HomeStyle.module.css';
 import scrollIcon from '../image/scroll-icon.svg';
 import circleIcon from '../image/circle-icon.svg';
+import backgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
 
     // state
     const [position, setPosition] = useState(0);    // 스크롤 위치
 
-    // 스크롤 위치 최신화 함수
-    function onScroll() {
-        setPosition(window.scrollY);
-    }
-
     useEffect(() => {
+
+        // 스크롤 위치 최신화 함수
+        function onScroll() {
+            setPosition(window.scrollY);
+        }
+
         // 스크롤 이벤트마다, 스크롤 위치 최신화
         window.addEventListener("scroll", onScroll);
 
@@ -27,16 +30,18 @@ function HomePage() {
         return () => {
             window.removeEventListener("scroll", onScroll);
         };
+
     }, []);
 
     return (
         <div>
             <Header />
+            <BackgroundMusicPlayer soundSource={backgroundMusic} volume={1} />
             <div id={style["container"]}>
                 <div id={style["title"]}>
                     Speed.you
                 </div>
-                <div style={{opacity: 1-position/400}}>
+                <div style={{ opacity: 1 - position / 400 }}>
                     <div className={style["scroll-text"]}>아래로 스크롤</div>
                     <img src={scrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
                 </div>

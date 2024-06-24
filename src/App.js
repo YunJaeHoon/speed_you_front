@@ -29,7 +29,7 @@ function App() {
         <div>
             <div style={{ "min-height": "100vh", "position": "relative", "z-index": "1" }}>
                 <TransitionGroup>
-                    <CSSTransition key={ location.pathname } timeout={ TIMEOUT } classNames={{
+                    <CSSTransition key={location.pathname} timeout={TIMEOUT} classNames={{
                         enter: style["fade-enter"],
                         enterActive: style["fade-enter-active"],
                         exit: style["fade-exit"],
@@ -37,21 +37,21 @@ function App() {
                     }} >
                         {state => (
                             <div>
-                                <Routes location={ location }>
-                                    <Route path="/" element={ <HomePage /> }></Route>
-                                    <Route path="/login" element={ <LoginPage /> }></Route>
-                                    <Route path="/join" element={ <JoinPage />} ></Route>
-                                    <Route path="/reset-password" element={ <ResetPasswordPage /> }></Route>
-                                    <Route path="/myPage" element={ <MyPage /> }></Route>
-                                    <Route path="/game/red" element={ <RedGamePage /> }></Route>
-                                    <Route path="/game/orange" element={ <OrangeGamePage /> }></Route>
-                                    <Route path="/game/yellow" element={ <YellowGamePage /> }></Route>
-                                    <Route path="/game/green" element={ <GreenGamePage /> }></Route>
-                                    <Route path="/game/skyblue" element={ <SkyblueGamePage /> }></Route>
-                                    <Route path="/game/blue" element={ <BlueGamePage /> }></Route>
-                                    <Route path="/game/purple" element={ <PurpleGamePage /> }></Route>
-                                    <Route path="/game/pink" element={ <PinkGamePage /> }></Route>
-                                    <Route path="/game/black" element={ <BlackGamePage /> }></Route>
+                                <Routes location={location}>
+                                    <Route path="/" element={<HomePage />}></Route>
+                                    <Route path="/login" element={<LoginPage />}></Route>
+                                    <Route path="/join" element={<JoinPage />} ></Route>
+                                    <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
+                                    <Route path="/myPage" element={<MyPage />}></Route>
+                                    <Route path="/game/red" element={<RedGamePage />}></Route>
+                                    <Route path="/game/orange" element={<OrangeGamePage />}></Route>
+                                    <Route path="/game/yellow" element={<YellowGamePage />}></Route>
+                                    <Route path="/game/green" element={<GreenGamePage />}></Route>
+                                    <Route path="/game/skyblue" element={<SkyblueGamePage />}></Route>
+                                    <Route path="/game/blue" element={<BlueGamePage />}></Route>
+                                    <Route path="/game/purple" element={<PurpleGamePage />}></Route>
+                                    <Route path="/game/pink" element={<PinkGamePage />}></Route>
+                                    <Route path="/game/black" element={<BlackGamePage />}></Route>
                                 </Routes>
                             </div>
                         )}

@@ -4,11 +4,10 @@ import axios from 'axios';
 
 import Header from '../../component/Header';
 
-import style from '../../style/LoginStyle.module.css';
+import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 
-function LoginPage()
-{
+function LoginPage() {
     const navigate = useNavigate();
 
     const mainColors = ["red-main", "orange-main", "yellow-main", "green-main", "skyblue-main", "blue-main", "purple-main", "pink-main"];
@@ -25,28 +24,27 @@ function LoginPage()
         setMainColor(Math.floor(Math.random() * mainColors.length));
     }, []);
 
-    function login(e)
-    {
+    function login(e) {
         e.preventDefault();
         setErrorMessage("");
 
         axios.post('/api/login',
-        {
-            "email": email,
-            "password": password,
-            "remember-me": rememberMe
-        },
-        {
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        })
-        .then((response) => {
-            navigate('/');
-        })
-        .catch((error) => {
-            setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        });
+            {
+                "email": email,
+                "password": password,
+                "remember-me": rememberMe
+            },
+            {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then((response) => {
+                navigate('/');
+            })
+            .catch((error) => {
+                setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            });
     }
 
     function changeEmail(e) { setEmail(e.target.value); }           // 이메일 타이핑
@@ -61,15 +59,15 @@ function LoginPage()
                     <h2 id={style["title"]}>환영합니다</h2>
                     <form onSubmit={login}>
                         <div>
-                            <input type="email" name="email" value={email} onChange={changeEmail} placeholder="Email" className={style["input"]} required/>
+                            <input type="email" name="email" value={email} onChange={changeEmail} placeholder="Email" className={style["input"]} required />
                         </div>
                         <div>
-                            <input type="password" name="password" value={password} onChange={changePassword} placeholder="Password" className={style["input"]} required/>
+                            <input type="password" name="password" value={password} onChange={changePassword} placeholder="Password" className={style["input"]} required />
                         </div>
                         <div id={style["rememberMe-and-resetPassword-block"]}>
                             <span id={style["rememberMe-block"]}>
                                 <span id={style["rememberMe-description"]}>로그인 정보 저장</span>
-                                <input type="checkbox" id="remember-me" name="remember-me" className={style["checkbox"]} onChange={checkRememberMe}/>
+                                <input type="checkbox" id="remember-me" name="remember-me" className={style["checkbox"]} onChange={checkRememberMe} />
                                 <label htmlFor="remember-me" className={rememberMe ? colorStyle[mainColors[mainColor]] : colorStyle["white-main"]}></label>
                             </span>
                             <span>

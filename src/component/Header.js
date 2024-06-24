@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Icon from './Icon';
 
-import style from '../style/HeaderStyle.module.css';
+import style from '../style/component_style/HeaderStyle.module.css';
 import logo from '../image/logo.svg';
 import profileIcon from '../image/profile-icon.svg';
 import rankingIcon from '../image/ranking-icon.svg';
@@ -19,11 +19,11 @@ function Header() {
     useEffect(() => {
 
         axios.get('/api/is-login', null)
-        .then((response) => {
-            setIsLogin(response.data.data.toLowerCase() === "true");
-        }).catch((error) => {
-            setIsLogin(false);
-        });
+            .then((response) => {
+                setIsLogin(response.data.data.toLowerCase() === "true");
+            }).catch((error) => {
+                setIsLogin(false);
+            });
 
     }, []);
 
@@ -33,16 +33,16 @@ function Header() {
                 <Link to="/" id={style["logo-container"]}>
                     <img src={logo} id={style["logo"]} alt="Speed.you logo" />
                 </Link>
-                <Icon name="랭킹" link="/" alt="ranking-icon" source={ rankingIcon } direction="left" />
-                <Icon name="건의사항" link="/" alt="suggestion-icon" source={ suggestionIcon } direction="left" />
-                <Icon name="공지사항" link="/" alt="announcement-icon" source={ announcementIcon } direction="left" />
+                <Icon name="랭킹" link="/" alt="ranking-icon" source={rankingIcon} direction="left" />
+                <Icon name="건의사항" link="/" alt="suggestion-icon" source={suggestionIcon} direction="left" />
+                <Icon name="공지사항" link="/" alt="announcement-icon" source={announcementIcon} direction="left" />
             </div>
             <div id={style["right-container"]}>
                 <Icon
                     name={isLogin ? "마이페이지" : "로그인"}
                     link={isLogin ? "/myPage" : "/login"}
                     alt="profile-icon"
-                    source={ profileIcon }
+                    source={profileIcon}
                     direction="right"
                 />
                 <div id={style["game-list"]}>

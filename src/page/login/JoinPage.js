@@ -6,7 +6,7 @@ import Header from '../../component/Header';
 import ServiceTerm from '../../component/ServiceTerm';
 import PrivacyTerm from '../../component/PrivacyTerm';
 
-import style from '../../style/LoginStyle.module.css';
+import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 
 function JoinPage() {
@@ -46,13 +46,13 @@ function JoinPage() {
         setPassword(e.target.value);
 
         // 비밀번호 유효성 검사
-        if(validPasswordCondition.test(e.target.value))
+        if (validPasswordCondition.test(e.target.value))
             setValidPassword(true);
         else
             setValidPassword(false);
 
         // 비밀번호 확인 일치 검사
-        if(e.target.value === confirmPassword)
+        if (e.target.value === confirmPassword)
             setEqualPassword(true);
         else
             setEqualPassword(false);
@@ -62,7 +62,7 @@ function JoinPage() {
         setConfirmPassword(e.target.value);
 
         // 비밀번호 확인 일치 검사
-        if(password === e.target.value)
+        if (password === e.target.value)
             setEqualPassword(true);
         else
             setEqualPassword(false);
@@ -72,7 +72,7 @@ function JoinPage() {
         setUsername(e.target.value);
 
         // 닉네임 유효성 검사
-        if(validUsernameCondition.test(e.target.value))
+        if (validUsernameCondition.test(e.target.value))
             setValidUsername(true);
         else
             setValidUsername(false);
@@ -83,8 +83,7 @@ function JoinPage() {
     function checkPrivacy() { setAgreePrivacyTerm(!agreePrivacyTerm); }     // 개인정보처리방침 체크
 
     // 인증번호 이메일 전송 버튼
-    function sendEmail(e)
-    {
+    function sendEmail(e) {
         e.preventDefault();
         setErrorMessage("");
         setIsSending(true);
@@ -93,19 +92,18 @@ function JoinPage() {
         axios.post('/api/join/send-email', {
             email: email
         })
-        .then((response) => {
-            setStep("CHECK_EMAIL");
-        })
-        .catch((error) => {
-            setSendEmailButton("전송");
-            setIsSending(false);
-            setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        });
+            .then((response) => {
+                setStep("CHECK_EMAIL");
+            })
+            .catch((error) => {
+                setSendEmailButton("전송");
+                setIsSending(false);
+                setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            });
     }
 
     // 인증번호 확인 버튼
-    function checkEmail(e)
-    {
+    function checkEmail(e) {
         e.preventDefault();
         setErrorMessage("");
 
@@ -113,17 +111,16 @@ function JoinPage() {
             email: email,
             code: code
         })
-        .then((response) => {
-            setStep("JOIN")
-        })
-        .catch((error) => {
-            setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        });
+            .then((response) => {
+                setStep("JOIN")
+            })
+            .catch((error) => {
+                setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            });
     }
 
     // 회원가입 버튼
-    function join(e)
-    {
+    function join(e) {
         e.preventDefault();
         setErrorMessage("");
 
@@ -133,16 +130,15 @@ function JoinPage() {
             username: username,
             code: code
         })
-        .then((response) => {
-            setStep("JOIN_FINISH");
-        })
-        .catch((error) => {
-            setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        });
+            .then((response) => {
+                setStep("JOIN_FINISH");
+            })
+            .catch((error) => {
+                setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            });
     }
 
-    if(step === "AGREE_TERM")
-    {
+    if (step === "AGREE_TERM") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-agreeTerm"]}>
                 <h2 id={style["title"]}>서비스 이용약관 동의</h2>
@@ -152,7 +148,7 @@ function JoinPage() {
                             이용약관(필수)
                         </span>
                         <span>
-                            <input type="checkbox" id="serviceTerm" name="serviceTerm" className={style["checkbox"]} onChange={checkService}/>
+                            <input type="checkbox" id="serviceTerm" name="serviceTerm" className={style["checkbox"]} onChange={checkService} />
                             <label htmlFor="serviceTerm" className={agreeServiceTerm ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
                         </span>
                     </div>
@@ -164,7 +160,7 @@ function JoinPage() {
                             개인정보처리방침(필수)
                         </span>
                         <span>
-                            <input type="checkbox" id="privacyTerm" name="privacyTerm" className={style["checkbox"]} onChange={checkPrivacy}/>
+                            <input type="checkbox" id="privacyTerm" name="privacyTerm" className={style["checkbox"]} onChange={checkPrivacy} />
                             <label htmlFor="privacyTerm" className={agreePrivacyTerm ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
                         </span>
                     </div>
@@ -173,15 +169,14 @@ function JoinPage() {
                 <div id={style["agree-button-block"]}>
                     {
                         (agreeServiceTerm && agreePrivacyTerm) ?
-                        <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle[mainColor]}>이용약관 전체 동의</button> :
-                        <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle["white-dark"]} disabled>이용약관 전체 동의</button>
+                            <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle[mainColor]}>이용약관 전체 동의</button> :
+                            <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle["white-dark"]} disabled>이용약관 전체 동의</button>
                     }
                 </div>
             </div>
         </div>
     }
-    else if(step === "SEND_EMAIL")
-    {
+    else if (step === "SEND_EMAIL") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-agreeTerm"]}>
                 <h2 id={style["title"]}>이메일 인증번호 전송</h2>
@@ -189,7 +184,7 @@ function JoinPage() {
                     계정을 등록할 이메일을 입력하여 주세요.
                 </div>
                 <form className={style["form-block"]} onSubmit={sendEmail}>
-                    <input type="email" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input"]} required/>
+                    <input type="email" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input"]} required />
                     <div id={style["errorMessage"]}>
                         {errorMessage}
                     </div>
@@ -198,8 +193,7 @@ function JoinPage() {
             </div>
         </div>
     }
-    else if(step === "CHECK_EMAIL")
-    {
+    else if (step === "CHECK_EMAIL") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-agreeTerm"]}>
                 <h2 id={style["title"]}>인증번호 확인</h2>
@@ -207,7 +201,7 @@ function JoinPage() {
                     이메일로 전송된 인증번호를 입력하여 주세요.
                 </div>
                 <form className={style["form-block"]} onSubmit={checkEmail}>
-                    <input type="text" name="code" placeholder="인증번호" value={code} onChange={changeCode} className={style["input"]} required/>
+                    <input type="text" name="code" placeholder="인증번호" value={code} onChange={changeCode} className={style["input"]} required />
                     <div id={style["errorMessage"]}>
                         {errorMessage}
                     </div>
@@ -216,15 +210,14 @@ function JoinPage() {
             </div>
         </div>
     }
-    else if(step === "JOIN")
-    {
+    else if (step === "JOIN") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-join"]}>
                 <h2 id={style["title-join"]}>회원가입</h2>
                 <form className={style["form-block"]} onSubmit={join}>
                     <div className={style["form-block"]}>
                         <div className={style["input-disabled-description"]}>이메일</div>
-                        <input type="email" name="email" value={email} className={style["input-disabled"]} disabled/>
+                        <input type="email" name="email" value={email} className={style["input-disabled"]} disabled />
                     </div>
                     <div className={style["form-block"]}>
                         <div className={style["input-description-block"]}>
@@ -233,7 +226,7 @@ function JoinPage() {
                                 {!validPassword && "* 비밀번호는 영문과 숫자를 포함한 8~16자리입니다."}
                             </span>
                         </div>
-                        <input type={viewPassword ? "text" : "password"} name="password" value={password} onChange={changePassword} className={`${style["input-join"]}  ${validPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required/>
+                        <input type={viewPassword ? "text" : "password"} name="password" value={password} onChange={changePassword} className={`${style["input-join"]}  ${validPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
                     </div>
                     <div className={style["form-block"]}>
                         <div className={style["input-description-block"]}>
@@ -242,11 +235,11 @@ function JoinPage() {
                                 {!equalPassword && "* 비밀번호가 일치하지 않습니다."}
                             </span>
                         </div>
-                        <input type={viewPassword ? "text" : "password"} name="confirmPassword" value={confirmPassword} onChange={changeConfirmPassword} className={`${style["input-join"]} ${equalPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required/>
+                        <input type={viewPassword ? "text" : "password"} name="confirmPassword" value={confirmPassword} onChange={changeConfirmPassword} className={`${style["input-join"]} ${equalPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
                     </div>
                     <div className={style["viewPassword-block"]}>
                         <span className={style["viewPassword-description"]}>비밀번호 보기</span>
-                        <input type="checkbox" id="viewPassword" name="viewPassword" className={style["checkbox"]} onChange={checkViewPassword}/>
+                        <input type="checkbox" id="viewPassword" name="viewPassword" className={style["checkbox"]} onChange={checkViewPassword} />
                         <label htmlFor="viewPassword" className={viewPassword ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
                     </div>
                     <div className={style["form-block"]}>
@@ -256,22 +249,21 @@ function JoinPage() {
                                 {!validUsername && "* 닉네임은 영문 또는 한글 또는 숫자를 포함한 2~16자리입니다."}
                             </span>
                         </div>
-                        <input type="text" name="username" value={username} onChange={changeUsername} className={`${style["input-join"]} ${validUsername ? style["input-join-valid"] : style["input-join-invalid"]}`} required/>
+                        <input type="text" name="username" value={username} onChange={changeUsername} className={`${style["input-join"]} ${validUsername ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
                     </div>
                     <div id={style["errorMessage"]}>
                         {errorMessage}
                     </div>
                     {
                         (validPassword && equalPassword && validUsername) ?
-                        <button type="submit" id={style["submit-button-join"]} className={colorStyle[mainColor]}>회원가입</button> :
-                        <button type="submit" id={style["submit-button-join"]} className={colorStyle["white-dark"]} disabled>회원가입</button>
+                            <button type="submit" id={style["submit-button-join"]} className={colorStyle[mainColor]}>회원가입</button> :
+                            <button type="submit" id={style["submit-button-join"]} className={colorStyle["white-dark"]} disabled>회원가입</button>
                     }
                 </form>
             </div>
         </div>
     }
-    else if(step === "JOIN_FINISH")
-    {
+    else if (step === "JOIN_FINISH") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-join-finish"]}>
                 <h2 id={style["title"]}>회원가입에 성공하였습니다.</h2>

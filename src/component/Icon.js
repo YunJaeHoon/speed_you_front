@@ -1,28 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import style from '../style/HeaderStyle.module.css';
+import style from '../style/component_style/HeaderStyle.module.css';
 
 function Icon({ name, link, alt, source, direction }) {
 
-    if(direction === "left")
-    {
+    if (direction === "left") {
         return (
-            <Link className={style["icon-link"]} to={ link }>
-                <img src={ source } className={style["icon"]} alt={ alt } />
+            <Link className={style["icon-link"]} to={link}>
+                <img src={source} className={style["icon"]} alt={alt} />
                 <div className={style["icon-description"]}>
-                    { name }
+                    {name}
                 </div>
             </Link>
         );
     }
-    else
-    {
+    else {
         return (
-            <Link className={style["icon-link"]} to={ link }>
+            <Link className={style["icon-link"]} to={link}>
                 <div className={style["icon-description"]}>
-                    { name }
+                    {name}
                 </div>
-                <img src={ source } className={style["icon"]} alt={ alt } />
+                <img src={source} className={style["icon"]} alt={alt} />
             </Link>
         );
     }

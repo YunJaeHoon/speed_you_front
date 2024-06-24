@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Header from '../../component/Header';
 
-import style from '../../style/LoginStyle.module.css';
+import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 
 function ResetPasswordPage() {
@@ -28,8 +28,7 @@ function ResetPasswordPage() {
     function changeEmail(e) { setEmail(e.target.value); }   // 이메일 타이핑
 
     // 비밀번호 초기화 버튼
-    function resetPassword(e)
-    {
+    function resetPassword(e) {
         e.preventDefault();
         setErrorMessage("");
         setIsSending(true);
@@ -38,18 +37,17 @@ function ResetPasswordPage() {
         axios.post('/api/reset-password', {
             email: email
         })
-        .then((response) => {
-            setStep("RESET_PASSWORD_FINISH");
-        })
-        .catch((error) => {
-            setIsSending(false);
-            setSendEmailButton("전송");
-            setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-        });
+            .then((response) => {
+                setStep("RESET_PASSWORD_FINISH");
+            })
+            .catch((error) => {
+                setIsSending(false);
+                setSendEmailButton("전송");
+                setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            });
     }
 
-    if(step === "RESET_PASSWORD")
-    {
+    if (step === "RESET_PASSWORD") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-join-finish"]}>
                 <h2 id={style["title"]}>비밀번호 초기화</h2>
@@ -57,7 +55,7 @@ function ResetPasswordPage() {
                     비밀번호를 변경할 계정의 이메일을 입력하여 주세요.
                 </div>
                 <form className={style["form-block"]} onSubmit={resetPassword}>
-                    <input type="text" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input-reset-password"]} required/>
+                    <input type="text" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input-reset-password"]} required />
                     <div id={style["errorMessage"]}>
                         {errorMessage}
                     </div>
@@ -66,8 +64,7 @@ function ResetPasswordPage() {
             </div>
         </div>
     }
-    else if(step === "RESET_PASSWORD_FINISH")
-    {
+    else if (step === "RESET_PASSWORD_FINISH") {
         content = <div id={style["background"]} className={colorStyle["white-main"]}>
             <div id={style["container-join-finish"]}>
                 <h2 id={style["title-pair-big"]}>비밀번호가 성공적으로 초기화 되었습니다.</h2>
