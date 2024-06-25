@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
 
-import Header from '../component/Header';
 import GameIntroduction from '../component/GameIntroduction';
 import Divider from '../component/Divider';
-import BackgroundMusicPlayer from '../component/BackgroundMusicPlayer';
+import SoundContext from "../context/SoundContext.js";
 
 import style from '../style/HomeStyle.module.css';
 import scrollIcon from '../image/scroll-icon.svg';
 import circleIcon from '../image/circle-icon.svg';
-import backgroundMusic from '../sound/home_background_music.mp3';
+import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
+
+    // context
+    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [position, setPosition] = useState(0);    // 스크롤 위치
 
+    // 마운트 시에 실행
     useEffect(() => {
+
+        // 배경음악 변경
+        if (currentMusic !== homeBackgroundMusic) {
+            setCurrentMusic(homeBackgroundMusic);
+            setCurrentMusicVolume(1);
+        }
 
         // 스크롤 위치 최신화 함수
         function onScroll() {
@@ -35,13 +43,11 @@ function HomePage() {
 
     return (
         <div>
-            <Header />
-            <BackgroundMusicPlayer soundSource={backgroundMusic} volume={1} />
             <div id={style["container"]}>
                 <div id={style["title"]}>
                     Speed.you
                 </div>
-                <div style={{ opacity: 1 - position / 400 }}>
+                <div style={{ opacity: 1.6 - position / 250 }}>
                     <div className={style["scroll-text"]}>아래로 스크롤</div>
                     <img src={scrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
                 </div>

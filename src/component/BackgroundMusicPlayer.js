@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import useSound from 'use-sound';
 
-function BackgroundMusicPlayer({ soundSource, volume }) {
-  const [play, { stop }] = useSound(soundSource, { loop: true, volume: volume });
+import SoundContext from "../context/SoundContext.js";
+
+function BackgroundMusicPlayer() {
+
+  // context
+  const { isPlayMusic, currentMusic, currentMusicVolume } = useContext(SoundContext);
+
+  const [play, { pause }] = useSound(currentMusic, { loop: true, volume: currentMusicVolume });
 
   useEffect(() => {
 
-    play();
+    if (isPlayMusic) {
+      play();
+    }
+
     return () => {
-      stop();
+      pause();
     };
 
-  }, [play, stop]);
-
-  useEffect(() => {
-
-    play();
-    return () => {
-      stop();
-    };
-
-  }, []);
+  }, [play, isPlayMusic, currentMusic, currentMusicVolume]);
 
   return null;
 }

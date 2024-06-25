@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+import BackgroundMusicPlayer from './component/BackgroundMusicPlayer';
+import Header from './component/Header';
 import Footer from './component/Footer';
+import SoundContext from "./context/SoundContext.js";
 
 import HomePage from './page/HomePage';
 import MyPage from './page/MyPage';
@@ -19,15 +22,24 @@ import PurpleGamePage from './page/game/PurpleGamePage';
 import PinkGamePage from './page/game/PinkGamePage';
 import BlackGamePage from './page/game/BlackGamePage';
 import style from './App.module.css';
+import homeBackgroundMusic from './sound/home_background_music.mp3';
 
 function App() {
 
     const TIMEOUT = 70;                 // 화면 전환 시간
     const location = useLocation();     // 현재 위치
 
+    // context
+    const [isPlayMusic, setIsPlayMusic] = useState(true);                   // 배경음악 재생 여부
+    const [isPlaySound, setIsPlaySound] = useState(true);                   // 효과음 재생 여부
+    const [currentMusic, setCurrentMusic] = useState(homeBackgroundMusic);  // 배경음악 종류
+    const [currentMusicVolume, setCurrentMusicVolume] = useState(1);        // 배경음악 크기
+
     return (
-        <div>
-            <div style={{ "min-height": "100vh", "position": "relative", "z-index": "1" }}>
+        <SoundContext.Provider value={{ isPlayMusic, setIsPlayMusic, isPlaySound, setIsPlaySound, currentMusic, setCurrentMusic, currentMusicVolume, setCurrentMusicVolume }}>
+            <BackgroundMusicPlayer />
+            <Header />
+            <div style={{ "min-height": "100vh", "position": "relative" }}>
                 <TransitionGroup>
                     <CSSTransition key={location.pathname} timeout={TIMEOUT} classNames={{
                         enter: style["fade-enter"],
@@ -59,7 +71,7 @@ function App() {
                 </TransitionGroup>
             </div>
             <Footer />
-        </div>
+        </SoundContext.Provider>
     );
 }
 

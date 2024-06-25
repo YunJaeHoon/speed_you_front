@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import Header from '../../component/Header';
+import SoundContext from "../../context/SoundContext.js";
 
 import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
+import homeBackgroundMusic from '../../sound/home_background_music.mp3';
 
 function ResetPasswordPage() {
 
     let content = null;
     const mainColors = ["red-main", "orange-main", "yellow-main", "green-main", "skyblue-main", "blue-main", "purple-main", "pink-main"];
+
+    // context
+    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [mainColor, setMainColor] = useState("yellow-main");          // 랜덤 색상 배경
@@ -20,9 +24,16 @@ function ResetPasswordPage() {
     const [sendEmailButton, setSendEmailButton] = useState("전송");      // 이메일 인증번호 전송 버튼 글자
     const [isSending, setIsSending] = useState(false);                  // 이메일 전송을 수행 중인지에 대한 여부
 
-    // 랜덤 색상 배경 결정
     useEffect(() => {
-        setMainColor(mainColors[Math.floor(Math.random() * mainColors.length)]);
+
+        // 배경음악 변경
+        if (currentMusic !== homeBackgroundMusic) {
+            setCurrentMusic(homeBackgroundMusic);
+            setCurrentMusicVolume(1);
+        }
+
+        setMainColor(mainColors[Math.floor(Math.random() * mainColors.length)]);    // 랜덤 색상 배경 결정
+
     }, []);
 
     function changeEmail(e) { setEmail(e.target.value); }   // 이메일 타이핑
@@ -78,7 +89,6 @@ function ResetPasswordPage() {
 
     return (
         <div>
-            <Header />
             {content}
         </div>
     );

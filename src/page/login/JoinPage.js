@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import Header from '../../component/Header';
 import ServiceTerm from '../../component/ServiceTerm';
 import PrivacyTerm from '../../component/PrivacyTerm';
+import SoundContext from "../../context/SoundContext.js";
 
 import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
+import homeBackgroundMusic from '../../sound/home_background_music.mp3';
 
 function JoinPage() {
 
     let content = null;
     const mainColors = ["red-main", "orange-main", "yellow-main", "green-main", "skyblue-main", "blue-main", "purple-main", "pink-main"];
     const validPasswordCondition = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;            // 비밀번호 유효성 검사 정규식
-    const validUsernameCondition = /^(?=.*[a-zA-Z]|.*[가-힣]|=.*[0-9]).{2,16}$/;     // 닉네임 유효성 검사 정규식
+    const validUsernameCondition = /^(?=.*[a-zA-Z]|.*[가-힣]|=.*[0-9]).{2,16}$/;    // 닉네임 유효성 검사 정규식
+
+    // context
+    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [mainColor, setMainColor] = useState("yellow-main");          // 랜덤 색상 배경
@@ -34,9 +38,16 @@ function JoinPage() {
     const [validUsername, setValidUsername] = useState(false);          // 닉네임 유효성 여부
     const [viewPassword, setViewPassword] = useState(false);            // 비밀번호 보기 여부
 
-    // 랜덤 색상 배경 결정
     useEffect(() => {
-        setMainColor(mainColors[Math.floor(Math.random() * mainColors.length)]);
+
+        // 배경음악 변경
+        if (currentMusic !== homeBackgroundMusic) {
+            setCurrentMusic(homeBackgroundMusic);
+            setCurrentMusicVolume(1);
+        }
+
+        setMainColor(mainColors[Math.floor(Math.random() * mainColors.length)]);    // 랜덤 색상 배경 결정
+
     }, []);
 
     function changeCode(e) { setCode(e.target.value); }     // 인증번호 타이핑
@@ -276,7 +287,6 @@ function JoinPage() {
 
     return (
         <div>
-            <Header />
             {content}
         </div>
     );

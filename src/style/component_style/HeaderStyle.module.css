@@ -45,6 +45,7 @@
 
 .icon-link {
     text-decoration: none;
+    cursor: pointer;
 
     display: flex;
     flex-direction: row;
@@ -102,4 +103,12 @@
 
 .game-button:hover {
     transform: scale(1.3);
+}
+
+.divider {
+    width: 35px;
+    height: 1.5px;
+    background-color: #20201E;
+
+    margin: 20px 0px;
 }

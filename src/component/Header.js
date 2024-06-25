@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import Icon from './Icon';
+import SoundContext from "../context/SoundContext.js";
 
 import style from '../style/component_style/HeaderStyle.module.css';
 import logo from '../image/logo.svg';
@@ -10,14 +11,25 @@ import profileIcon from '../image/profile-icon.svg';
 import rankingIcon from '../image/ranking-icon.svg';
 import suggestionIcon from '../image/suggestion-icon.svg';
 import announcementIcon from '../image/announcement-icon.svg';
+import musicIcon from '../image/music-icon.svg';
+import musicMuteIcon from '../image/music-mute-icon.svg';
+import soundIcon from '../image/sound-icon.svg';
+import soundMuteIcon from '../image/sound-mute-icon.svg';
 
 function Header() {
+
+    // context
+    const { isPlayMusic, setIsPlayMusic, isPlaySound, setIsPlaySound } = useContext(SoundContext);
+
+    const location = useLocation();     // 현재 위치
 
     // state
     const [isLogin, setIsLogin] = useState(false);  // 로그인 여부
 
+    // 마운트 시에 실행
     useEffect(() => {
 
+        // 로그인 여부 확인
         axios.get('/api/is-login', null)
             .then((response) => {
                 setIsLogin(response.data.data.toLowerCase() === "true");
@@ -25,7 +37,7 @@ function Header() {
                 setIsLogin(false);
             });
 
-    }, []);
+    }, [location]);
 
     return (
         <div id={style["container"]}>
@@ -36,6 +48,19 @@ function Header() {
                 <Icon name="랭킹" link="/" alt="ranking-icon" source={rankingIcon} direction="left" />
                 <Icon name="건의사항" link="/" alt="suggestion-icon" source={suggestionIcon} direction="left" />
                 <Icon name="공지사항" link="/" alt="announcement-icon" source={announcementIcon} direction="left" />
+                <div className={style["divider"]}></div>
+                <div className={style["icon-link"]} onClick={() => setIsPlayMusic(!isPlayMusic)}>
+                    <img src={isPlayMusic ? musicIcon : musicMuteIcon} className={style["icon"]} alt="music-icon" />
+                    <div className={style["icon-description"]}>
+                        {isPlayMusic ? "배경음 끄기" : "배경음 켜기"}
+                    </div>
+                </div>
+                <div className={style["icon-link"]} onClick={() => setIsPlaySound(!isPlaySound)}>
+                    <img src={isPlaySound ? soundIcon : soundMuteIcon} className={style["icon"]} alt="sound-icon" />
+                    <div className={style["icon-description"]}>
+                        {isPlaySound ? "효과음 끄기" : "효과음 켜기"}
+                    </div>
+                </div>
             </div>
             <div id={style["right-container"]}>
                 <Icon

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useSound from 'use-sound';
 
-import Header from '../../component/Header';
 import HowToPlay from '../../component/HowToPlay';
-import BackgroundMusicPlayer from '../../component/BackgroundMusicPlayer';
+import SoundContext from "../../context/SoundContext.js";
 
 import style from '../../style/page_style/game/RedStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
@@ -11,11 +10,15 @@ import redIcon from '../../image/red-icon.svg';
 import score_sound from '../../sound/red_score_sound.mp3';
 import countDown_sound from '../../sound/red_countDown_sound.mp3';
 import gameStart_sound from '../../sound/red_gameStart_sound.mp3';
-import backgroundMusic from '../../sound/red_background_music.mp3';
+import homeBackgroundMusic from '../../sound/home_background_music.mp3';
+import redBackgroundMusic from '../../sound/red_background_music.mp3';
 
 function RedGamePage() {
 
     let content = null;
+
+    // context
+    const { isPlayMusic, isPlaySound, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [step, setStep] = useState("READY");              // 게임 절차
@@ -26,20 +29,37 @@ function RedGamePage() {
     const [gameOver, setGameOver] = useState(false);        // 게임 종료 여부
 
     // 효과음
-    const [playScoreSound] = useSound(score_sound, { volume: 0.5 });
-    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.5 });
-    const [playGameStartSound] = useSound(gameStart_sound);
+    const [playScoreSound, { stop: stopScoreSound }] = useSound(score_sound, { volume: 0.5 });
+    const [playCountDownSound, { stop: stopCountDownSound }] = useSound(countDown_sound, { volume: 0.5 });
+    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound);
+
+    // 페이지 입장, 퇴장 시에 실행
+    useEffect(() => {
+
+        // 배경음악 변경
+        if (currentMusic !== homeBackgroundMusic) {
+            setCurrentMusic(homeBackgroundMusic);
+            setCurrentMusicVolume(1);
+        }
+
+        return () => {
+            stopScoreSound();
+            stopCountDownSound();
+            stopGameStartSound();
+        };
+
+    }, [stopScoreSound, stopCountDownSound, stopGameStartSound]);
 
     // 카운트다운
     useEffect(() => {
 
         if (step === "PLAY" && countDown > 0) {
             setTimeout(() => setCountDown(countDown - 1), 1000);    // 1초마다 감소
-            playCountDownSound();
+            isPlaySound && playCountDownSound();                    // 효과음
         }
         else if (countDown === 0) {
-            setCountDown("Game start"); // 카운트다운 종료
-            playGameStartSound()
+            setCountDown("Game start");             // 카운트다운 종료
+            isPlaySound && playGameStartSound();    // 효과음
         }
 
     }, [step, countDown]);
@@ -50,7 +70,7 @@ function RedGamePage() {
         if (countDown === "Game start" && stopwatch > 0) {
             setTimeout(() => setStopwatch((stopwatch - 1)), 1000);  // 1초마다 감소
         }
-        else if (stopwatch === 0) {
+        else if (countDown === "Game start" && stopwatch === 0) {
             setGameOver(true);  // 제한 시간 종료
         }
 
@@ -82,7 +102,7 @@ function RedGamePage() {
             ) {
                 setScore(score + 1);
                 setWhichBlock(Math.floor(Math.random() * 9) + 1);
-                playScoreSound();
+                isPlaySound && playScoreSound();
             }
         }
 
@@ -94,16 +114,18 @@ function RedGamePage() {
             window.removeEventListener("keydown", handleKeyDown);
         }
 
-        // 다른 페이지로 넘어갈 때, 이벤트 리스너 제거
+        // 이벤트 리스너 제거
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
 
-    }, [whichBlock, score, gameOver]);
+    }, [whichBlock, score, gameOver, isPlaySound]);
 
     // 게임 시작 버튼
     function play() {
         setStep("PLAY");
+        setCurrentMusic(redBackgroundMusic);
+        setCurrentMusicVolume(0.10);
     }
 
     if (step === "READY") {
@@ -126,7 +148,6 @@ function RedGamePage() {
     }
     else if (step === "PLAY") {
         content = <div>
-            <BackgroundMusicPlayer soundSource={backgroundMusic} volume={0.10} />
             <div id={style["container"]}>
                 <div id={style["top-container"]}>
                     <div className={style["top-subcontainer"]}>
@@ -198,7 +219,6 @@ function RedGamePage() {
 
     return (
         <div>
-            <Header />
             {content}
         </div>
     );

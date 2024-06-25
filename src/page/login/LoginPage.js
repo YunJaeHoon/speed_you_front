@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Header from '../../component/Header';
+import SoundContext from "../../context/SoundContext.js";
 
 import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
+import homeBackgroundMusic from '../../sound/home_background_music.mp3';
 
 function LoginPage() {
     const navigate = useNavigate();
 
     const mainColors = ["red-main", "orange-main", "yellow-main", "green-main", "skyblue-main", "blue-main", "purple-main", "pink-main"];
+
+    // context
+    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [mainColor, setMainColor] = useState(1);           // 랜덤 색상 index
@@ -19,9 +23,16 @@ function LoginPage() {
     const [rememberMe, setRememberMe] = useState(false);     // 로그인 정보 저장 여부
     const [errorMessage, setErrorMessage] = useState("");    // 에러 메시지
 
-    // 랜덤 색상 index 결정
     useEffect(() => {
-        setMainColor(Math.floor(Math.random() * mainColors.length));
+
+        // 배경음악 변경
+        if (currentMusic !== homeBackgroundMusic) {
+            setCurrentMusic(homeBackgroundMusic);
+            setCurrentMusicVolume(1);
+        }
+
+        setMainColor(Math.floor(Math.random() * mainColors.length));    // 랜덤 색상 index 결정
+
     }, []);
 
     function login(e) {
@@ -53,7 +64,6 @@ function LoginPage() {
 
     return (
         <div>
-            <Header />
             <div id={style["background"]} className={colorStyle["white-main"]}>
                 <div id={style["container"]}>
                     <h2 id={style["title"]}>환영합니다</h2>
