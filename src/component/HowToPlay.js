@@ -1,14 +1,13 @@
 import React from 'react';
 
-import style from '../style/HowToPlayStyle.module.css';
-import colorStyle from '../style/Color.module.css';
+import style from '../style/component_style/HowToPlayStyle.module.css';
 
 function HowToPlay({ title, iconSource, description }) {
 
     return (
         <div id={style["container"]}>
             <div id={style["title-container"]}>
-                <img src={ iconSource } id={style["title-icon"]} />
+                <img src={iconSource} id={style["title-icon"]} alt="game-icon" />
                 <span id={style["title"]}>
                     {title}
                 </span>

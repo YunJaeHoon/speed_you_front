@@ -9,7 +9,6 @@
 
 #container {
     width: 500px;
-    background-color: #ffffff;
     z-index: 10;
 
     padding: 20px;
@@ -27,7 +26,6 @@
 
 #container-join {
     width: 550px;
-    background-color: #ffffff;
     z-index: 10;
 
     padding: 20px;
@@ -36,7 +34,6 @@
 
 #container-join-finish {
     width: 900px;
-    background-color: #ffffff;
     z-index: 10;
 
     padding: 20px;
@@ -89,23 +86,23 @@
 }
 
 .input-join {
-   background: #f2f2f2;
-   width: 90%;
-   height: 50px;
-   outline: 0;
-   font-size: 16px;
-   color: #32383e;
+    background: #f2f2f2;
+    width: 90%;
+    height: 50px;
+    outline: 0;
+    font-size: 16px;
+    color: #32383e;
 
-   padding: 15px;
-   margin: 7px 0px;
+    padding: 15px;
+    margin: 7px 0px;
 }
 
 .input-join-valid {
-   border: 1px solid #20201E;
+    border: 1px solid #20201E;
 }
 
 .input-join-invalid {
-   border: 1px solid #f75205;
+    border: 1px solid #f75205;
 }
 
 .input-reset-password {
@@ -147,7 +144,7 @@ input.checkbox {
     display: none;
 }
 
-input.checkbox + label {
+input.checkbox+label {
     width: 17px;
     height: 17px;
     content: "";
@@ -176,6 +173,9 @@ input.checkbox + label {
 #submit-button {
     width: 100%;
     cursor: pointer;
+
+    position: relative;
+    z-index: 10;
 
     font-size: 24px;
     font-variation-settings: "wght" 650;
@@ -222,6 +222,9 @@ input.checkbox + label {
 #join-button {
     width: 100%;
 
+    position: relative;
+    z-index: 10;
+
     text-decoration: none;
     font-size: 24px;
     font-variation-settings: "wght" 650;
@@ -262,15 +265,15 @@ input.checkbox + label {
 }
 
 .term-text::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 .term-text::-webkit-scrollbar-thumb {
-  background-color: #20201E;
+    background-color: #20201E;
 }
 
 .term-text::-webkit-scrollbar-track {
-  background-color: grey;
+    background-color: grey;
 }
 
 #agree-button-block {
@@ -281,6 +284,9 @@ input.checkbox + label {
 #agree-button {
     width: 300px;
     cursor: pointer;
+
+    position: relative;
+    z-index: 10;
 
     font-size: 20px;
     font-variation-settings: "wght" 650;
@@ -305,6 +311,9 @@ input.checkbox + label {
     height: 50px;
     cursor: pointer;
 
+    position: relative;
+    z-index: 10;
+
     font-size: 24px;
     font-variation-settings: "wght" 650;
     color: #ffffff;
@@ -322,6 +331,9 @@ input.checkbox + label {
     width: 450px;
     height: 50px;
     cursor: pointer;
+
+    position: relative;
+    z-index: 10;
 
     font-size: 24px;
     font-variation-settings: "wght" 650;
@@ -376,8 +388,8 @@ input.checkbox + label {
 }
 
 .input-invalid-message {
-   font-size: 16px;
-   color: #f75205;
+    font-size: 16px;
+    color: #f75205;
 }
 
 .viewPassword-block {
@@ -405,6 +417,9 @@ input.checkbox + label {
     color: #ffffff;
     cursor: pointer;
 
+    position: relative;
+    z-index: 10;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -428,6 +443,9 @@ input.checkbox + label {
     font-size: 24px;
     font-variation-settings: "wght" 600;
     color: #ffffff;
+
+    position: relative;
+    z-index: 10;
 
     padding: 10px 0px;
     border: 0;
