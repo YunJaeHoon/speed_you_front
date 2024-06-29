@@ -8,12 +8,21 @@
     overflow: auto;
 }
 
+#title-container {
+    margin-top: 200px;
+}
+
 #title {
     font-size: 120px;
     font-variation-settings: "wght" 800;
     color: #20201E;
+}
 
-    margin-top: 200px;
+#subtitle {
+    text-align: end;
+    font-size: 30.4px;
+    font-variation-settings: "wght" 700;
+    color: #20201E;
 }
 
 .scroll-text {
@@ -65,7 +74,7 @@
 }
 
 .game-introduction {
-    width: 800px;
+    width: 900px;
 
     display: flex;
     justify-content: space-between;
@@ -80,8 +89,8 @@
 
     display: inline-block;
 
-    border: 1px solid #20201E;
-    margin-right: 35px;
+    border: 1.5px solid #20201E;
+    margin-right: 30px;
 }
 
 .game-description-block {
@@ -93,9 +102,9 @@
 
 .game-title {
     font-size: 30px;
-    font-variation-settings: "wght" 700;
+    font-variation-settings: "wght" 750;
 
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .game-description {

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import axios from 'axios';
 
 import BackgroundMusicPlayer from './component/BackgroundMusicPlayer';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import SoundContext from "./context/SoundContext.js";
+import LoginContext from "./context/LoginContext.js";
 
 import HomePage from './page/HomePage';
 import MyPage from './page/MyPage';
@@ -26,7 +28,7 @@ import homeBackgroundMusic from './sound/home_background_music.mp3';
 
 function App() {
 
-    const TIMEOUT = 70;                 // 화면 전환 시간
+    const TIMEOUT = 150;                // 화면 전환 시간
     const location = useLocation();     // 현재 위치
 
     // context
@@ -34,20 +36,40 @@ function App() {
     const [isPlaySound, setIsPlaySound] = useState(true);                   // 효과음 재생 여부
     const [currentMusic, setCurrentMusic] = useState(homeBackgroundMusic);  // 배경음악 종류
     const [currentMusicVolume, setCurrentMusicVolume] = useState(1);        // 배경음악 크기
+    const [role, setRole] = useState(null);                                 // 계정 권한
+
+    // 마운트 시에 실행
+    useEffect(() => {
+
+        // 계정 권한 확인
+        axios.get('/api/get-role',
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                }
+            })
+            .then((response) => {
+                setRole(response.data.data);
+            })
+            .catch((error) => {
+                setRole(null);
+            });
+
+    }, []);
 
     return (
-        <SoundContext.Provider value={{ isPlayMusic, setIsPlayMusic, isPlaySound, setIsPlaySound, currentMusic, setCurrentMusic, currentMusicVolume, setCurrentMusicVolume }}>
-            <BackgroundMusicPlayer />
-            <Header />
-            <div style={{ "min-height": "100vh", "position": "relative" }}>
-                <TransitionGroup>
-                    <CSSTransition key={location.pathname} timeout={TIMEOUT} classNames={{
-                        enter: style["fade-enter"],
-                        enterActive: style["fade-enter-active"],
-                        exit: style["fade-exit"],
-                        exitActive: style["fade-exit-active"],
-                    }} >
-                        {state => (
+        <LoginContext.Provider value={{ role, setRole }}>
+            <SoundContext.Provider value={{ isPlayMusic, setIsPlayMusic, isPlaySound, setIsPlaySound, currentMusic, setCurrentMusic, currentMusicVolume, setCurrentMusicVolume }}>
+                <BackgroundMusicPlayer />
+                <Header />
+                <div style={{ "min-height": "100vh", "position": "relative" }}>
+                    <TransitionGroup>
+                        <CSSTransition key={location.pathname} timeout={TIMEOUT} classNames={{
+                            enter: style["fade-enter"],
+                            enterActive: style["fade-enter-active"],
+                            exit: style["fade-exit"],
+                            exitActive: style["fade-exit-active"],
+                        }}>
                             <div>
                                 <Routes location={location}>
                                     <Route path="/" element={<HomePage />}></Route>
@@ -66,12 +88,12 @@ function App() {
                                     <Route path="/game/black" element={<BlackGamePage />}></Route>
                                 </Routes>
                             </div>
-                        )}
-                    </CSSTransition>
-                </TransitionGroup>
-            </div>
-            <Footer />
-        </SoundContext.Provider>
+                        </CSSTransition>
+                    </TransitionGroup>
+                </div>
+                <Footer />
+            </SoundContext.Provider>
+        </LoginContext.Provider>
     );
 }
 

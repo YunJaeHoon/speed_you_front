@@ -101,15 +101,19 @@ function JoinPage() {
         setSendEmailButton("잠시만 기다려주십시오...");
 
         axios.post('/api/join/send-email', {
-            email: email
+            "email": email
         })
             .then((response) => {
+
                 setStep("CHECK_EMAIL");
+
             })
             .catch((error) => {
+
                 setSendEmailButton("전송");
                 setIsSending(false);
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+
             });
     }
 

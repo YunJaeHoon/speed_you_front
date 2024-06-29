@@ -46,15 +46,19 @@ function ResetPasswordPage() {
         setSendEmailButton("잠시만 기다려주십시오...");
 
         axios.post('/api/reset-password', {
-            email: email
+            "email": email
         })
             .then((response) => {
+
                 setStep("RESET_PASSWORD_FINISH");
+
             })
             .catch((error) => {
+
                 setIsSending(false);
                 setSendEmailButton("전송");
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+
             });
     }
 

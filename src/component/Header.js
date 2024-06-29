@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import Icon from './Icon';
 import SoundContext from "../context/SoundContext.js";
+import LoginContext from "../context/LoginContext.js";
 
 import style from '../style/component_style/HeaderStyle.module.css';
 import logo from '../image/logo.svg';
@@ -20,24 +20,7 @@ function Header() {
 
     // context
     const { isPlayMusic, setIsPlayMusic, isPlaySound, setIsPlaySound } = useContext(SoundContext);
-
-    const location = useLocation();     // 현재 위치
-
-    // state
-    const [isLogin, setIsLogin] = useState(false);  // 로그인 여부
-
-    // 마운트 시에 실행
-    useEffect(() => {
-
-        // 로그인 여부 확인
-        axios.get('/api/is-login', null)
-            .then((response) => {
-                setIsLogin(response.data.data.toLowerCase() === "true");
-            }).catch((error) => {
-                setIsLogin(false);
-            });
-
-    }, [location]);
+    const { role } = useContext(LoginContext);
 
     return (
         <div id={style["container"]}>
@@ -64,8 +47,8 @@ function Header() {
             </div>
             <div id={style["right-container"]}>
                 <Icon
-                    name={isLogin ? "마이페이지" : "로그인"}
-                    link={isLogin ? "/myPage" : "/login"}
+                    name={role !== null ? "마이페이지" : "로그인"}
+                    link={role !== null ? "/myPage" : "/login"}
                     alt="profile-icon"
                     source={profileIcon}
                     direction="right"

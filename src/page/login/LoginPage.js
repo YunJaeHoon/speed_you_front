@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import SoundContext from "../../context/SoundContext.js";
+import LoginContext from "../../context/LoginContext.js";
 
 import style from '../../style/page_style/login/LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
@@ -14,7 +15,8 @@ function LoginPage() {
     const mainColors = ["red-main", "orange-main", "yellow-main", "green-main", "skyblue-main", "blue-main", "purple-main", "pink-main"];
 
     // context
-    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { setRole } = useContext(LoginContext);
 
     // state
     const [mainColor, setMainColor] = useState(1);           // 랜덤 색상 index
@@ -51,6 +53,27 @@ function LoginPage() {
                 }
             })
             .then((response) => {
+
+                // header에 Authorization 값으로 토큰 넣기
+                axios.defaults.headers.common['Authorization'] = response.data.data;
+
+                // localStorage에 토큰 값 넣기
+                window.localStorage.setItem("token", response.data.data);
+
+                // 계정 권한 확인
+                axios.get('/api/get-role',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                        }
+                    })
+                    .then((response) => {
+                        setRole(response.data.data);
+                    })
+                    .catch((error) => {
+                        setRole(null);
+                    });
+
                 navigate('/');
             })
             .catch((error) => {
