@@ -3,7 +3,7 @@ import React from 'react';
 import style from '../style/component_style/ResultStyle.module.css';
 import colorStyle from '../style/Color.module.css';
 
-function Result({ game, color, score, countAll, rank, percentile }) {
+function Result({ game, fontColor, score, countAll, rank, percentile }) {
 
   return (
     <div id={style["container"]}>
@@ -12,7 +12,7 @@ function Result({ game, color, score, countAll, rank, percentile }) {
       </div>
       <div id={style["score-container"]}>
         <span>점수 : {score}</span>
-        <span style={{ "color": color }}>{game}</span>
+        <span className={colorStyle[fontColor]}>{game}</span>
       </div>
       <div id={style["horizontal-divider"]}></div>
       <div id={style["result-container"]}>
@@ -24,7 +24,7 @@ function Result({ game, color, score, countAll, rank, percentile }) {
           <div id={style["result-description"]}>
             <div>
               당신은 {countAll}명 중, {rank}번째로 빠릅니다.<br />
-              당신은 <b style={{ "color": color }}>상위 {percentile}%</b> 입니다.
+              당신은 <b className={colorStyle[fontColor]}>상위 {percentile}%</b> 입니다.
             </div>
           </div>
         </span>

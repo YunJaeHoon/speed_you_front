@@ -14,7 +14,7 @@ function ResetPasswordPage() {
     const mainColors = ["red-main", "orange-main", "yellow-main", "green-main", "skyblue-main", "blue-main", "purple-main", "pink-main"];
 
     // context
-    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [mainColor, setMainColor] = useState("yellow-main");          // 랜덤 색상 배경
@@ -63,36 +63,32 @@ function ResetPasswordPage() {
     }
 
     if (step === "RESET_PASSWORD") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-join-finish"]}>
-                <h2 id={style["title"]}>비밀번호 초기화</h2>
-                <div id={style["title-pair-small"]}>
-                    비밀번호를 변경할 계정의 이메일을 입력하여 주세요.
-                </div>
-                <form className={style["form-block"]} onSubmit={resetPassword}>
-                    <input type="text" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input-reset-password"]} required />
-                    <div id={style["errorMessage"]}>
-                        {errorMessage}
-                    </div>
-                    <button type="submit" id={style["reset-password-button"]} className={colorStyle[mainColor]} disabled={isSending}>{sendEmailButton}</button>
-                </form>
+        content = <div id={style["container-join-finish"]}>
+            <h2 id={style["title"]}>비밀번호 초기화</h2>
+            <div id={style["title-pair-small"]}>
+                비밀번호를 변경할 계정의 이메일을 입력하여 주세요.
             </div>
+            <form className={style["form-block"]} onSubmit={resetPassword}>
+                <input type="text" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input-reset-password"]} required />
+                <div id={style["errorMessage"]}>
+                    {errorMessage}
+                </div>
+                <button type="submit" id={style["reset-password-button"]} className={colorStyle[mainColor]} disabled={isSending}>{sendEmailButton}</button>
+            </form>
         </div>
     }
     else if (step === "RESET_PASSWORD_FINISH") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-join-finish"]}>
-                <h2 id={style["title-pair-big"]}>비밀번호가 성공적으로 초기화 되었습니다.</h2>
-                <div id={style["title-pair-small"]}>이메일을 확인해주세요.</div>
-                <div className={style["finish-button-block"]}>
-                    <Link to="/login" id={style["finish-button"]} className={colorStyle[mainColor]}>확인</Link>
-                </div>
+        content = <div id={style["container-join-finish"]}>
+            <h2 id={style["title-pair-big"]}>비밀번호가 성공적으로 초기화 되었습니다.</h2>
+            <div id={style["title-pair-small"]}>이메일을 확인해주세요.</div>
+            <div className={style["finish-button-block"]}>
+                <Link to="/login" id={style["finish-button"]} className={colorStyle[mainColor]}>확인</Link>
             </div>
         </div>
     }
 
     return (
-        <div>
+        <div id={style["background"]} className={colorStyle["white-main"]}>
             {content}
         </div>
     );

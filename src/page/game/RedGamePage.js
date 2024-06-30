@@ -5,16 +5,19 @@ import axios from 'axios';
 
 import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
+import WaitServer from '../../component/WaitServer.js';
 import SoundContext from "../../context/SoundContext.js";
 
 import style from '../../style/page_style/game/RedStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 import animationStyle from '../../App.module.css';
+
 import redIcon from '../../image/red-icon.svg';
 import score_sound from '../../sound/red_score_sound.mp3';
 import wrong_sound from '../../sound/red_wrong_sound.mp3';
-import countDown_sound from '../../sound/red_countDown_sound.mp3';
-import gameStart_sound from '../../sound/red_gameStart_sound.mp3';
+import countDown_sound from '../../sound/countDown_sound.mp3';
+import gameStart_sound from '../../sound/gameStart_sound.mp3';
+import gameOver_sound from '../../sound/gameOver_sound.mp3';
 import homeBackgroundMusic from '../../sound/home_background_music.mp3';
 import redBackgroundMusic from '../../sound/red_background_music.mp3';
 
@@ -36,10 +39,11 @@ function RedGamePage() {
     const [percentile, setPercentile] = useState(0);        // 상위 퍼센트
 
     // 효과음
-    const [playScoreSound, { stop: stopScoreSound }] = useSound(score_sound, { volume: 0.5 });
-    const [playWrongSound, { stop: stopWrongSound }] = useSound(wrong_sound, { volume: 1 });
-    const [playCountDownSound, { stop: stopCountDownSound }] = useSound(countDown_sound, { volume: 0.5 });
+    const [playScoreSound] = useSound(score_sound, { volume: 0.5 });
+    const [playWrongSound] = useSound(wrong_sound, { volume: 1 });
+    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.5 });
     const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound);
+    const [playGameOverSound, { stop: stopGameOverSound }] = useSound(gameOver_sound);
 
     // 페이지 입장, 퇴장 시에 실행
     useEffect(() => {
@@ -51,24 +55,22 @@ function RedGamePage() {
         }
 
         return () => {
-            stopScoreSound();
-            stopWrongSound();
-            stopCountDownSound();
             stopGameStartSound();
+            stopGameOverSound();
         };
 
-    }, [stopScoreSound, stopCountDownSound, stopGameStartSound]);
+    }, [stopGameStartSound, stopGameOverSound]);
 
     // 카운트다운
     useEffect(() => {
 
         if (step === "PLAY" && countDown > 0) {
             setTimeout(() => setCountDown(countDown - 1), 1000);    // 1초마다 감소
-            isPlaySound && playCountDownSound();                    // 효과음
+            isPlaySound && playCountDownSound();                    // 카운트다운 효과음
         }
         else if (step === "PLAY" && countDown === 0) {
             setCountDown("Game start");             // 카운트다운 종료
-            isPlaySound && playGameStartSound();    // 효과음
+            isPlaySound && playGameStartSound();    // 게임 시작 효과음
         }
 
     }, [step, countDown]);
@@ -142,7 +144,9 @@ function RedGamePage() {
                     "game": "Red",
                     "score": score
                 })
-                .then((response) => {
+                .then()
+                .catch()
+                .finally(() => {
 
                     // 결과 확인
                     axios.get('/api/game/result',
@@ -160,6 +164,11 @@ function RedGamePage() {
                             setCountAll(response.data.data.count_all);
                             setRank(response.data.data.rank);
                             setPercentile(response.data.data.percentile);
+                        })
+                        .catch()
+                        .finally(() => {
+                            isPlaySound && playGameOverSound();    // 게임 종료 효과음
+                            setStep("RESULT");
                         });
 
                 });
@@ -167,7 +176,6 @@ function RedGamePage() {
         }
 
     }, [step]);
-
 
     // 게임 시작 버튼
     function play() {
@@ -193,14 +201,15 @@ function RedGamePage() {
             <HowToPlay
                 title="Red"
                 iconSource={redIcon}
+                iconSize={68}
                 description={
                     <div>
                         키보드의 우측 숫자 키패드(1 ~ 9)를 이용합니다.<br />
-                        게임 화면의 <b><span style={{ "color": "#FF1F00" }}>붉은색</span></b> 빛이 들어온 버튼에 해당하는 키패드를 누르세요.<br />
-                        30초 내에 누른 버튼의 개수만큼 점수가 측정됩니다.<br />
-                        잘못된 버튼을 누르면 점수가 차감됩니다.
+                        게임 화면의 <b className={colorStyle["red-font"]}>붉은색</b> 빛이 들어온 버튼에 해당하는 키패드를 누르세요.<br />
+                        잘못된 버튼을 누르면 점수가 차감됩니다.<br />
                     </div>
                 }
+                stopwatch="30초"
             />
             <div id={style["start-button"]} className={colorStyle["red-main"]} onClick={play} >
                 Start
@@ -277,9 +286,14 @@ function RedGamePage() {
     }
     else if (step === "OVER") {
         content = <div id={style["container"]}>
+            <WaitServer />
+        </div>
+    }
+    else if (step === "RESULT") {
+        content = <div id={style["container"]}>
             <Result
                 game="Red"
-                color="#FF1F00"
+                fontColor="red-font"
                 score={score}
                 countAll={countAll}
                 rank={rank}
