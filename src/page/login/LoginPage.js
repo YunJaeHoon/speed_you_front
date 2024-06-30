@@ -86,40 +86,38 @@ function LoginPage() {
     function checkRememberMe() { setRememberMe(!rememberMe); }      // '로그인 정보 저장' 체크
 
     return (
-        <div>
-            <div id={style["background"]} className={colorStyle["white-main"]}>
-                <div id={style["container"]}>
-                    <h2 id={style["title"]}>환영합니다</h2>
-                    <form onSubmit={login}>
-                        <div>
-                            <input type="email" name="email" value={email} onChange={changeEmail} placeholder="Email" className={style["input"]} required />
-                        </div>
-                        <div>
-                            <input type="password" name="password" value={password} onChange={changePassword} placeholder="Password" className={style["input"]} required />
-                        </div>
-                        <div id={style["rememberMe-and-resetPassword-block"]}>
-                            <span id={style["rememberMe-block"]}>
-                                <span id={style["rememberMe-description"]}>로그인 정보 저장</span>
-                                <input type="checkbox" id="remember-me" name="remember-me" className={style["checkbox"]} onChange={checkRememberMe} />
-                                <label htmlFor="remember-me" className={rememberMe ? colorStyle[mainColors[mainColor]] : colorStyle["white-main"]}></label>
-                            </span>
-                            <span>
-                                <Link to="/reset-password" id={style["resetPassword"]}>비밀번호를 잊으셨습니까?</Link>
-                            </span>
-                        </div>
-                        <div id={style["errorMessage"]}>
-                            {errorMessage}
-                        </div>
-                        <button type="submit" id={style["submit-button"]} className={colorStyle[mainColors[mainColor]]}>로그인</button>
-                    </form>
-                    <div id={style["or-container"]}>
-                        <div className={style["or-line"]}></div>
-                        <div id={style["or"]}>또는</div>
-                        <div className={style["or-line"]}></div>
+        <div id={style["background"]} className={colorStyle["white-main"]}>
+            <div id={style["container"]}>
+                <h2 id={style["title"]}>환영합니다</h2>
+                <form onSubmit={login}>
+                    <div>
+                        <input type="email" name="email" value={email} onChange={changeEmail} placeholder="Email" className={style["input"]} required />
                     </div>
-                    <div id={style["join-button-block"]}>
-                        <Link to="/join" id={style["join-button"]} className={colorStyle["black-main"]}>회원가입</Link>
+                    <div>
+                        <input type="password" name="password" value={password} onChange={changePassword} placeholder="Password" className={style["input"]} required />
                     </div>
+                    <div id={style["rememberMe-and-resetPassword-block"]}>
+                        <span id={style["rememberMe-block"]}>
+                            <span id={style["rememberMe-description"]}>로그인 정보 저장</span>
+                            <input type="checkbox" id="remember-me" name="remember-me" className={style["checkbox"]} onChange={checkRememberMe} />
+                            <label htmlFor="remember-me" className={rememberMe ? colorStyle[mainColors[mainColor]] : colorStyle["white-main"]}></label>
+                        </span>
+                        <span>
+                            <Link to="/reset-password" id={style["resetPassword"]}>비밀번호를 잊으셨습니까?</Link>
+                        </span>
+                    </div>
+                    <div id={style["errorMessage"]}>
+                        {errorMessage}
+                    </div>
+                    <button type="submit" id={style["submit-button"]} className={colorStyle[mainColors[mainColor]]}>로그인</button>
+                </form>
+                <div id={style["or-container"]}>
+                    <div className={style["or-line"]}></div>
+                    <div id={style["or"]}>또는</div>
+                    <div className={style["or-line"]}></div>
+                </div>
+                <div id={style["join-button-block"]}>
+                    <Link to="/join" id={style["join-button"]} className={colorStyle["black-main"]}>회원가입</Link>
                 </div>
             </div>
         </div>

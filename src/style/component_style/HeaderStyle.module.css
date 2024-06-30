@@ -17,15 +17,17 @@
     flex-direction: column;
     align-items: flex-start;
 
-    margin: 10px 0px 0px 25px;
+    margin: 10px 0px 0px 1.5vw;
 }
 
 #right-container {
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 
-    margin: 10px 25px 0px 0px;
+    margin: 10px 1.5vw 0px 0px;
 }
 
 #logo-container {
@@ -35,6 +37,9 @@
 #logo {
     width: 200px;
     height: 50px;
+
+    position: relative;
+    z-index: 10;
 
     transition: all 0.1s ease;
 }
@@ -80,14 +85,19 @@
     opacity: 1;
 }
 
-#game-list {
+#game-list-container {
     width: 60px;
+    height: 100%;
 
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+#game-list {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-top: 50px;
 }
 
 .game-button {

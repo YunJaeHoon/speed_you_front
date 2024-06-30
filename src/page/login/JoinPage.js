@@ -154,143 +154,133 @@ function JoinPage() {
     }
 
     if (step === "AGREE_TERM") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-agreeTerm"]}>
-                <h2 id={style["title"]}>서비스 이용약관 동의</h2>
-                <div className="term-block">
-                    <div className={style["term-description-block"]}>
-                        <span className={style["term-description"]}>
-                            이용약관(필수)
-                        </span>
-                        <span>
-                            <input type="checkbox" id="serviceTerm" name="serviceTerm" className={style["checkbox"]} onChange={checkService} />
-                            <label htmlFor="serviceTerm" className={agreeServiceTerm ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
-                        </span>
-                    </div>
-                    <ServiceTerm />
+        content = <div id={style["container-agreeTerm"]}>
+            <h2 id={style["title"]}>서비스 이용약관 동의</h2>
+            <div className="term-block">
+                <div className={style["term-description-block"]}>
+                    <span className={style["term-description"]}>
+                        이용약관(필수)
+                    </span>
+                    <span>
+                        <input type="checkbox" id="serviceTerm" name="serviceTerm" className={style["checkbox"]} onChange={checkService} />
+                        <label htmlFor="serviceTerm" className={agreeServiceTerm ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
+                    </span>
                 </div>
-                <div className={style["term-block"]}>
-                    <div className={style["term-description-block"]}>
-                        <span className={style["term-description"]}>
-                            개인정보처리방침(필수)
-                        </span>
-                        <span>
-                            <input type="checkbox" id="privacyTerm" name="privacyTerm" className={style["checkbox"]} onChange={checkPrivacy} />
-                            <label htmlFor="privacyTerm" className={agreePrivacyTerm ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
-                        </span>
-                    </div>
-                    <PrivacyTerm />
+                <ServiceTerm />
+            </div>
+            <div className={style["term-block"]}>
+                <div className={style["term-description-block"]}>
+                    <span className={style["term-description"]}>
+                        개인정보처리방침(필수)
+                    </span>
+                    <span>
+                        <input type="checkbox" id="privacyTerm" name="privacyTerm" className={style["checkbox"]} onChange={checkPrivacy} />
+                        <label htmlFor="privacyTerm" className={agreePrivacyTerm ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
+                    </span>
                 </div>
-                <div id={style["agree-button-block"]}>
-                    {
-                        (agreeServiceTerm && agreePrivacyTerm) ?
-                            <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle[mainColor]}>이용약관 전체 동의</button> :
-                            <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle["white-dark"]} disabled>이용약관 전체 동의</button>
-                    }
-                </div>
+                <PrivacyTerm />
+            </div>
+            <div id={style["agree-button-block"]}>
+                {
+                    (agreeServiceTerm && agreePrivacyTerm) ?
+                        <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle[mainColor]}>이용약관 전체 동의</button> :
+                        <button type="button" onClick={agreeAllTerm} id={style["agree-button"]} className={colorStyle["white-dark"]} disabled>이용약관 전체 동의</button>
+                }
             </div>
         </div>
     }
     else if (step === "SEND_EMAIL") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-agreeTerm"]}>
-                <h2 id={style["title"]}>이메일 인증번호 전송</h2>
-                <div id={style["title-pair-small"]}>
-                    계정을 등록할 이메일을 입력하여 주세요.
-                </div>
-                <form className={style["form-block"]} onSubmit={sendEmail}>
-                    <input type="email" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input"]} required />
-                    <div id={style["errorMessage"]}>
-                        {errorMessage}
-                    </div>
-                    <button type="submit" id={style["email-button"]} className={colorStyle[mainColor]} disabled={isSending}>{sendEmailButton}</button>
-                </form>
+        content = <div id={style["container-agreeTerm"]}>
+            <h2 id={style["title"]}>이메일 인증번호 전송</h2>
+            <div id={style["title-pair-small"]}>
+                계정을 등록할 이메일을 입력하여 주세요.
             </div>
+            <form className={style["form-block"]} onSubmit={sendEmail}>
+                <input type="email" name="email" placeholder="Email" value={email} onChange={changeEmail} className={style["input"]} required />
+                <div id={style["errorMessage"]}>
+                    {errorMessage}
+                </div>
+                <button type="submit" id={style["email-button"]} className={colorStyle[mainColor]} disabled={isSending}>{sendEmailButton}</button>
+            </form>
         </div>
     }
     else if (step === "CHECK_EMAIL") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-agreeTerm"]}>
-                <h2 id={style["title"]}>인증번호 확인</h2>
-                <div id={style["title-pair-small"]}>
-                    이메일로 전송된 인증번호를 입력하여 주세요.
-                </div>
-                <form className={style["form-block"]} onSubmit={checkEmail}>
-                    <input type="text" name="code" placeholder="인증번호" value={code} onChange={changeCode} className={style["input"]} required />
-                    <div id={style["errorMessage"]}>
-                        {errorMessage}
-                    </div>
-                    <button type="submit" id={style["email-button"]} className={colorStyle[mainColor]}>확인</button>
-                </form>
+        content = <div id={style["container-agreeTerm"]}>
+            <h2 id={style["title"]}>인증번호 확인</h2>
+            <div id={style["title-pair-small"]}>
+                이메일로 전송된 인증번호를 입력하여 주세요.
             </div>
+            <form className={style["form-block"]} onSubmit={checkEmail}>
+                <input type="text" name="code" placeholder="인증번호" value={code} onChange={changeCode} className={style["input"]} required />
+                <div id={style["errorMessage"]}>
+                    {errorMessage}
+                </div>
+                <button type="submit" id={style["email-button"]} className={colorStyle[mainColor]}>확인</button>
+            </form>
         </div>
     }
     else if (step === "JOIN") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-join"]}>
-                <h2 id={style["title-join"]}>회원가입</h2>
-                <form className={style["form-block"]} onSubmit={join}>
-                    <div className={style["form-block"]}>
-                        <div className={style["input-disabled-description"]}>이메일</div>
-                        <input type="email" name="email" value={email} className={style["input-disabled"]} disabled />
+        content = <div id={style["container-join"]}>
+            <h2 id={style["title-join"]}>회원가입</h2>
+            <form className={style["form-block"]} onSubmit={join}>
+                <div className={style["form-block"]}>
+                    <div className={style["input-disabled-description"]}>이메일</div>
+                    <input type="email" name="email" value={email} className={style["input-disabled"]} disabled />
+                </div>
+                <div className={style["form-block"]}>
+                    <div className={style["input-description-block"]}>
+                        <span className={style["input-description"]}>비밀번호</span>
+                        <span className={style["input-invalid-message"]}>
+                            {!validPassword && "* 비밀번호는 영문과 숫자를 포함한 8~16자리입니다."}
+                        </span>
                     </div>
-                    <div className={style["form-block"]}>
-                        <div className={style["input-description-block"]}>
-                            <span className={style["input-description"]}>비밀번호</span>
-                            <span className={style["input-invalid-message"]}>
-                                {!validPassword && "* 비밀번호는 영문과 숫자를 포함한 8~16자리입니다."}
-                            </span>
-                        </div>
-                        <input type={viewPassword ? "text" : "password"} name="password" value={password} onChange={changePassword} className={`${style["input-join"]}  ${validPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                    <input type={viewPassword ? "text" : "password"} name="password" value={password} onChange={changePassword} className={`${style["input-join"]}  ${validPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                </div>
+                <div className={style["form-block"]}>
+                    <div className={style["input-description-block"]}>
+                        <span className={style["input-description"]}>비밀번호 확인</span>
+                        <span className={style["input-invalid-message"]}>
+                            {!equalPassword && "* 비밀번호가 일치하지 않습니다."}
+                        </span>
                     </div>
-                    <div className={style["form-block"]}>
-                        <div className={style["input-description-block"]}>
-                            <span className={style["input-description"]}>비밀번호 확인</span>
-                            <span className={style["input-invalid-message"]}>
-                                {!equalPassword && "* 비밀번호가 일치하지 않습니다."}
-                            </span>
-                        </div>
-                        <input type={viewPassword ? "text" : "password"} name="confirmPassword" value={confirmPassword} onChange={changeConfirmPassword} className={`${style["input-join"]} ${equalPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                    <input type={viewPassword ? "text" : "password"} name="confirmPassword" value={confirmPassword} onChange={changeConfirmPassword} className={`${style["input-join"]} ${equalPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                </div>
+                <div className={style["viewPassword-block"]}>
+                    <span className={style["viewPassword-description"]}>비밀번호 보기</span>
+                    <input type="checkbox" id="viewPassword" name="viewPassword" className={style["checkbox"]} onChange={checkViewPassword} />
+                    <label htmlFor="viewPassword" className={viewPassword ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
+                </div>
+                <div className={style["form-block"]}>
+                    <div className={style["input-description-block"]}>
+                        <span className={style["input-description"]}>닉네임</span>
+                        <span className={style["input-invalid-message"]}>
+                            {!validUsername && "* 닉네임은 영문 또는 한글 또는 숫자를 포함한 2~16자리입니다."}
+                        </span>
                     </div>
-                    <div className={style["viewPassword-block"]}>
-                        <span className={style["viewPassword-description"]}>비밀번호 보기</span>
-                        <input type="checkbox" id="viewPassword" name="viewPassword" className={style["checkbox"]} onChange={checkViewPassword} />
-                        <label htmlFor="viewPassword" className={viewPassword ? colorStyle[mainColor] : colorStyle["white-main"]}></label>
-                    </div>
-                    <div className={style["form-block"]}>
-                        <div className={style["input-description-block"]}>
-                            <span className={style["input-description"]}>닉네임</span>
-                            <span className={style["input-invalid-message"]}>
-                                {!validUsername && "* 닉네임은 영문 또는 한글 또는 숫자를 포함한 2~16자리입니다."}
-                            </span>
-                        </div>
-                        <input type="text" name="username" value={username} onChange={changeUsername} className={`${style["input-join"]} ${validUsername ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
-                    </div>
-                    <div id={style["errorMessage"]}>
-                        {errorMessage}
-                    </div>
-                    {
-                        (validPassword && equalPassword && validUsername) ?
-                            <button type="submit" id={style["submit-button-join"]} className={colorStyle[mainColor]}>회원가입</button> :
-                            <button type="submit" id={style["submit-button-join"]} className={colorStyle["white-dark"]} disabled>회원가입</button>
-                    }
-                </form>
-            </div>
+                    <input type="text" name="username" value={username} onChange={changeUsername} className={`${style["input-join"]} ${validUsername ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                </div>
+                <div id={style["errorMessage"]}>
+                    {errorMessage}
+                </div>
+                {
+                    (validPassword && equalPassword && validUsername) ?
+                        <button type="submit" id={style["submit-button-join"]} className={colorStyle[mainColor]}>회원가입</button> :
+                        <button type="submit" id={style["submit-button-join"]} className={colorStyle["white-dark"]} disabled>회원가입</button>
+                }
+            </form>
         </div>
     }
     else if (step === "JOIN_FINISH") {
-        content = <div id={style["background"]} className={colorStyle["white-main"]}>
-            <div id={style["container-join-finish"]}>
-                <h2 id={style["title"]}>회원가입에 성공하였습니다.</h2>
-                <div className={style["finish-button-block"]}>
-                    <Link to="/login" id={style["finish-button"]} className={colorStyle[mainColor]}>확인</Link>
-                </div>
+        content = <div id={style["container-join-finish"]}>
+            <h2 id={style["title"]}>회원가입에 성공하였습니다.</h2>
+            <div className={style["finish-button-block"]}>
+                <Link to="/login" id={style["finish-button"]} className={colorStyle[mainColor]}>확인</Link>
             </div>
         </div>
     }
 
     return (
-        <div>
+        <div id={style["background"]} className={colorStyle["white-main"]}>
             {content}
         </div>
     );
