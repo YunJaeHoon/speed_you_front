@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import useSound from 'use-sound';
-import { sendApi } from '../../util/apiUtil.js';
+import { sendApi, refreshAccessToken } from '../../util/apiUtil.js';
 
 import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
@@ -66,11 +66,11 @@ function RedGamePage() {
 
         if (step === "PLAY" && countDown > 0) {
             setTimeout(() => setCountDown(countDown - 1), 1000);    // 1초마다 감소
-            isPlaySound && playCountDownSound();                    // 카운트다운 효과음
+            if (isPlaySound) playCountDownSound();                    // 카운트다운 효과음
         }
         else if (step === "PLAY" && countDown === 0) {
             setCountDown("Game start");             // 카운트다운 종료
-            isPlaySound && playGameStartSound();    // 게임 시작 효과음
+            if (isPlaySound) playGameStartSound();    // 게임 시작 효과음
         }
 
     }, [step, countDown]);
@@ -87,7 +87,7 @@ function RedGamePage() {
 
     }, [countDown, stopwatch]);
 
-    // 게임 시작 ( red-block 결정 )
+    // 게임 시작 ( red-block 초기 위치 결정 )
     useEffect(() => {
 
         if (countDown === "Game start") {
@@ -105,11 +105,11 @@ function RedGamePage() {
             if (whichBlock.toString() === event.key && event.location === 3) {
                 setScore(score + 1);
                 setWhichBlock(Math.floor(Math.random() * 9) + 1);
-                isPlaySound && playScoreSound();
+                if (isPlaySound) playScoreSound();
             }
             else if (whichBlock.toString() !== event.key && event.location === 3) {
                 setScore(score - 1);
-                isPlaySound && playWrongSound();
+                if (isPlaySound) playWrongSound();
             }
 
         }
@@ -133,6 +133,9 @@ function RedGamePage() {
     useEffect(() => {
         if (step === "OVER") {
             const getResult = async () => {
+
+                await refreshAccessToken();
+
                 try {
                     await sendApi(
                         '/api/game/insert-score',
@@ -166,7 +169,7 @@ function RedGamePage() {
                         setPercentile("???");
                     }
                     finally {
-                        isPlaySound && playGameOverSound();    // 게임 종료 효과음
+                        if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
                         setStep("RESULT");
                     }
                 }

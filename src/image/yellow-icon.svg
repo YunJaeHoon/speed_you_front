@@ -1,6 +1,9 @@
 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_174_2)">
-<rect width="60" height="60" fill="#FFC700"/>
+<rect width="28" height="28" fill="#FFC700"/>
+<rect y="32" width="28" height="28" fill="#FFC700"/>
+<rect x="32" y="32" width="28" height="28" fill="#FFC700"/>
+<rect x="32" width="28" height="28" fill="#FFC700"/>
 </g>
 <defs>
 <clipPath id="clip0_174_2">
