@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const sendApi = async (url, method, authorization, requestData) => {
 
-    let response;
+    let response = null;
 
-    const headers = authorization ? {
+    let headers = authorization ? {
         Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
         'Content-Type': 'application/json'
     } : {
@@ -30,6 +30,13 @@ const sendApi = async (url, method, authorization, requestData) => {
     catch (error) {
         if (authorization && error.response && error.response.data && error.response.data.code === "UNAUTHORIZED") {
             const accesstoken = await refreshAccessToken();
+
+            headers = authorization ? {
+                Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+                'Content-Type': 'application/json'
+            } : {
+                'Content-Type': 'application/json'
+            };
 
             if (accesstoken) {
                 try {
@@ -78,4 +85,4 @@ const refreshAccessToken = async () => {
     }
 };
 
-export { sendApi };
+export { sendApi, refreshAccessToken };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import useSound from 'use-sound';
-import { sendApi } from '../../util/apiUtil.js';
+import { sendApi, refreshAccessToken } from '../../util/apiUtil.js';
 
 import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
@@ -83,15 +83,15 @@ function OrangeGamePage() {
         if (step === "PLAY" && countDown > 0) {
 
             if (countDown === 3) {
-                isPlaySound && playLoadSound();    // 장전 소리
+                if (isPlaySound) playLoadSound();    // 장전 소리
             }
 
             setTimeout(() => setCountDown(countDown - 1), 1500);    // 1.5초마다 감소
-            isPlaySound && playCountDownSound();                    // 카운트다운 효과음
+            if (isPlaySound) playCountDownSound();                    // 카운트다운 효과음
         }
         else if (step === "PLAY" && countDown === 0) {
             setCountDown("Game start");             // 카운트다운 종료
-            isPlaySound && playGameStartSound();    // 게임 시작 효과음
+            if (isPlaySound) playGameStartSound();    // 게임 시작 효과음
         }
 
     }, [step, countDown]);
@@ -112,7 +112,6 @@ function OrangeGamePage() {
     useEffect(() => {
 
         if (countDown === "Game start") {
-
             setShowTarget(true);    // 과녁 등장
 
             let randomW = Math.floor(Math.random() * 90);   // 0 ~ 89
@@ -129,6 +128,9 @@ function OrangeGamePage() {
     useEffect(() => {
         if (step === "OVER") {
             const getResult = async () => {
+
+                await refreshAccessToken();
+
                 try {
                     await sendApi(
                         '/api/game/insert-score',
@@ -162,7 +164,7 @@ function OrangeGamePage() {
                         setPercentile("???");
                     }
                     finally {
-                        isPlaySound && playGameOverSound();    // 게임 종료 효과음
+                        if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
                         setStep("RESULT");
                     }
                 }
@@ -178,7 +180,7 @@ function OrangeGamePage() {
             let randomNumber = Math.floor(Math.random() * 5);   // 0 ~ 4
 
             setScore(score + 1);                                // 점수 + 1
-            isPlaySound && playScoreSounds[randomNumber]();     // 발사음
+            if (isPlaySound) playScoreSounds[randomNumber]();     // 발사음
 
             let randomW = Math.floor(Math.random() * 90);       // 0 ~ 89
             let randomH = Math.floor(Math.random() * 90);       // 0 ~ 89
@@ -193,7 +195,7 @@ function OrangeGamePage() {
     function downScore() {
         if (step === "PLAY" && countDown === "Game start") {
             setScore(score - 1);                // 점수 - 1
-            isPlaySound && playWrongSound();    // 효과음
+            if (isPlaySound) playWrongSound();    // 효과음
         }
 
     }
@@ -250,7 +252,7 @@ function OrangeGamePage() {
                     <div className={style["information"]}>{score}</div>
                 </div>
             </div>
-            <div id={style["game-container"]} onClick={downScore}>
+            <div id={style["game-container"]} onMouseDown={downScore}>
                 <img
                     src={orangeIcon}
                     alt="target"
@@ -260,7 +262,7 @@ function OrangeGamePage() {
                         display: `${showTarget ? 'inline-block' : 'none'}`
                     }}
                     id={style["target"]}
-                    onClick={(event) => {
+                    onMouseDown={(event) => {
                         event.stopPropagation();
                         getScore();
                     }}

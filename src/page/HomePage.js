@@ -10,6 +10,7 @@ import circleIcon from '../image/circle-icon.svg';
 import redIcon from '../image/red-icon.svg';
 import orangeIcon from '../image/orange-icon.svg';
 import yellowIcon from '../image/yellow-icon.svg';
+import greenIcon from '../image/green-icon.svg';
 import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
@@ -94,12 +95,12 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="green-main" title="Green" link="/game/green"
+            <GameIntroduction iconSource={greenIcon} iconSize={125} color="green-main" title="Green" link="/game/green"
                 description={
                     <div>
-                        내용<br />
-                        내용<br />
-                        내용
+                        생명은 그 자체로 엄청난 가치를 갖고 있습니다.<br />
+                        그 속에는 진정성과 역동성이 고스란히 녹아 있어, 우리를 더 높은 곳으로 이끌어 줍니다.<br />
+                        당신의 생명력을 보여주세요.
                     </div>
                 }
             />
