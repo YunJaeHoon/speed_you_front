@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import axios from 'axios';
+import { sendApi } from './util/apiUtil.js';
 
 import BackgroundMusicPlayer from './component/BackgroundMusicPlayer';
 import Header from './component/Header';
@@ -41,19 +41,21 @@ function App() {
     // 마운트 시에 실행
     useEffect(() => {
 
-        // 계정 권한 확인
-        axios.get('/api/get-role',
-            {
-                headers: {
-                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
-                }
-            })
-            .then((response) => {
-                setRole(response.data.data);
-            })
-            .catch((error) => {
+        const getRole = async () => {
+            try {
+                const response = await sendApi(
+                    '/api/get-role',
+                    "GET",
+                    true,
+                    null
+                );
+                setRole(response);
+            } catch (error) {
                 setRole(null);
-            });
+            }
+        };
+
+        getRole();
 
     }, []);
 

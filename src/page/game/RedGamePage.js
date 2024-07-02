@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import useSound from 'use-sound';
-import axios from 'axios';
+import { sendApi } from '../../util/apiUtil.js';
 
 import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
@@ -131,50 +131,49 @@ function RedGamePage() {
 
     // 게임 종료
     useEffect(() => {
-
         if (step === "OVER") {
-
-            // 점수 등록
-            axios.post('/api/game/insert-score',
-                {
-                    headers: {
-                        Authorization: `Bearer ${window.localStorage.getItem('token')}`
-                    },
-
-                    "game": "Red",
-                    "score": score
-                })
-                .then()
-                .catch()
-                .finally(() => {
-
-                    // 결과 확인
-                    axios.get('/api/game/result',
+            const getResult = async () => {
+                try {
+                    await sendApi(
+                        '/api/game/insert-score',
+                        "POST",
+                        true,
                         {
-                            headers: {
-                                Authorization: `Bearer ${window.localStorage.getItem('token')}`
-                            },
-
-                            params: {
+                            "game": "Red",
+                            "score": score
+                        }
+                    );
+                }
+                finally {
+                    try {
+                        const response = await sendApi(
+                            '/api/game/result',
+                            "GET",
+                            false,
+                            {
                                 "game": "Red",
                                 "score": score
                             }
-                        })
-                        .then((response) => {
-                            setCountAll(response.data.data.count_all);
-                            setRank(response.data.data.rank);
-                            setPercentile(response.data.data.percentile);
-                        })
-                        .catch()
-                        .finally(() => {
-                            isPlaySound && playGameOverSound();    // 게임 종료 효과음
-                            setStep("RESULT");
-                        });
+                        );
 
-                });
+                        setCountAll(response.count_all);
+                        setRank(response.rank);
+                        setPercentile(response.percentile);
+                    }
+                    catch {
+                        setCountAll("???");
+                        setRank("???");
+                        setPercentile("???");
+                    }
+                    finally {
+                        isPlaySound && playGameOverSound();    // 게임 종료 효과음
+                        setStep("RESULT");
+                    }
+                }
+            }
 
+            getResult();
         }
-
     }, [step]);
 
     // 게임 시작 버튼

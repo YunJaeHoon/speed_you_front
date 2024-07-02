@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { sendApi } from '../../util/apiUtil.js';
 import axios from 'axios';
 
 import SoundContext from "../../context/SoundContext.js";
@@ -41,40 +42,42 @@ function LoginPage() {
         e.preventDefault();
         setErrorMessage("");
 
-        axios.post('/api/login',
-            {
-                "email": email,
-                "password": password,
-                "remember-me": rememberMe
-            },
-            {
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            })
+        axios.post('/api/login', {
+            "email": email,
+            "password": password,
+            "remember-me": rememberMe
+        }, {
+            headers: { "Content-Type": "application/x-www-form-urlencoded" }
+        })
             .then((response) => {
 
-                // header에 Authorization 값으로 토큰 넣기
-                axios.defaults.headers.common['Authorization'] = response.data.data;
+                // header에 Authorization 값으로 access token 넣기
+                axios.defaults.headers.common['Authorization'] = response.data.data.accessToken;
 
-                // localStorage에 토큰 값 넣기
-                window.localStorage.setItem("token", response.data.data);
+                // localStorage에 access token 넣기
+                window.localStorage.setItem("accessToken", response.data.data.accessToken);
 
-                // 계정 권한 확인
-                axios.get('/api/get-role',
-                    {
-                        headers: {
-                            Authorization: `Bearer ${window.localStorage.getItem('token')}`
-                        }
-                    })
-                    .then((response) => {
-                        setRole(response.data.data);
-                    })
-                    .catch((error) => {
+                // localStroage에 refresh token 넣기
+                if (rememberMe)
+                    window.localStorage.setItem("refreshToken", response.data.data.refreshToken);
+
+                const getRole = async () => {
+                    try {
+                        const response = await sendApi(
+                            '/api/get-role',
+                            "GET",
+                            true,
+                            null
+                        );
+                        setRole(response);
+                        navigate('/');
+                    } catch (error) {
                         setRole(null);
-                    });
+                        setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+                    }
+                };
 
-                navigate('/');
+                getRole();
             })
             .catch((error) => {
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
