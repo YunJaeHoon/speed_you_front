@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { sendApi } from '../../util/apiUtil.js';
 
 import SoundContext from "../../context/SoundContext.js";
 
@@ -45,21 +45,26 @@ function ResetPasswordPage() {
         setIsSending(true);
         setSendEmailButton("잠시만 기다려주십시오...");
 
-        axios.post('/api/reset-password', {
-            "email": email
-        })
-            .then((response) => {
+        const resetPasswordApi = async () => {
+            try {
+                const response = await sendApi(
+                    '/api/reset-password',
+                    "POST",
+                    false,
+                    {
+                        "email": email
+                    }
+                );
 
                 setStep("RESET_PASSWORD_FINISH");
-
-            })
-            .catch((error) => {
-
+            } catch (error) {
                 setIsSending(false);
                 setSendEmailButton("전송");
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            }
+        };
 
-            });
+        resetPasswordApi();
     }
 
     if (step === "RESET_PASSWORD") {

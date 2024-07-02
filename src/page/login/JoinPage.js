@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { sendApi } from '../../util/apiUtil.js';
 
 import ServiceTerm from '../../component/ServiceTerm';
 import PrivacyTerm from '../../component/PrivacyTerm';
@@ -100,21 +100,26 @@ function JoinPage() {
         setIsSending(true);
         setSendEmailButton("잠시만 기다려주십시오...");
 
-        axios.post('/api/join/send-email', {
-            "email": email
-        })
-            .then((response) => {
+        const sendEmailApi = async () => {
+            try {
+                const response = await sendApi(
+                    '/api/join/send-email',
+                    "POST",
+                    false,
+                    {
+                        "email": email
+                    }
+                );
 
                 setStep("CHECK_EMAIL");
-
-            })
-            .catch((error) => {
-
+            } catch (error) {
                 setSendEmailButton("전송");
                 setIsSending(false);
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
+            }
+        };
 
-            });
+        sendEmailApi();
     }
 
     // 인증번호 확인 버튼
@@ -122,16 +127,25 @@ function JoinPage() {
         e.preventDefault();
         setErrorMessage("");
 
-        axios.post('/api/join/check-email', {
-            email: email,
-            code: code
-        })
-            .then((response) => {
-                setStep("JOIN")
-            })
-            .catch((error) => {
+        const checkEmailApi = async () => {
+            try {
+                const response = await sendApi(
+                    '/api/join/check-email',
+                    "POST",
+                    false,
+                    {
+                        "email": email,
+                        "code": code
+                    }
+                );
+
+                setStep("JOIN");
+            } catch (error) {
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-            });
+            }
+        };
+
+        checkEmailApi();
     }
 
     // 회원가입 버튼
@@ -139,18 +153,27 @@ function JoinPage() {
         e.preventDefault();
         setErrorMessage("");
 
-        axios.post('/api/join', {
-            email: email,
-            password: password,
-            username: username,
-            code: code
-        })
-            .then((response) => {
+        const joinApi = async () => {
+            try {
+                const response = await sendApi(
+                    '/api/join',
+                    "POST",
+                    false,
+                    {
+                        email: email,
+                        password: password,
+                        username: username,
+                        code: code
+                    }
+                );
+
                 setStep("JOIN_FINISH");
-            })
-            .catch((error) => {
+            } catch (error) {
                 setErrorMessage(error.response?.data?.message ?? "예기치 못한 에러가 발생하였습니다.");
-            });
+            }
+        };
+
+        joinApi();
     }
 
     if (step === "AGREE_TERM") {
