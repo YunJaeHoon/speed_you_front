@@ -39,10 +39,10 @@ function RedGamePage() {
     const [percentile, setPercentile] = useState(0);        // 상위 퍼센트
 
     // 효과음
-    const [playScoreSound] = useSound(score_sound, { volume: 0.5 });
+    const [playScoreSound] = useSound(score_sound, { volume: 0.4 });
     const [playWrongSound] = useSound(wrong_sound, { volume: 1 });
-    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.5 });
-    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound);
+    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.35 });
+    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound, { volume: 0.7 });
     const [playGameOverSound, { stop: stopGameOverSound }] = useSound(gameOver_sound);
 
     // 페이지 입장, 퇴장 시에 실행
@@ -78,14 +78,14 @@ function RedGamePage() {
     // 제한 시간
     useEffect(() => {
 
-        if (countDown === "Game start" && stopwatch > 0) {
+        if (step === "PLAY" && countDown === "Game start" && stopwatch > 0) {
             setTimeout(() => setStopwatch((stopwatch - 1)), 1000);  // 1초마다 감소
         }
-        else if (countDown === "Game start" && stopwatch === 0) {
+        else if (step === "PLAY" && countDown === "Game start" && stopwatch === 0) {
             setStep("OVER");    // 제한 시간 종료
         }
 
-    }, [countDown, stopwatch]);
+    }, [countDown, stopwatch, step]);
 
     // 게임 시작 ( red-block 초기 위치 결정 )
     useEffect(() => {

@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import style from '../style/HomeStyle.module.css';
-import colorStyle from '../style/Color.module.css';
 
 function GameIntroduction({ iconSource, iconSize, title, link, description }) {
 
     return (
         <div className={style["game-introduction"]}>
-            <span style={{ "display": "flex", "text-align": "center" }}>
+            <span style={{ "width": "85%", "display": "flex", "text-align": "center" }}>
                 <span className={style["game-icon-container"]}>
                     <img src={iconSource} style={{ width: iconSize, height: iconSize }} alt="game-icon" />
                 </span>
@@ -16,7 +15,7 @@ function GameIntroduction({ iconSource, iconSize, title, link, description }) {
                     <div className={style["game-description"]}>{description}</div>
                 </span>
             </span>
-            <span>
+            <span style={{ "width": "15%", "display": "flex", "justifyContent": "end" }}>
                 <Link to={link} className={style["game-play-button"]}>
                     PLAY
                 </Link>

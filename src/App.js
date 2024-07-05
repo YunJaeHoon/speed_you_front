@@ -64,7 +64,7 @@ function App() {
             <SoundContext.Provider value={{ isPlayMusic, setIsPlayMusic, isPlaySound, setIsPlaySound, currentMusic, setCurrentMusic, currentMusicVolume, setCurrentMusicVolume }}>
                 <BackgroundMusicPlayer />
                 <Header />
-                <TransitionGroup style={{ "min-height": "100vh", "position": "relative" }}>
+                <TransitionGroup style={{ "width": "100%", "min-height": "100vh", "overflow-x": "hidden", "position": "relative" }}>
                     <CSSTransition key={location.pathname} timeout={TIMEOUT} classNames={{
                         enter: style["fade-enter"],
                         enterActive: style["fade-enter-active"],

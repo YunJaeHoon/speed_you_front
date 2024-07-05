@@ -36,6 +36,7 @@
 }
 
 #top-container {
+    width: 80vw;
     height: 130px;
 
     display: flex;
@@ -46,7 +47,7 @@
 }
 
 .top-subcontainer {
-    width: 100px;
+    width: 20%;
 
     display: flex;
     flex-direction: column;
@@ -66,14 +67,14 @@
 }
 
 #count-down {
-    width: 600px;
+    width: 70%;
     text-align: center;
     font-size: 100px;
     font-variation-settings: "wght" 800;
 }
 
 #game-start {
-    width: 600px;
+    width: 70%;
     text-align: center;
     font-size: 70px;
     font-variation-settings: "wght" 800;
@@ -84,7 +85,7 @@
     flex-direction: column;
     align-items: center;
 
-    margin-top: 50px;
+    margin-top: 7vh;
 }
 
 .line {

@@ -42,10 +42,10 @@ function YellowGamePage() {
     const [targetLocation, setTargetLocation] = useState(99);   // 목표 위치
 
     // 효과음
-    const [playScoreSound] = useSound(score_sound, { volume: 0.25 });
-    const [playMoveSound] = useSound(move_sound, { volume: 0.5 });
-    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.5 });
-    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound);
+    const [playScoreSound] = useSound(score_sound, { volume: 0.15 });
+    const [playMoveSound] = useSound(move_sound, { volume: 0.3 });
+    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.35 });
+    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound, { volume: 0.7 });
     const [playGameOverSound, { stop: stopGameOverSound }] = useSound(gameOver_sound);
 
     // 49개의 블럭
@@ -101,14 +101,14 @@ function YellowGamePage() {
     // 제한 시간
     useEffect(() => {
 
-        if (countDown === "Game start" && stopwatch > 0) {
+        if (step === "PLAY" && countDown === "Game start" && stopwatch > 0) {
             setTimeout(() => setStopwatch((stopwatch - 1)), 1000);  // 1초마다 감소
         }
-        else if (countDown === "Game start" && stopwatch === 0) {
+        else if (step === "PLAY" && countDown === "Game start" && stopwatch === 0) {
             setStep("OVER");    // 제한 시간 종료
         }
 
-    }, [countDown, stopwatch]);
+    }, [countDown, stopwatch, step]);
 
     // 게임 시작 ( 플레이어, 목표 초기 위치 결정 )
     useEffect(() => {
