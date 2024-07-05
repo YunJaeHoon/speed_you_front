@@ -47,15 +47,15 @@ function OrangeGamePage() {
     const [targetH, setTargetH] = useState(0);              // 과녁 세로 마진
 
     // 효과음
-    const [playScoreSound_1] = useSound(score_sound_1, { volume: 0.4 });
-    const [playScoreSound_2] = useSound(score_sound_2, { volume: 0.4 });
-    const [playScoreSound_3] = useSound(score_sound_3, { volume: 0.9 });
-    const [playScoreSound_4] = useSound(score_sound_4, { volume: 0.4 });
-    const [playScoreSound_5] = useSound(score_sound_5, { volume: 0.3 });
+    const [playScoreSound_1] = useSound(score_sound_1, { volume: 0.25 });
+    const [playScoreSound_2] = useSound(score_sound_2, { volume: 0.25 });
+    const [playScoreSound_3] = useSound(score_sound_3, { volume: 0.75 });
+    const [playScoreSound_4] = useSound(score_sound_4, { volume: 0.25 });
+    const [playScoreSound_5] = useSound(score_sound_5, { volume: 0.15 });
     const [playWrongSound] = useSound(wrong_sound, { volume: 1 });
-    const [playLoadSound, { stop: stopLoadSound }] = useSound(load_sound, { volume: 0.5 });
-    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.5 });
-    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound);
+    const [playLoadSound, { stop: stopLoadSound }] = useSound(load_sound, { volume: 0.4 });
+    const [playCountDownSound] = useSound(countDown_sound, { volume: 0.35 });
+    const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound, { volume: 0.7 });
     const [playGameOverSound, { stop: stopGameOverSound }] = useSound(gameOver_sound);
 
     const playScoreSounds = [playScoreSound_1, playScoreSound_2, playScoreSound_3, playScoreSound_4, playScoreSound_5];
@@ -86,11 +86,11 @@ function OrangeGamePage() {
                 if (isPlaySound) playLoadSound();    // 장전 소리
             }
 
-            setTimeout(() => setCountDown(countDown - 1), 1500);    // 1.5초마다 감소
+            setTimeout(() => setCountDown(countDown - 1), 1500);      // 1.5초마다 감소
             if (isPlaySound) playCountDownSound();                    // 카운트다운 효과음
         }
         else if (step === "PLAY" && countDown === 0) {
-            setCountDown("Game start");             // 카운트다운 종료
+            setCountDown("Game start");               // 카운트다운 종료
             if (isPlaySound) playGameStartSound();    // 게임 시작 효과음
         }
 
@@ -99,14 +99,14 @@ function OrangeGamePage() {
     // 제한 시간
     useEffect(() => {
 
-        if (countDown === "Game start" && stopwatch > 0) {
+        if (step === "PLAY" && countDown === "Game start" && stopwatch > 0) {
             setTimeout(() => setStopwatch((stopwatch - 1)), 1000);  // 1초마다 감소
         }
-        else if (countDown === "Game start" && stopwatch === 0) {
+        else if (step === "PLAY" && countDown === "Game start" && stopwatch === 0) {
             setStep("OVER");    // 제한 시간 종료
         }
 
-    }, [countDown, stopwatch]);
+    }, [countDown, stopwatch, step]);
 
     // 게임 시작 ( 과녁 생성 )
     useEffect(() => {
@@ -114,8 +114,8 @@ function OrangeGamePage() {
         if (countDown === "Game start") {
             setShowTarget(true);    // 과녁 등장
 
-            let randomW = Math.floor(Math.random() * 90);   // 0 ~ 89
-            let randomH = Math.floor(Math.random() * 90);   // 0 ~ 89
+            let randomW = Math.floor(Math.random() * 80);   // 0 ~ 79
+            let randomH = Math.floor(Math.random() * 80);   // 0 ~ 79
 
             // 과녁 위치 초기화
             setTargetW(randomW);
@@ -180,10 +180,10 @@ function OrangeGamePage() {
             let randomNumber = Math.floor(Math.random() * 5);   // 0 ~ 4
 
             setScore(score + 1);                                // 점수 + 1
-            if (isPlaySound) playScoreSounds[randomNumber]();     // 발사음
+            if (isPlaySound) playScoreSounds[randomNumber]();   // 발사음
 
-            let randomW = Math.floor(Math.random() * 90);       // 0 ~ 89
-            let randomH = Math.floor(Math.random() * 90);       // 0 ~ 89
+            let randomW = Math.floor(Math.random() * 80);       // 0 ~ 79
+            let randomH = Math.floor(Math.random() * 80);       // 0 ~ 79
 
             // 과녁 위치 초기화
             setTargetW(randomW);

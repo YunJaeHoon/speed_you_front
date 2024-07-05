@@ -16,7 +16,7 @@ import homeBackgroundMusic from '../sound/home_background_music.mp3';
 function HomePage() {
 
     // context
-    const { isPlayMusic, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
 
     // state
     const [position, setPosition] = useState(0);    // 스크롤 위치
@@ -51,7 +51,7 @@ function HomePage() {
                 <div id={style["title"]}>Speed.you</div>
                 <div id={style["subtitle"]}>반응속도 테스트</div>
             </div>
-            <div style={{ opacity: 1.6 - position / 250 }}>
+            <div id={style["scroll-container"]} style={{ opacity: 1.6 - position / 250 }}>
                 <div className={style["scroll-text"]}>아래로 스크롤</div>
                 <img src={scrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
             </div>
@@ -66,7 +66,7 @@ function HomePage() {
                 <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
                 <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
             </div>
-            <GameIntroduction iconSource={redIcon} iconSize={120} color="red-main" title="Red" link="/game/red"
+            <GameIntroduction iconSource={redIcon} iconSize={"7.5vw"} color="red-main" title="Red" link="/game/red"
                 description={
                     <div>
                         붉은색은 열정과 에너지, 그리고 강렬한 감정을 상징합니다.<br />
@@ -76,7 +76,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={orangeIcon} iconSize={125} color="orange-main" title="Orange" link="/game/orange"
+            <GameIntroduction iconSource={orangeIcon} iconSize={"8vw"} color="orange-main" title="Orange" link="/game/orange"
                 description={
                     <div>
                         주황색 하늘, 석양은 지고 있으며, 총구는 서늘하게 때를 기다립니다.<br />
@@ -85,7 +85,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={yellowIcon} iconSize={120} color="yellow-main" title="Yellow" link="/game/yellow"
+            <GameIntroduction iconSource={yellowIcon} iconSize={"7.5vw"} color="yellow-main" title="Yellow" link="/game/yellow"
                 description={
                     <div>
                         어둠이 깊어질수록 빛은 더욱 밝게 타오릅니다.<br />
@@ -95,7 +95,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={greenIcon} iconSize={125} color="green-main" title="Green" link="/game/green"
+            <GameIntroduction iconSource={greenIcon} iconSize={"8vw"} color="green-main" title="Green" link="/game/green"
                 description={
                     <div>
                         생명은 그 자체로 엄청난 가치를 갖고 있습니다.<br />

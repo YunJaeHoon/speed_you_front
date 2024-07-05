@@ -31,7 +31,7 @@ function JoinPage() {
     const [username, setUsername] = useState("");                       // 닉네임
     const [password, setPassword] = useState("");                       // 비밀번호
     const [confirmPassword, setConfirmPassword] = useState("");         // 비밀번호 확인
-    const [sendEmailButton, setSendEmailButton] = useState("전송");      // 이메일 인증번호 전송 버튼 글자
+    const [sendEmailButton, setSendEmailButton] = useState("전송");     // 이메일 인증번호 전송 버튼 글자
     const [isSending, setIsSending] = useState(false);                  // 이메일 전송을 수행 중인지에 대한 여부
     const [validPassword, setValidPassword] = useState(false);          // 비밀번호 유효성 여부
     const [equalPassword, setEqualPassword] = useState(true);           // 비밀번호 확인 일치 여부
