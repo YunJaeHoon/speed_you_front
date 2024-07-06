@@ -7,7 +7,8 @@ import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
 import SoundContext from "../../context/SoundContext.js";
 
-import style from '../../style/page_style/game/GreenStyle.module.css';
+import style from './GreenStyle.module.css';
+import gameStyle from './GameStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 import animationStyle from '../../App.module.css';
 
@@ -93,6 +94,17 @@ function GreenGamePage() {
     useEffect(() => {
 
         if (countDown === "Game start") {
+
+            // 기다림 종료
+            if (waitId) {
+                clearTimeout(waitId);
+                setWaitId(null);
+            }
+            if (randomWaitId) {
+                clearTimeout(randomWaitId);
+                setRandomWaitId(null);
+            }
+
             setWaitId(setTimeout(waitRandomNumber, 3000));        // 3초 delay
         }
 
@@ -112,9 +124,10 @@ function GreenGamePage() {
     // 시간 측정
     useEffect(() => {
 
+        setStopwatch(0);
+
         if (step === "PLAY" && circleActivate) {
             setStartTime(Date.now());
-            setStopwatch(0);
         }
         else {
             setStartTime("round-finish");
@@ -123,6 +136,8 @@ function GreenGamePage() {
     }, [step, circleActivate]);
 
     useEffect(() => {
+
+        setStopwatch(0);
 
         if (step === "PLAY" && circleActivate && startTime) {
             updateStopwatch();
@@ -294,11 +309,11 @@ function GreenGamePage() {
     }
 
     if (step === "READY") {
-        content = <div>
+        content = <div id={gameStyle["container"]}>
             <HowToPlay
                 title="Green"
                 iconSource={greenIcon}
-                iconSize={80}
+                iconSize={"13vh"}
                 description={
                     <div>
                         화면 한가운데의 원이 <b className={colorStyle["green-font"]}>초록색</b>이 되는 순간 원을 클릭하세요.<br />
@@ -308,22 +323,22 @@ function GreenGamePage() {
                 }
                 stopwatch="-"
             />
-            <div id={style["start-button"]} className={colorStyle["green-main"]} onClick={play} >
+            <div id={gameStyle["start-button"]} className={colorStyle["green-background"]} onClick={play} >
                 Start
             </div>
         </div>
     }
     else if (step === "PLAY") {
-        content = <div id={style["container"]}>
-            <div id={style["top-container"]}>
-                <div className={style["top-subcontainer"]}>
-                    <div className={style["information-title"]}>시간</div>
-                    <div className={style["information"]}>{stopwatch}</div>
+        content = <div id={gameStyle["container"]}>
+            <div id={gameStyle["top-container"]}>
+                <div className={gameStyle["top-subcontainer"]}>
+                    <div className={gameStyle["information-title"]}>시간</div>
+                    <div className={gameStyle["information"]}>{stopwatch}</div>
                 </div>
-                <div id={countDown === "Game start" ? style["game-start"] : style["count-down"]}>{countDown}</div>
-                <div className={style["top-subcontainer"]}>
-                    <div className={style["information-title"]}>점수</div>
-                    <div className={style["information"]}>{score}</div>
+                <div id={countDown === "Game start" ? gameStyle["game-start"] : gameStyle["count-down"]}>{countDown}</div>
+                <div className={gameStyle["top-subcontainer"]}>
+                    <div className={gameStyle["information-title"]}>점수</div>
+                    <div className={gameStyle["information"]}>{score}</div>
                 </div>
             </div>
             <div id={style["game-container"]}>
@@ -363,12 +378,12 @@ function GreenGamePage() {
         </div>
     }
     else if (step === "OVER") {
-        content = <div id={style["container"]}>
+        content = <div id={gameStyle["container"]}>
             <WaitServer />
         </div>
     }
     else if (step === "RESULT") {
-        content = <div id={style["container"]}>
+        content = <div id={gameStyle["container"]}>
             <Result
                 game="Green"
                 fontColor="green-font"
@@ -377,7 +392,7 @@ function GreenGamePage() {
                 rank={rank}
                 percentile={percentile}
             />
-            <div id={style["start-button"]} className={colorStyle["green-main"]} onClick={retry} >
+            <div id={gameStyle["start-button"]} className={colorStyle["green-background"]} onClick={retry} >
                 재시도
             </div>
         </div>

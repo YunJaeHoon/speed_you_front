@@ -1,0 +1,37 @@
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 9vh;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block {
+  width: 6vh;
+  height: 6vh;
+  background-color: #c5c5c5;
+
+  margin: 0.5vh;
+}
+
+.player-block {
+  width: 6vh;
+  height: 6vh;
+  background-color: #000000;
+
+  margin: 0.5vh;
+}
+
+.target-block {
+  width: 6vh;
+  height: 6vh;
+  background-color: #FFC700;
+
+  margin: 0.5vh;
+}

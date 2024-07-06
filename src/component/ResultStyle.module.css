@@ -1,18 +1,17 @@
 #container {
-  width: 100%;
+  width: 65vw;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-top: 100px;
+  margin-top: 15vh;
 }
 
-#game-over-title {
+#title {
   text-align: center;
-  font-size: 64px;
+  font-size: 8vh;
   font-variation-settings: "wght" 800;
-  color: #20201E;
 }
 
 #score-container {
@@ -22,20 +21,18 @@
   justify-content: space-between;
   text-align: center;
 
-  font-size: 32px;
+  font-size: 5vh;
   font-variation-settings: "wght" 750;
-  color: #20201E;
 
-  padding: 0px 20px;
-  margin-top: 20px;
+  padding: 0 2.5vh;
+  margin-top: 2.5vh;
 }
 
 #horizontal-divider {
   width: 100%;
-  height: 1px;
-  background-color: #20201E;
+  height: 0.2vh;
 
-  margin-top: 10px;
+  margin-top: 2vh;
 }
 
 #result-container {
@@ -47,34 +44,31 @@
 }
 
 #result-summary {
-  width: 20%;
+  width: 25%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   text-align: center;
-  font-size: 3.2vw;
+  font-size: 7vh;
   font-variation-settings: "wght" 800;
-  color: #20201E;
 }
 
 #vertical-divider {
-  width: 1px;
+  width: 0.2vh;
   height: 100%;
-  background-color: #20201E;
 }
 
 #result-description {
   width: 100%;
   height: 100%;
 
-  font-size: 1.8vw;
-  line-height: 150%;
-  color: #20201E;
+  font-size: 4vh;
+  line-height: 6vh;
 
   display: flex;
   align-items: center;
 
-  padding-left: 25px;
+  padding-left: 5vh;
 }

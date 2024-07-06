@@ -1,0 +1,43 @@
+#container {
+    width: 60%;
+
+    overflow: hidden;
+}
+
+#title-container {
+    display: flex;
+    align-items: center;
+
+    padding: 2vh 3vh;
+    border-bottom: 0.3vh solid #20201E;
+    margin-top: 14vh;
+}
+
+#icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-right: 4vh;
+}
+
+#title {
+    font-size: 13vh;
+    font-variation-settings: "wght" 800;
+}
+
+#description-container {
+    margin-top: 4.5vh;
+}
+
+#description-title {
+    font-size: 3.8vh;
+    font-variation-settings: "wght" 750;
+}
+
+#description {
+    font-size: 3vh;
+
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+}

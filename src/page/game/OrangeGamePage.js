@@ -7,7 +7,8 @@ import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
 import SoundContext from "../../context/SoundContext.js";
 
-import style from '../../style/page_style/game/OrangeStyle.module.css';
+import style from './OrangeStyle.module.css';
+import gameStyle from './GameStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 import animationStyle from '../../App.module.css';
 
@@ -114,8 +115,8 @@ function OrangeGamePage() {
         if (countDown === "Game start") {
             setShowTarget(true);    // 과녁 등장
 
-            let randomW = Math.floor(Math.random() * 80);   // 0 ~ 79
-            let randomH = Math.floor(Math.random() * 80);   // 0 ~ 79
+            let randomW = Math.floor(Math.random() * 60) + 6;       // 6 ~ 65
+            let randomH = Math.floor(Math.random() * 58) + 13;      // 13 ~ 70
 
             // 과녁 위치 초기화
             setTargetW(randomW);
@@ -182,8 +183,8 @@ function OrangeGamePage() {
             setScore(score + 1);                                // 점수 + 1
             if (isPlaySound) playScoreSounds[randomNumber]();   // 발사음
 
-            let randomW = Math.floor(Math.random() * 80);       // 0 ~ 79
-            let randomH = Math.floor(Math.random() * 80);       // 0 ~ 79
+            let randomW = Math.floor(Math.random() * 60) + 5;       // 6 ~ 65
+            let randomH = Math.floor(Math.random() * 58) + 13;      // 13 ~ 70
 
             // 과녁 위치 초기화
             setTargetW(randomW);
@@ -221,11 +222,11 @@ function OrangeGamePage() {
     }
 
     if (step === "READY") {
-        content = <div>
+        content = <div id={gameStyle["container"]}>
             <HowToPlay
                 title="Orange"
                 iconSource={orangeIcon}
-                iconSize={80}
+                iconSize={"13vh"}
                 description={
                     <div>
                         마우스 왼쪽 클릭으로 화면에 무작위로 나타나는 <b className={colorStyle["orange-font"]}>과녁</b>을 클릭하세요.<br />
@@ -234,22 +235,22 @@ function OrangeGamePage() {
                 }
                 stopwatch="30초"
             />
-            <div id={style["start-button"]} className={colorStyle["orange-main"]} onClick={play} >
+            <div id={gameStyle["start-button"]} className={colorStyle["orange-background"]} onClick={play} >
                 Start
             </div>
         </div>
     }
     else if (step === "PLAY") {
-        content = <div id={style["container"]}>
-            <div id={style["top-container"]}>
-                <div className={style["top-subcontainer"]}>
-                    <div className={style["information-title"]}>제한 시간</div>
-                    <div className={style["information"]}>{stopwatch}</div>
+        content = <div id={gameStyle["container"]}>
+            <div id={gameStyle["top-container"]}>
+                <div className={gameStyle["top-subcontainer"]}>
+                    <div className={gameStyle["information-title"]}>제한 시간</div>
+                    <div className={gameStyle["information"]}>{stopwatch}</div>
                 </div>
-                <div id={countDown === "Game start" ? style["game-start"] : style["count-down"]}>{countDown}</div>
-                <div className={style["top-subcontainer"]}>
-                    <div className={style["information-title"]}>점수</div>
-                    <div className={style["information"]}>{score}</div>
+                <div id={countDown === "Game start" ? gameStyle["game-start"] : gameStyle["count-down"]}>{countDown}</div>
+                <div className={gameStyle["top-subcontainer"]}>
+                    <div className={gameStyle["information-title"]}>점수</div>
+                    <div className={gameStyle["information"]}>{score}</div>
                 </div>
             </div>
             <div id={style["game-container"]} onMouseDown={downScore}>
@@ -257,8 +258,8 @@ function OrangeGamePage() {
                     src={orangeIcon}
                     alt="target"
                     style={{
-                        left: `${targetW}%`,
-                        top: `${targetH}%`,
+                        left: `${targetW}vw`,
+                        top: `${targetH}vh`,
                         display: `${showTarget ? 'inline-block' : 'none'}`
                     }}
                     id={style["target"]}
@@ -271,12 +272,12 @@ function OrangeGamePage() {
         </div>
     }
     else if (step === "OVER") {
-        content = <div id={style["container"]}>
+        content = <div id={gameStyle["container"]}>
             <WaitServer />
         </div>
     }
     else if (step === "RESULT") {
-        content = <div id={style["container"]}>
+        content = <div id={gameStyle["container"]}>
             <Result
                 game="Orange"
                 fontColor="orange-font"
@@ -285,7 +286,7 @@ function OrangeGamePage() {
                 rank={rank}
                 percentile={percentile}
             />
-            <div id={style["start-button"]} className={colorStyle["orange-main"]} onClick={retry} >
+            <div id={gameStyle["start-button"]} className={colorStyle["orange-background"]} onClick={retry} >
                 재시도
             </div>
         </div>
