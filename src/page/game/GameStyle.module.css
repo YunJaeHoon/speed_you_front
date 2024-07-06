@@ -1,0 +1,68 @@
+#container {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#start-button {
+  width: 50vh;
+  z-index: 10;
+  cursor: pointer;
+
+  position: fixed;
+  bottom: 10vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  text-align: center;
+  font-size: 4vh;
+  font-variation-settings: "wght" 800;
+  color: #FFFFFF;
+  
+  padding: 2vh 0;
+}
+
+#top-container {
+  width: 65vw;
+  height: 28vh;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.top-subcontainer {
+  width: 15vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.information-title {
+  font-size: 3vh;
+}
+
+.information {
+  font-size: 6.5vh;
+  font-variation-settings: "wght" 800;
+
+  margin-top: 0.5vh;
+}
+
+#count-down {
+  width: 30vw;
+  text-align: center;
+  font-size: 12vh;
+  font-variation-settings: "wght" 800;
+}
+
+#game-start {
+  width: 35vw;
+  text-align: center;
+  font-size: 9vh;
+  font-variation-settings: "wght" 800;
+}

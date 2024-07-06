@@ -1,0 +1,29 @@
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 9vh;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.block {
+    width: 12vh;
+    height: 12vh;
+    background-color: #c5c5c5;
+
+    margin: 0.6vh;
+}
+
+.red-block {
+    width: 12vh;
+    height: 12vh;
+    background-color: #FF1F00;
+
+    margin: 0.6vh;
+}

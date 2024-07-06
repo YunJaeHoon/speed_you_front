@@ -1,0 +1,280 @@
+#background {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+}
+
+#container-agreeTerm {
+  width: 90vh;
+  height: 100vh;
+  z-index: 10;
+
+  position: relative;
+}
+
+#title-agreeTerm {
+  text-align: center;
+  font-size: 7vh;
+
+  margin-top: 10vh;
+  margin-bottom: 0;
+}
+
+.container-term {
+  width: 100%;
+
+  margin-top: 4vh;
+}
+
+.container-term-description {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.term-description {
+  font-size: 2.6vh;
+  font-variation-settings: "wght" 600;
+}
+
+input.checkbox {
+  display: none;
+}
+
+input.checkbox + label {
+  width: 2.4vh;
+  height: 2.4vh;
+  content: "";
+
+  display: inline-block;
+
+  border: 0.25vh solid #20201E;
+}
+
+#container-agree-button {
+  display: flex;
+  justify-content: center;
+}
+
+#agree-button {
+  width: 50vh;
+  cursor: pointer;
+
+  font-size: 3.6vh;
+  font-variation-settings: "wght" 600;
+  color: #FFFFFF;
+
+  padding: 2vh 0;
+  border: 0;
+  margin-top: 2vh;
+}
+
+#container-email {
+  width: 90vh;
+  height: 100vh;
+  z-index: 10;
+
+  position: relative;
+}
+
+#title-email {
+  text-align: center;
+  font-size: 7vh;
+
+  margin-top: 25vh;
+  margin-bottom: 0;
+}
+
+#subtitle-email {
+  text-align: center;
+  font-size: 4vh;
+
+  margin-top: 5vh;
+}
+
+#container-form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-email {
+  width: 60%;
+  height: 6vh;
+  background-color: #f2f2f2;
+  outline: 0;
+
+  font-size: 2.2vh;
+
+  padding: 2vh;
+  border: 0.2vh solid #20201E;
+  margin-top: 3vh;
+}
+
+#errorMessage-email {
+  text-align: center;
+  font-size: 3vh;
+  font-variation-settings: "wght" 700;
+
+  margin-top: 8vh;
+}
+
+#email-button {
+  width: 70%;
+  cursor: pointer;
+
+  font-size: 3.6vh;
+  font-variation-settings: "wght" 600;
+  color: #FFFFFF;
+
+  padding: 2vh 0;
+  border: 0;
+  margin-top: 3vh;
+}
+
+#container-join {
+  width: 75vh;
+  height: 100vh;
+  z-index: 10;
+
+  position: relative;
+}
+
+#title-join {
+  text-align: center;
+  font-size: 6.5vh;
+
+  margin-top: 11vh;
+  margin-bottom: 0;
+}
+
+.input-description {
+  font-size: 2.5vh;
+  font-variation-settings: "wght" 650;
+
+  margin-top: 2vh;
+}
+
+.input-join-disabled {
+  width: 100%;
+  height: 7vh;
+  background-color: #C1C1C1;
+  outline: 0;
+
+  font-size: 2.2vh;
+
+  padding: 2vh;
+  border: 0;
+  margin-top: 0.8vh;
+}
+
+.input-join {
+  width: 100%;
+  height: 7vh;
+  background-color: #F2F2F2;
+  outline: 0;
+
+  font-size: 2.2vh;
+
+  padding: 2vh;
+  border: 0;
+  margin-top: 0.8vh;
+}
+
+.input-join-valid {
+  border: 1px solid #20201E;
+}
+
+.input-join-invalid {
+  border: 1px solid #FF1F00;
+}
+
+.input-description-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.input-invalid-message {
+  font-size: 2.5vh;
+}
+
+.viewPassword-container {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  margin-top: 2vh;
+}
+
+.viewPassword-description {
+  font-size: 2.5vh;
+  font-variation-settings: "wght" 650;
+
+  margin-right: 10px;
+}
+
+#errorMessage-join {
+  text-align: center;
+  font-size: 3vh;
+  font-variation-settings: "wght" 700;
+
+  margin-top: 3vh;
+}
+
+#join-button {
+  width: 100%;
+  cursor: pointer;
+
+  font-size: 3.6vh;
+  font-variation-settings: "wght" 600;
+  color: #FFFFFF;
+
+  padding: 2vh 0;
+  border: 0;
+  margin-top: 3vh;
+}
+
+#container-finish {
+  width: 75vh;
+  height: 100vh;
+  z-index: 10;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title-finish {
+  font-size: 6.5vh;
+
+  margin-top: 32vh;
+  margin-bottom: 0;
+}
+
+#finish-button {
+  width: 40%;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+
+  font-size: 3.6vh;
+  font-variation-settings: "wght" 600;
+  color: #FFFFFF;
+
+  padding: 2vh 0;
+  border: 0;
+  margin-top: 5vh;
+}

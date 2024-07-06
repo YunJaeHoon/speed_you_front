@@ -7,7 +7,8 @@ import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
 import SoundContext from "../../context/SoundContext.js";
 
-import style from '../../style/page_style/game/YellowStyle.module.css';
+import style from './YellowStyle.module.css';
+import gameStyle from './GameStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
 import animationStyle from '../../App.module.css';
 
@@ -272,11 +273,11 @@ function YellowGamePage() {
     }
 
     if (step === "READY") {
-        content = <div>
+        content = <div id={gameStyle["container"]}>
             <HowToPlay
                 title="Yellow"
                 iconSource={yellowIcon}
-                iconSize={68}
+                iconSize={"12vh"}
                 description={
                     <div>
                         방향키를 이용하여, 검정색 블럭을 <b className={colorStyle["yellow-font"]}>노란색</b> 블럭의 위치로 옮기세요.<br />
@@ -285,22 +286,22 @@ function YellowGamePage() {
                 }
                 stopwatch="45초"
             />
-            <div id={style["start-button"]} className={colorStyle["yellow-main"]} onClick={play} >
+            <div id={gameStyle["start-button"]} className={colorStyle["yellow-background"]} onClick={play} >
                 Start
             </div>
         </div>
     }
     else if (step === "PLAY") {
-        content = <div id={style["container"]}>
-            <div id={style["top-container"]}>
-                <div className={style["top-subcontainer"]}>
-                    <div className={style["information-title"]}>제한 시간</div>
-                    <div className={style["information"]}>{stopwatch}</div>
+        content = <div id={gameStyle["container"]}>
+            <div id={gameStyle["top-container"]}>
+                <div className={gameStyle["top-subcontainer"]}>
+                    <div className={gameStyle["information-title"]}>제한 시간</div>
+                    <div className={gameStyle["information"]}>{stopwatch}</div>
                 </div>
-                <div id={countDown === "Game start" ? style["game-start"] : style["count-down"]}>{countDown}</div>
-                <div className={style["top-subcontainer"]}>
-                    <div className={style["information-title"]}>점수</div>
-                    <div className={style["information"]}>{score}</div>
+                <div id={countDown === "Game start" ? gameStyle["game-start"] : gameStyle["count-down"]}>{countDown}</div>
+                <div className={gameStyle["top-subcontainer"]}>
+                    <div className={gameStyle["information-title"]}>점수</div>
+                    <div className={gameStyle["information"]}>{score}</div>
                 </div>
             </div>
             <div id={style["game-container"]}>
@@ -309,12 +310,12 @@ function YellowGamePage() {
         </div>
     }
     else if (step === "OVER") {
-        content = <div id={style["container"]}>
+        content = <div id={gameStyle["container"]}>
             <WaitServer />
         </div>
     }
     else if (step === "RESULT") {
-        content = <div id={style["container"]}>
+        content = <div id={gameStyle["container"]}>
             <Result
                 game="Yellow"
                 fontColor="yellow-font"
@@ -323,7 +324,7 @@ function YellowGamePage() {
                 rank={rank}
                 percentile={percentile}
             />
-            <div id={style["start-button"]} className={colorStyle["yellow-main"]} onClick={retry} >
+            <div id={gameStyle["start-button"]} className={colorStyle["yellow-background"]} onClick={retry} >
                 재시도
             </div>
         </div>

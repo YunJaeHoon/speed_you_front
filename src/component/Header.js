@@ -5,8 +5,10 @@ import Icon from './Icon';
 import SoundContext from "../context/SoundContext.js";
 import LoginContext from "../context/LoginContext.js";
 
-import style from '../style/component_style/HeaderStyle.module.css';
+import style from './HeaderStyle.module.css';
+import iconStyle from './IconStyle.module.css';
 import colorStyle from '../style/Color.module.css';
+
 import logo from '../image/logo.svg';
 import profileIcon from '../image/profile-icon.svg';
 import rankingIcon from '../image/ranking-icon.svg';
@@ -24,24 +26,24 @@ function Header() {
     const { role } = useContext(LoginContext);
 
     return (
-        <div id={style["container"]}>
+        <div id={style["background"]}>
             <div id={style["left-container"]}>
-                <Link to="/" id={style["logo-container"]}>
+                <Link to="/">
                     <img src={logo} id={style["logo"]} alt="Speed.you logo" />
                 </Link>
                 <Icon name="랭킹" link="/" alt="ranking-icon" source={rankingIcon} direction="left" />
                 <Icon name="건의사항" link="/" alt="suggestion-icon" source={suggestionIcon} direction="left" />
                 <Icon name="공지사항" link="/" alt="announcement-icon" source={announcementIcon} direction="left" />
                 <div className={style["divider"]}></div>
-                <div className={style["icon-link"]} onClick={() => setIsPlayMusic(!isPlayMusic)}>
-                    <img src={isPlayMusic ? musicIcon : musicMuteIcon} className={style["icon"]} alt="music-icon" />
-                    <div className={style["icon-description"]}>
+                <div className={`${iconStyle["icon-link"]} ${iconStyle["icon-link-left"]}`} onClick={() => setIsPlayMusic(!isPlayMusic)}>
+                    <img src={isPlayMusic ? musicIcon : musicMuteIcon} className={iconStyle["icon"]} alt="music-icon" />
+                    <div className={`${iconStyle["icon-description"]} ${colorStyle["black-font"]}`}>
                         {isPlayMusic ? "배경음 끄기" : "배경음 켜기"}
                     </div>
                 </div>
-                <div className={style["icon-link"]} onClick={() => setIsPlaySound(!isPlaySound)}>
-                    <img src={isPlaySound ? soundIcon : soundMuteIcon} className={style["icon"]} alt="sound-icon" />
-                    <div className={style["icon-description"]}>
+                <div className={`${iconStyle["icon-link"]} ${iconStyle["icon-link-left"]}`} onClick={() => setIsPlaySound(!isPlaySound)}>
+                    <img src={isPlaySound ? soundIcon : soundMuteIcon} className={iconStyle["icon"]} alt="sound-icon" />
+                    <div className={`${iconStyle["icon-description"]} ${colorStyle["black-font"]}`}>
                         {isPlaySound ? "효과음 끄기" : "효과음 켜기"}
                     </div>
                 </div>
@@ -54,19 +56,17 @@ function Header() {
                     source={profileIcon}
                     direction="right"
                 />
-                <div id={style["game-list-container"]}>
-                    <div id={style["game-list"]}>
-                        <div>GAME</div>
-                        <Link to="/game/red" className={`${style["game-button"]} ${colorStyle["red-main"]}`}></Link>
-                        <Link to="/game/orange" className={`${style["game-button"]} ${colorStyle["orange-main"]}`}></Link>
-                        <Link to="/game/yellow" className={`${style["game-button"]} ${colorStyle["yellow-main"]}`}></Link>
-                        <Link to="/game/green" className={`${style["game-button"]} ${colorStyle["green-main"]}`}></Link>
-                        <Link to="/game/skyblue" className={`${style["game-button"]} ${colorStyle["skyblue-main"]}`}></Link>
-                        <Link to="/game/blue" className={`${style["game-button"]} ${colorStyle["blue-main"]}`}></Link>
-                        <Link to="/game/purple" className={`${style["game-button"]} ${colorStyle["purple-main"]}`}></Link>
-                        <Link to="/game/pink" className={`${style["game-button"]} ${colorStyle["pink-main"]}`}></Link>
-                        <Link to="/game/black" className={`${style["game-button"]} ${colorStyle["black-main"]}`}></Link>
-                    </div>
+                <div id={style["game-list"]}>
+                    <div id={style["game-list-description"]}>GAME</div>
+                    <Link to="/game/red" className={`${style["game-button"]} ${colorStyle["red-background"]}`}></Link>
+                    <Link to="/game/orange" className={`${style["game-button"]} ${colorStyle["orange-background"]}`}></Link>
+                    <Link to="/game/yellow" className={`${style["game-button"]} ${colorStyle["yellow-background"]}`}></Link>
+                    <Link to="/game/green" className={`${style["game-button"]} ${colorStyle["green-background"]}`}></Link>
+                    <Link to="/game/skyblue" className={`${style["game-button"]} ${colorStyle["skyblue-background"]}`}></Link>
+                    <Link to="/game/blue" className={`${style["game-button"]} ${colorStyle["blue-background"]}`}></Link>
+                    <Link to="/game/purple" className={`${style["game-button"]} ${colorStyle["purple-background"]}`}></Link>
+                    <Link to="/game/pink" className={`${style["game-button"]} ${colorStyle["pink-background"]}`}></Link>
+                    <Link to="/game/black" className={`${style["game-button"]} ${colorStyle["black-background"]}`}></Link>
                 </div>
             </div>
         </div>

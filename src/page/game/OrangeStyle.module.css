@@ -1,0 +1,17 @@
+#game-container {
+  width: 65vw;
+  height: 72vh;
+  z-index: 10;
+
+  position: relative;
+}
+
+#target {
+  width: 13vh;
+  height: 13vh;
+  z-index: 15;
+  cursor: pointer;
+
+  position: absolute;
+  transform: translate(-100%, -100%);
+}

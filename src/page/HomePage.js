@@ -4,7 +4,9 @@ import GameIntroduction from '../component/GameIntroduction';
 import Divider from '../component/Divider';
 import SoundContext from "../context/SoundContext.js";
 
-import style from '../style/HomeStyle.module.css';
+import style from './HomeStyle.module.css';
+import colorStyle from '../style/Color.module.css';
+
 import scrollIcon from '../image/scroll-icon.svg';
 import circleIcon from '../image/circle-icon.svg';
 import redIcon from '../image/red-icon.svg';
@@ -21,7 +23,7 @@ function HomePage() {
     // state
     const [position, setPosition] = useState(0);    // 스크롤 위치
 
-    // 마운트 시에 실행
+    // 페이지 마운트 시, 실행
     useEffect(() => {
 
         // 배경음악 변경
@@ -48,17 +50,17 @@ function HomePage() {
     return (
         <div id={style["container"]}>
             <div id={style["title-container"]}>
-                <div id={style["title"]}>Speed.you</div>
-                <div id={style["subtitle"]}>반응속도 테스트</div>
+                <div id={style["title"]} className={colorStyle["black-font"]}>Speed.you</div>
+                <div id={style["subtitle"]} className={colorStyle["black-font"]}>반응속도 테스트</div>
             </div>
             <div id={style["scroll-container"]} style={{ opacity: 1.6 - position / 250 }}>
                 <div className={style["scroll-text"]}>아래로 스크롤</div>
                 <img src={scrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
             </div>
-            <div id={style["quote"]}>
+            <div id={style["quote"]} className={colorStyle["black-font"]}>
                 "속도는 전쟁의 정수이다."
             </div>
-            <div id={style["quote-person"]}>
+            <div id={style["quote-person"]} className={colorStyle["black-font"]}>
                 손무 (孫武, B.C.544 ~ B.C.496)
             </div>
             <div id={style["circles"]}>
@@ -66,7 +68,7 @@ function HomePage() {
                 <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
                 <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
             </div>
-            <GameIntroduction iconSource={redIcon} iconSize={"7.5vw"} color="red-main" title="Red" link="/game/red"
+            <GameIntroduction iconSource={redIcon} iconSize={"7.5vw"} color="red-background" title="Red" link="/game/red"
                 description={
                     <div>
                         붉은색은 열정과 에너지, 그리고 강렬한 감정을 상징합니다.<br />
@@ -76,7 +78,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={orangeIcon} iconSize={"8vw"} color="orange-main" title="Orange" link="/game/orange"
+            <GameIntroduction iconSource={orangeIcon} iconSize={"8vw"} color="orange-background" title="Orange" link="/game/orange"
                 description={
                     <div>
                         주황색 하늘, 석양은 지고 있으며, 총구는 서늘하게 때를 기다립니다.<br />
@@ -85,7 +87,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={yellowIcon} iconSize={"7.5vw"} color="yellow-main" title="Yellow" link="/game/yellow"
+            <GameIntroduction iconSource={yellowIcon} iconSize={"7.5vw"} color="yellow-background" title="Yellow" link="/game/yellow"
                 description={
                     <div>
                         어둠이 깊어질수록 빛은 더욱 밝게 타오릅니다.<br />
@@ -95,7 +97,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={greenIcon} iconSize={"8vw"} color="green-main" title="Green" link="/game/green"
+            <GameIntroduction iconSource={greenIcon} iconSize={"8vw"} color="green-background" title="Green" link="/game/green"
                 description={
                     <div>
                         생명은 그 자체로 엄청난 가치를 갖고 있습니다.<br />
@@ -105,7 +107,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="skyblue-main" title="Skyblue" link="/game/skyblue"
+            <GameIntroduction color="skyblue-background" title="Skyblue" link="/game/skyblue"
                 description={
                     <div>
                         내용<br />
@@ -115,7 +117,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="blue-main" title="Blue" link="/game/blue"
+            <GameIntroduction color="blue-background" title="Blue" link="/game/blue"
                 description={
                     <div>
                         내용<br />
@@ -125,7 +127,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="purple-main" title="Purple" link="/game/purple"
+            <GameIntroduction color="purple-background" title="Purple" link="/game/purple"
                 description={
                     <div>
                         내용<br />
@@ -135,7 +137,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="pink-main" title="Pink" link="/game/pink"
+            <GameIntroduction color="pink-background" title="Pink" link="/game/pink"
                 description={
                     <div>
                         내용<br />
@@ -145,7 +147,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="black-main" title="Black" link="/game/black"
+            <GameIntroduction color="black-background" title="Black" link="/game/black"
                 description={
                     <div>
                         내용<br />

@@ -1,0 +1,70 @@
+#container {
+    width: 100%;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title-container {
+    margin-top: 27vh;
+}
+
+#title {
+    font-size: 17vh;
+    font-variation-settings: "wght" 760;
+}
+
+#subtitle {
+    text-align: end;
+    font-size: 3.5vh;
+    font-variation-settings: "wght" 600;
+}
+
+#scroll-container {
+    position: fixed;
+    left: 50%;
+    bottom: 5vh;
+    transform: translate(-50%, 0);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-text {
+    font-size: 3.2vh;
+}
+
+.scroll-icon {
+    width: 4.5vh;
+
+    margin-top: 1vh;
+}
+
+#quote {
+    font-size: 8.5vh;
+    font-variation-settings: "wght" 650;
+
+    margin-top: 90vh;
+}
+
+#quote-person {
+    font-size: 3.8vh;
+    font-variation-settings: "wght" 550;
+
+    margin-top: 3vh;
+}
+
+#circles {
+    margin: 10vh 0;
+}
+
+.circle-icon {
+    width: 0.8vh;
+    height: 0.8vh;
+    display: block;
+
+    margin: 40px 0px;
+}

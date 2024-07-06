@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import style from '../style/HomeStyle.module.css';
+import style from './GameIntroductionStyle.module.css';
+import colorStyle from '../style/Color.module.css';
 
 function GameIntroduction({ iconSource, iconSize, title, link, description }) {
 
     return (
-        <div className={style["game-introduction"]}>
-            <span style={{ "width": "85%", "display": "flex", "text-align": "center" }}>
-                <span className={style["game-icon-container"]}>
+        <div id={style["container"]}>
+            <span id={style["left-container"]}>
+                <span className={style["icon-container"]}>
                     <img src={iconSource} style={{ width: iconSize, height: iconSize }} alt="game-icon" />
                 </span>
-                <span className={style["game-description-block"]}>
-                    <div className={style["game-title"]}>{title}</div>
-                    <div className={style["game-description"]}>{description}</div>
+                <span className={style["description-container"]}>
+                    <div id={style["game-title"]} className={colorStyle["black-font"]}>{title}</div>
+                    <div id={style["game-description"]} className={colorStyle["black-font"]}>{description}</div>
                 </span>
             </span>
-            <span style={{ "width": "15%", "display": "flex", "justifyContent": "end" }}>
+            <span id={style["right-container"]}>
                 <Link to={link} className={style["game-play-button"]}>
                     PLAY
                 </Link>
