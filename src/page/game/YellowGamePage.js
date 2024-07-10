@@ -43,7 +43,7 @@ function YellowGamePage() {
     const [targetLocation, setTargetLocation] = useState(99);   // 목표 위치
 
     // 효과음
-    const [playScoreSound] = useSound(score_sound, { volume: 0.15 });
+    const [playScoreSound] = useSound(score_sound, { volume: 0.2 });
     const [playMoveSound] = useSound(move_sound, { volume: 0.3 });
     const [playCountDownSound] = useSound(countDown_sound, { volume: 0.35 });
     const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound, { volume: 0.7 });
@@ -264,7 +264,7 @@ function YellowGamePage() {
         setCurrentMusicVolume(1);
 
         setCountDown(3);
-        setStopwatch(30);
+        setStopwatch(45);
         setScore(0);
 
         setPlayerLocation(99);
@@ -280,7 +280,7 @@ function YellowGamePage() {
                 iconSize={"12vh"}
                 description={
                     <div>
-                        방향키를 이용하여, 검정색 블럭을 <b className={colorStyle["yellow-font"]}>노란색</b> 블럭의 위치로 옮기세요.<br />
+                        방향키를 이용하여, <b>검정색</b> 블럭을 <b className={colorStyle["yellow-font"]}>노란색</b> 블럭의 위치로 옮기세요.<br />
                         초기 위치와 목표 위치 사이의 거리만큼 점수가 추가됩니다.<br />
                     </div>
                 }
