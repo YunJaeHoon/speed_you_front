@@ -1,6 +1,13 @@
-.divider {
+.divider-light {
   width: 60vw;
 
   border-bottom: 0.2vh solid #20201E;
+  margin: 8vh 0;
+}
+
+.divider-dark {
+  width: 60vw;
+
+  border-bottom: 0.2vh solid #ffffff;
   margin: 8vh 0;
 }

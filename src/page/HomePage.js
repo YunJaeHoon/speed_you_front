@@ -3,12 +3,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import GameIntroduction from '../component/GameIntroduction';
 import Divider from '../component/Divider';
 import SoundContext from "../context/SoundContext.js";
+import ThemeContext from "../context/ThemeContext.js";
 
 import style from './HomeStyle.module.css';
 import colorStyle from '../style/Color.module.css';
 
-import scrollIcon from '../image/scroll-icon.svg';
-import circleIcon from '../image/circle-icon.svg';
+import lightScrollIcon from '../image/scroll-icon-light.svg';
+import lightCircleIcon from '../image/circle-icon-light.svg';
+import darkScrollIcon from '../image/scroll-icon-dark.svg';
+import darkCircleIcon from '../image/circle-icon-dark.svg';
 import redIcon from '../image/red-icon.svg';
 import orangeIcon from '../image/orange-icon.svg';
 import yellowIcon from '../image/yellow-icon.svg';
@@ -20,6 +23,7 @@ function HomePage() {
 
     // context
     const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [position, setPosition] = useState(0);    // 스크롤 위치
@@ -51,23 +55,23 @@ function HomePage() {
     return (
         <div id={style["container"]}>
             <div id={style["title-container"]}>
-                <div id={style["title"]} className={colorStyle["black-font"]}>Speed.you</div>
-                <div id={style["subtitle"]} className={colorStyle["black-font"]}>반응속도 테스트</div>
+                <div id={style["title"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>Speed.you</div>
+                <div id={style["subtitle"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>반응속도 테스트</div>
             </div>
             <div id={style["scroll-container"]} style={{ opacity: 1.6 - position / 250 }}>
-                <div className={style["scroll-text"]}>아래로 스크롤</div>
-                <img src={scrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
+                <div className={`${style["scroll-text"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>아래로 스크롤</div>
+                <img src={theme === "LIGHT" ? lightScrollIcon : darkScrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
             </div>
-            <div id={style["quote"]} className={colorStyle["black-font"]}>
+            <div id={style["quote"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 "속도는 전쟁의 정수이다."
             </div>
-            <div id={style["quote-person"]} className={colorStyle["black-font"]}>
+            <div id={style["quote-person"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 손무 (孫武, B.C.544 ~ B.C.496)
             </div>
             <div id={style["circles"]}>
-                <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
-                <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
-                <img src={circleIcon} className={style["circle-icon"]} alt="circle-icon" />
+                <img src={theme === "LIGHT" ? lightCircleIcon : darkCircleIcon} className={style["circle-icon"]} alt="circle-icon" />
+                <img src={theme === "LIGHT" ? lightCircleIcon : darkCircleIcon} className={style["circle-icon"]} alt="circle-icon" />
+                <img src={theme === "LIGHT" ? lightCircleIcon : darkCircleIcon} className={style["circle-icon"]} alt="circle-icon" />
             </div>
             <GameIntroduction iconSource={redIcon} iconSize={"7.5vw"} color="red-background" title="Red" link="/game/red"
                 description={

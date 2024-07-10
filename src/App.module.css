@@ -2,6 +2,8 @@
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+
+  transition: 0.2s ease-in-out;
 }
 
 .fade-enter {
