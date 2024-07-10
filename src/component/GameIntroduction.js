@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import ThemeContext from "../context/ThemeContext.js";
+
 import style from './GameIntroductionStyle.module.css';
 import colorStyle from '../style/Color.module.css';
 
 function GameIntroduction({ iconSource, iconSize, title, link, description }) {
+
+    // context
+    const { theme } = useContext(ThemeContext);
 
     return (
         <div id={style["container"]}>
@@ -12,12 +18,12 @@ function GameIntroduction({ iconSource, iconSize, title, link, description }) {
                     <img src={iconSource} style={{ width: iconSize, height: iconSize }} alt="game-icon" />
                 </span>
                 <span className={style["description-container"]}>
-                    <div id={style["game-title"]} className={colorStyle["black-font"]}>{title}</div>
-                    <div id={style["game-description"]} className={colorStyle["black-font"]}>{description}</div>
+                    <div id={style["game-title"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>{title}</div>
+                    <div id={style["game-description"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>{description}</div>
                 </span>
             </span>
             <span id={style["right-container"]}>
-                <Link to={link} className={style["game-play-button"]}>
+                <Link to={link} className={theme === "LIGHT" ? style["game-play-button-light"] : style["game-play-button-dark"]}>
                     PLAY
                 </Link>
             </span>

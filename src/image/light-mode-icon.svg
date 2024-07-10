@@ -1,0 +1,19 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_233_27)">
+<circle cx="30" cy="30" r="18" fill="#20201E"/>
+<circle cx="30" cy="30" r="16" fill="#F9F9F9"/>
+<rect width="9" height="2" transform="matrix(-4.37114e-08 1 1 4.37114e-08 29 0)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-0.707107 0.707107 0.707107 0.707107 51.364 7)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-0.707107 0.707107 0.707107 0.707107 13.364 45)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 14.7782 13.364)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 52.7782 51.364)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-4.37114e-08 1 1 4.37114e-08 29 51)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 9 29)" fill="#20201E"/>
+<rect width="9" height="2" transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 60 29)" fill="#20201E"/>
+</g>
+<defs>
+<clipPath id="clip0_233_27">
+<rect width="60" height="60" fill="white"/>
+</clipPath>
+</defs>
+</svg>
