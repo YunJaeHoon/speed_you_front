@@ -333,7 +333,7 @@ function GreenGamePage() {
             <div id={gameStyle["top-container"]}>
                 <div className={gameStyle["top-subcontainer"]}>
                     <div className={gameStyle["information-title"]}>시간</div>
-                    <div className={gameStyle["information"]}>{stopwatch}</div>
+                    <div className={gameStyle["information"]}>{stopwatch / 1000}</div>
                 </div>
                 <div id={countDown === "Game start" ? gameStyle["game-start"] : gameStyle["count-down"]}>{countDown}</div>
                 <div className={gameStyle["top-subcontainer"]}>

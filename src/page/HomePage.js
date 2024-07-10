@@ -13,6 +13,7 @@ import redIcon from '../image/red-icon.svg';
 import orangeIcon from '../image/orange-icon.svg';
 import yellowIcon from '../image/yellow-icon.svg';
 import greenIcon from '../image/green-icon.svg';
+import skyblueIcon from '../image/skyblue-icon.svg';
 import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
@@ -81,7 +82,7 @@ function HomePage() {
             <GameIntroduction iconSource={orangeIcon} iconSize={"8vw"} color="orange-background" title="Orange" link="/game/orange"
                 description={
                     <div>
-                        주황색 하늘, 석양은 지고 있으며, 총구는 서늘하게 때를 기다립니다.<br />
+                        황야 그 어딘가, 주황색 석양은 지고 있으며, 방아쇠는 서늘하게 때를 기다립니다.<br />
                         <i>------ BANG</i>
                     </div>
                 }
@@ -107,12 +108,12 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="skyblue-background" title="Skyblue" link="/game/skyblue"
+            <GameIntroduction iconSource={skyblueIcon} iconSize={"7.5vw"} color="skyblue-background" title="Skyblue" link="/game/skyblue"
                 description={
                     <div>
-                        내용<br />
-                        내용<br />
-                        내용
+                        무한한 시간 속에서, 우리는 영원함을 꿈꾸며 허덕입니다.<br />
+                        하늘을 바라보며 끝없는 가능성을 상상하지만, 현실은 차갑게 우리를 마주 보고 있습니다.<br />
+                        그럼에도 불구하고, 우리는 꿈에 대한 갈망을 멈추지 않습니다.
                     </div>
                 }
             />

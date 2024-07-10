@@ -1,0 +1,33 @@
+#game-container {
+  width: 100vw;
+  height: 45vh;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#arrow-container {
+  white-space: nowrap;
+  position: absolute;
+  left: 49%;
+}
+
+.arrow {
+  width: 8vh;
+
+  position: absolute;
+  transition: 0.1s ease-in-out;
+}
+
+#here-container {
+  width: 11vh;
+  height: 19vh;
+
+  position: absolute;
+  left: -1.5vh;
+  top: -1.5vh;
+
+  border: 0.3vh solid #20201E;
+}
