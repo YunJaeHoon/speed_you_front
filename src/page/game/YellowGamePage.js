@@ -6,6 +6,7 @@ import { sendApi, refreshAccessToken } from '../../util/apiUtil.js';
 import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
 import SoundContext from "../../context/SoundContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './YellowStyle.module.css';
 import gameStyle from './GameStyle.module.css';
@@ -28,6 +29,7 @@ function YellowGamePage() {
 
     // context
     const { isPlaySound, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [step, setStep] = useState("READY");                  // 게임 절차
@@ -293,7 +295,7 @@ function YellowGamePage() {
     }
     else if (step === "PLAY") {
         content = <div id={gameStyle["container"]}>
-            <div id={gameStyle["top-container"]}>
+            <div id={gameStyle["top-container"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 <div className={gameStyle["top-subcontainer"]}>
                     <div className={gameStyle["information-title"]}>제한 시간</div>
                     <div className={gameStyle["information"]}>{stopwatch}</div>

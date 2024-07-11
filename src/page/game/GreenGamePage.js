@@ -6,6 +6,7 @@ import { sendApi, refreshAccessToken } from '../../util/apiUtil.js';
 import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
 import SoundContext from "../../context/SoundContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './GreenStyle.module.css';
 import gameStyle from './GameStyle.module.css';
@@ -28,6 +29,7 @@ function GreenGamePage() {
 
     // context
     const { isPlaySound, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [step, setStep] = useState("READY");                  // 게임 절차
@@ -330,7 +332,7 @@ function GreenGamePage() {
     }
     else if (step === "PLAY") {
         content = <div id={gameStyle["container"]}>
-            <div id={gameStyle["top-container"]}>
+            <div id={gameStyle["top-container"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 <div className={gameStyle["top-subcontainer"]}>
                     <div className={gameStyle["information-title"]}>시간</div>
                     <div className={gameStyle["information"]}>{stopwatch / 1000}</div>
@@ -342,7 +344,7 @@ function GreenGamePage() {
                 </div>
             </div>
             <div id={style["game-container"]}>
-                <span className={style["score-container"]}>
+                <span className={`${style["score-container"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>
                     <div className={style["score-subcontainer"]}>
                         <span className={score_1 === "." ? style["round-ready"] : style["round-end"]}></span>
                         <span className={style["round-score"]}>{score_1 === "." ? "" : score_1 + " ms"}</span>

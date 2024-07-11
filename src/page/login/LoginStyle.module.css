@@ -60,7 +60,7 @@
 
 #rememberMe-description {
     font-size: 2.5vh;
-    font-variation-settings: "wght" 600;
+    font-variation-settings: "wght" 550;
 
     margin-right: 10px;
 }
@@ -75,20 +75,18 @@ input.rememberMe + label {
     content: "";
 
     display: inline-block;
-
-    border: 0.25vh solid #20201E;
 }
 
 #resetPassword {
     text-decoration: underline;
     font-size: 2.5vh;
-    font-variation-settings: "wght" 600;
+    font-variation-settings: "wght" 550;
 }
 
 #errorMessage {
     text-align: center;
     font-size: 2.8vh;
-    font-variation-settings: "wght" 700;
+    font-variation-settings: "wght" 750;
 
     margin-top: 3vh;
 }
@@ -119,12 +117,10 @@ input.rememberMe + label {
 .or-line {
     width: 40%;
     height: 0.15vh;
-    background-color: #afafaf;
 }
 
 #or {
     font-size: 2.4vh;
-    color: #4c4c4c;
 }
 
 #join-button {
@@ -136,7 +132,6 @@ input.rememberMe + label {
     text-align: center;
     font-size: 3.6vh;
     font-variation-settings: "wght" 600;
-    color: #FFFFFF;
 
     padding: 2vh 0;
     border: 0;

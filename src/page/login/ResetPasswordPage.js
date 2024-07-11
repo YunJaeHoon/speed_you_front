@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { sendApi } from '../../util/apiUtil.js';
 
 import SoundContext from "../../context/SoundContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './ResetPasswordStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
@@ -15,6 +16,7 @@ function ResetPasswordPage() {
 
     // context
     const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [mainColor, setMainColor] = useState();                       // 랜덤 색상 배경
@@ -70,8 +72,8 @@ function ResetPasswordPage() {
 
     if (step === "SEND_EMAIL") {
         content = <div id={style["container-email"]}>
-            <h2 id={style["title-email"]} className={colorStyle["black-font"]}>비밀번호 초기화</h2>
-            <div id={style["subtitle-email"]} className={colorStyle["black-font"]}>
+            <h2 id={style["title-email"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>비밀번호 초기화</h2>
+            <div id={style["subtitle-email"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 비밀번호를 변경할 계정의 이메일을 입력하여 주세요.
             </div>
             <form id={style["container-form"]} onSubmit={resetPassword}>
@@ -84,8 +86,8 @@ function ResetPasswordPage() {
         </div>
     }
     else if (step === "FINISH") {
-        content = <div id={style["container-finish"]} className={colorStyle["black-font"]}>
-            <h2 id={style["title-finish"]} className={colorStyle["black-font"]}>
+        content = <div id={style["container-finish"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
+            <h2 id={style["title-finish"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 비밀번호가 성공적으로 초기화 되었습니다.
             </h2>
             <div id={style["subtitle-finish"]}>이메일을 확인해주세요.</div>
@@ -94,7 +96,7 @@ function ResetPasswordPage() {
     }
 
     return (
-        <div id={style["background"]} className={colorStyle["white-background"]}>
+        <div id={style["background"]}>
             {content}
         </div>
     );

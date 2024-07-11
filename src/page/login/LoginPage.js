@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import SoundContext from "../../context/SoundContext.js";
 import LoginContext from "../../context/LoginContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './LoginStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
@@ -18,6 +19,7 @@ function LoginPage() {
     // context
     const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
     const { setRole } = useContext(LoginContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [mainColor, setMainColor] = useState(1);           // 랜덤 색상 index
@@ -91,20 +93,44 @@ function LoginPage() {
     function checkRememberMe() { setRememberMe(!rememberMe); }      // '로그인 정보 저장' 체크
 
     return (
-        <div id={style["background"]} className={colorStyle["white-background"]}>
+        <div id={style["background"]}>
             <div id={style["container"]}>
-                <h2 id={style["title"]} className={colorStyle["black-font"]}>환영합니다</h2>
+                <h2 id={style["title"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>환영합니다</h2>
                 <form id={style["form-container"]} onSubmit={login}>
-                    <input type="email" name="email" value={email} onChange={changeEmail} placeholder="Email" className={style["input"]} required />
-                    <input type="password" name="password" value={password} onChange={changePassword} placeholder="Password" className={style["input"]} required />
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={changeEmail}
+                        placeholder="Email"
+                        className={style["input"]}
+                    required />
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={changePassword}
+                        placeholder="Password"
+                        className={style["input"]}
+                    required />
                     <div id={style["rememberMe-and-resetPassword-container"]}>
                         <span id={style["rememberMe-container"]}>
-                            <span id={style["rememberMe-description"]} className={colorStyle["black-font"]}>로그인 정보 저장</span>
+                            <span id={style["rememberMe-description"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>로그인 정보 저장</span>
                             <input type="checkbox" id="rememberMe" name="remember-me" className={style["rememberMe"]} onChange={checkRememberMe} />
-                            <label htmlFor="rememberMe" className={rememberMe ? colorStyle[mainColors[mainColor]] : colorStyle["white-background"]}></label>
+                            <label
+                                htmlFor="rememberMe"
+                                className={
+                                    rememberMe ? colorStyle[mainColors[mainColor]] :
+                                    theme === "LIGHT" ? colorStyle["white-background"] : colorStyle["black-background"]
+                                }
+                                style={
+                                    theme === "LIGHT" ? {border: "0.25vh solid #20201E"} : {border: "0.25vh solid #FFFFFF"}
+                                }
+                            >
+                            </label>
                         </span>
                         <span>
-                            <Link to="/reset-password" id={style["resetPassword"]} className={colorStyle["black-font"]}>비밀번호를 잊으셨습니까?</Link>
+                            <Link to="/reset-password" id={style["resetPassword"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>비밀번호를 잊으셨습니까?</Link>
                         </span>
                     </div>
                     <div id={style["errorMessage"]} className={colorStyle["red-font"]}>
@@ -113,11 +139,24 @@ function LoginPage() {
                     <button type="submit" id={style["login-button"]} className={colorStyle[mainColors[mainColor]]}>로그인</button>
                 </form>
                 <div id={style["or-container"]}>
-                    <div className={style["or-line"]}></div>
-                    <div id={style["or"]}>또는</div>
-                    <div className={style["or-line"]}></div>
+                    <div className={style["or-line"]} style={theme === "LIGHT" ? {backgroundColor: "#AFAFAF"} : {backgroundColor: "#FFFFFF"}}></div>
+                    <div id={style["or"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>또는</div>
+                    <div className={style["or-line"]} style={theme === "LIGHT" ? {backgroundColor: "#AFAFAF"} : {backgroundColor: "#FFFFFF"}}></div>
                 </div>
-                <Link to="/join" id={style["join-button"]} className={colorStyle["black-background"]}>회원가입</Link>
+                <Link
+                    to="/join"
+                    id={style["join-button"]}
+                    className={`
+                        ${
+                            theme === "LIGHT" ? colorStyle["black-background"] : colorStyle["white-background"]
+                        }
+                        ${
+                            theme === "LIGHT" ? colorStyle["white-font"] : colorStyle["black-font"]
+                        }
+                    `}
+                >
+                회원가입
+                </Link>
             </div>
         </div>
     );
