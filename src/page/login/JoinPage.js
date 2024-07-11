@@ -4,6 +4,7 @@ import { sendApi } from '../../util/apiUtil.js';
 
 import Term from '../../component/Term.js';
 import SoundContext from "../../context/SoundContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './JoinStyle.module.css';
 import colorStyle from '../../style/Color.module.css';
@@ -18,6 +19,7 @@ function JoinPage() {
 
     // context
     const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [mainColor, setMainColor] = useState();                       // 랜덤 색상 배경
@@ -182,27 +184,47 @@ function JoinPage() {
 
     if (step === "AGREE_TERM") {
         content = <div id={style["container-agreeTerm"]}>
-            <h2 id={style["title-agreeTerm"]}>서비스 이용약관 동의</h2>
+            <h2 id={style["title-agreeTerm"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>서비스 이용약관 동의</h2>
             <div className={style["container-term"]}>
                 <div className={style["container-term-description"]}>
-                    <span className={`${style["term-description"]} ${colorStyle["font-black"]}`}>
+                    <span className={`${style["term-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>
                         이용약관 (필수)
                     </span>
                     <span>
                         <input type="checkbox" id="serviceTerm" name="serviceTerm" className={style["checkbox"]} onChange={checkService} />
-                        <label htmlFor="serviceTerm" className={agreeServiceTerm ? colorStyle[mainColor] : colorStyle["white-background"]}></label>
+                        <label
+                            htmlFor="serviceTerm"
+                            className={
+                                agreeServiceTerm ? colorStyle[mainColor] :
+                                theme === "LIGHT" ? colorStyle["white-background"] : colorStyle["black-background"]
+                            }
+                            style={
+                                theme === "LIGHT" ? {border: "0.25vh solid #20201E"} : {border: "0.25vh solid #FFFFFF"}
+                            }
+                        >
+                        </label>
                     </span>
                 </div>
                 <Term about="SERVICE" />
             </div>
             <div className={style["container-term"]}>
                 <div className={style["container-term-description"]}>
-                    <span className={`${style["term-description"]} ${colorStyle["font-black"]}`}>
+                    <span className={`${style["term-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>
                         개인정보처리방침 (필수)
                     </span>
                     <span>
                         <input type="checkbox" id="privacyTerm" name="privacyTerm" className={style["checkbox"]} onChange={checkPrivacy} />
-                        <label htmlFor="privacyTerm" className={agreePrivacyTerm ? colorStyle[mainColor] : colorStyle["white-background"]}></label>
+                        <label
+                            htmlFor="privacyTerm"
+                            className={
+                                agreePrivacyTerm ? colorStyle[mainColor] :
+                                theme === "LIGHT" ? colorStyle["white-background"] : colorStyle["black-background"]
+                            }
+                            style={
+                                theme === "LIGHT" ? {border: "0.25vh solid #20201E"} : {border: "0.25vh solid #FFFFFF"}
+                            }
+                        >
+                        </label>
                     </span>
                 </div>
                 <Term about="PRIVACY" />
@@ -218,8 +240,8 @@ function JoinPage() {
     }
     else if (step === "SEND_EMAIL") {
         content = <div id={style["container-email"]}>
-            <h2 id={style["title-email"]} className={colorStyle["black-font"]}>이메일 인증번호 전송</h2>
-            <div id={style["subtitle-email"]} className={colorStyle["black-font"]}>
+            <h2 id={style["title-email"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>이메일 인증번호 전송</h2>
+            <div id={style["subtitle-email"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 계정을 등록할 이메일을 입력하여 주세요.
             </div>
             <form id={style["container-form"]} onSubmit={sendEmail}>
@@ -233,8 +255,8 @@ function JoinPage() {
     }
     else if (step === "CHECK_EMAIL") {
         content = <div id={style["container-email"]}>
-            <h2 id={style["title-email"]} className={colorStyle["black-font"]}>인증번호 확인</h2>
-            <div id={style["subtitle-email"]} className={colorStyle["black-font"]}>
+            <h2 id={style["title-email"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>인증번호 확인</h2>
+            <div id={style["subtitle-email"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 이메일로 전송된 인증번호를 입력하여 주세요.
             </div>
             <form id={style["container-form"]} onSubmit={checkEmail}>
@@ -248,31 +270,79 @@ function JoinPage() {
     }
     else if (step === "JOIN") {
         content = <div id={style["container-join"]}>
-            <h2 id={style["title-join"]} className={colorStyle["black-font"]}>회원가입</h2>
+            <h2 id={style["title-join"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>회원가입</h2>
             <form className={style["container-form"]} onSubmit={join}>
-                <div className={`${style["input-description"]} ${colorStyle["black-font"]}`}>이메일</div>
-                <input type="email" name="email" value={email} className={`${style["input-join-disabled"]} ${colorStyle["black-font"]}`} disabled />
+                <div
+                    className={`
+                        ${style["input-description"]}
+                        ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}
+                    `}
+                >
+                    이메일
+                </div>
+                <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    className={`
+                        ${style["input-join-disabled"]}
+                        ${colorStyle["black-font"]}
+                    `}
+                    disabled
+                />
                 <div className={style["input-description-container"]}>
-                    <span className={style["input-description"]}>비밀번호</span>
+                    <span className={`${style["input-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>비밀번호</span>
                     <span className={`${style["input-invalid-message"]} ${colorStyle["red-font"]}`}>
                         {!validPassword && "* 비밀번호는 영문과 숫자를 포함한 8~16자리입니다."}
                     </span>
                 </div>
-                <input type={viewPassword ? "text" : "password"} name="password" value={password} onChange={changePassword} className={`${style["input-join"]} ${colorStyle["black-font"]} ${validPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                <input
+                    type={viewPassword ? "text" : "password"}
+                    name="password"
+                    value={password}
+                    onChange={changePassword}
+                    className={`
+                        ${style["input-join"]}
+                        ${colorStyle["black-font"]}
+                        ${validPassword ? style["input-join-valid"] : style["input-join-invalid"]}
+                    `}
+                    required
+                />
                 <div className={style["input-description-container"]}>
-                    <span className={style["input-description"]}>비밀번호 확인</span>
+                    <span className={`${style["input-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>비밀번호 확인</span>
                     <span className={`${style["input-invalid-message"]} ${colorStyle["red-font"]}`}>
                         {!equalPassword && "* 비밀번호가 일치하지 않습니다."}
                     </span>
                 </div>
-                <input type={viewPassword ? "text" : "password"} name="confirmPassword" value={confirmPassword} onChange={changeConfirmPassword} className={`${style["input-join"]} ${colorStyle["black-font"]} ${equalPassword ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
+                <input
+                    type={viewPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={changeConfirmPassword}
+                    className={`
+                        ${style["input-join"]}
+                        ${colorStyle["black-font"]}
+                        ${equalPassword ? style["input-join-valid"] : style["input-join-invalid"]}
+                    `}
+                    required
+                />
                 <div className={style["viewPassword-container"]}>
-                    <span className={`${style["viewPassword-description"]} ${colorStyle["black-font"]}`}>비밀번호 보기</span>
+                    <span className={`${style["viewPassword-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>비밀번호 보기</span>
                     <input type="checkbox" id="viewPassword" name="viewPassword" className={style["checkbox"]} onChange={checkViewPassword} />
-                    <label htmlFor="viewPassword" className={viewPassword ? colorStyle[mainColor] : colorStyle["white-background"]}></label>
+                    <label
+                        htmlFor="viewPassword"
+                        className={
+                            viewPassword ? colorStyle[mainColor] :
+                            theme === "LIGHT" ? colorStyle["white-background"] : colorStyle["black-background"]
+                        }
+                        style={
+                            theme === "LIGHT" ? {border: "0.25vh solid #20201E"} : {border: "0.25vh solid #FFFFFF"}
+                        }
+                    >
+                    </label>
                 </div>
                 <div className={style["input-description-container"]}>
-                    <span className={style["input-description"]}>닉네임</span>
+                    <span className={`${style["input-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>닉네임</span>
                     <span className={`${style["input-invalid-message"]} ${colorStyle["red-font"]}`}>
                         {!validUsername && "* 닉네임은 영문 또는 한글 또는 숫자를 포함한 2~16자리입니다."}
                     </span>
@@ -290,14 +360,14 @@ function JoinPage() {
         </div>
     }
     else if (step === "FINISH") {
-        content = <div id={style["container-finish"]} className={colorStyle["black-font"]}>
-            <h2 id={style["title-finish"]} className={colorStyle["black-font"]}>회원가입에 성공하였습니다.</h2>
+        content = <div id={style["container-finish"]}>
+            <h2 id={style["title-finish"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>회원가입에 성공하였습니다.</h2>
             <Link to="/login" id={style["finish-button"]} className={colorStyle[mainColor]}>확인</Link>
         </div>
     }
 
     return (
-        <div id={style["background"]} className={colorStyle["white-background"]}>
+        <div id={style["background"]}>
             {content}
         </div>
     );

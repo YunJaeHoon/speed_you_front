@@ -7,6 +7,7 @@ import HowToPlay from '../../component/HowToPlay';
 import Result from '../../component/Result';
 import WaitServer from '../../component/WaitServer.js';
 import SoundContext from "../../context/SoundContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './SkyblueStyle.module.css';
 import gameStyle from './GameStyle.module.css';
@@ -35,6 +36,7 @@ function SkyblueGamePage() {
 
     // context
     const { isPlaySound, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
+    const { theme } = useContext(ThemeContext);
 
     // state
     const [step, setStep] = useState("READY");              // 게임 절차
@@ -301,7 +303,7 @@ function SkyblueGamePage() {
     }
     else if (step === "PLAY") {
         content = <div id={gameStyle["container"]}>
-            <div id={gameStyle["top-container"]}>
+            <div id={gameStyle["top-container"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 <div className={gameStyle["top-subcontainer"]}>
                     <div className={gameStyle["information-title"]}>제한 시간</div>
                     <div className={gameStyle["information"]}>{stopwatch}</div>
@@ -327,7 +329,11 @@ function SkyblueGamePage() {
                             alt={dict.direction === 0 ? "up-icon" : "down-icon"}
                         />
                     )}
-                    <div id={style["here-container"]}></div>
+                    <div
+                        id={style["here-container"]}
+                        style={theme === "LIGHT" ? {border: "0.3vh solid #20201E"} : {border: "0.3vh solid #FFFFFF"} }
+                    >
+                    </div>
                 </div>
             </div>
         </div>
