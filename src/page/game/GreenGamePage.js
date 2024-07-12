@@ -269,7 +269,7 @@ function GreenGamePage() {
     function play() {
         setStep("PLAY");
         setCurrentMusic(greenBackgroundMusic);
-        setCurrentMusicVolume(0.9);
+        setCurrentMusicVolume(1);
     }
 
     // 재시도 버튼

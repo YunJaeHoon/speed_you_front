@@ -137,7 +137,7 @@ function YellowGamePage() {
         console.log(event.key);
 
         // 왼쪽 방향키
-        if ((event.key === 39 || event.key === "ArrowLeft") && (playerLocation - 1) % 7 !== 0) {
+        if ((event.key === 36 || event.key === "ArrowLeft") && (playerLocation - 1) % 7 !== 0) {
             newPlayerLocation = playerLocation - 1;
             if (isPlaySound) playMoveSound();
         }
@@ -256,7 +256,7 @@ function YellowGamePage() {
     function play() {
         setStep("PLAY");
         setCurrentMusic(yellowBackgroundMusic);
-        setCurrentMusicVolume(0.8);
+        setCurrentMusicVolume(0.9);
     }
 
     // 재시도 버튼

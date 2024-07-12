@@ -1,7 +1,6 @@
 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_233_27)">
-<circle cx="30" cy="30" r="18" fill="#20201E"/>
-<circle cx="30" cy="30" r="16" fill="#F9F9F9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M30 48C39.9411 48 48 39.9411 48 30C48 20.0589 39.9411 12 30 12C20.0589 12 12 20.0589 12 30C12 39.9411 20.0589 48 30 48ZM30 46C38.8366 46 46 38.8366 46 30C46 21.1634 38.8366 14 30 14C21.1634 14 14 21.1634 14 30C14 38.8366 21.1634 46 30 46Z" fill="#20201E"/>
 <rect width="9" height="2" transform="matrix(-4.37114e-08 1 1 4.37114e-08 29 0)" fill="#20201E"/>
 <rect width="9" height="2" transform="matrix(-0.707107 0.707107 0.707107 0.707107 51.364 7)" fill="#20201E"/>
 <rect width="9" height="2" transform="matrix(-0.707107 0.707107 0.707107 0.707107 13.364 45)" fill="#20201E"/>

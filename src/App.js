@@ -63,6 +63,21 @@ function App() {
 
     }, []);
 
+    // 특정 경로에서는 body의 overflow 속성을 변경
+    useEffect(() => {
+
+        if (location.pathname === '/') {
+            document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+
+        return () => {
+            document.body.style.overflow = 'hidden';
+        };
+
+    }, [location.pathname]);
+
     return (
         <div id={style["background"]} className={theme === "LIGHT" ? colorStyle["white-background"] : colorStyle["black-background"]}>
             <LoginContext.Provider value={{ role, setRole }}>

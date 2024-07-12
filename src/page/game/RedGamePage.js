@@ -186,7 +186,7 @@ function RedGamePage() {
     function play() {
         setStep("PLAY");
         setCurrentMusic(redBackgroundMusic);
-        setCurrentMusicVolume(0.10);
+        setCurrentMusicVolume(0.17);
     }
 
     // 재시도 버튼

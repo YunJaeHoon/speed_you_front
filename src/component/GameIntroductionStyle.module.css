@@ -27,11 +27,11 @@
 }
 
 .icon-container {
+  width: 10vw;
+
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-left: 1vw;
 }
 
 .description-container {
@@ -40,7 +40,7 @@
   justify-content: center;
   align-items: flex-start;
 
-  margin-left: 1.5vw;
+  margin-left: 0.7vw;
 }
 
 #game-title {

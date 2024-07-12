@@ -1,0 +1,22 @@
+#game-container {
+  width: 65vw;
+  height: 70vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#wheel-container {
+  position: absolute;
+  left: 50%;
+}
+
+#wheel {
+  position: absolute;
+  transition: 0.25s ease-in-out;
+}
+
+#direction {
+  position: absolute;
+}
