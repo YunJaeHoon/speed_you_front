@@ -120,14 +120,14 @@ function SkyblueGamePage() {
     }, [countDown]);
 
     // 키보드 입력 처리 함수
-    const handleKeyUp = useCallback((event) => {
+    const handleKeyDown = useCallback((event) => {
 
         let isCorrect = null;
 
         if(event.key === 38 || event.key === "ArrowUp" || event.key === 39 || event.key === "ArrowDown") {
             // 위쪽 방향키
             if (event.key === 38 || event.key === "ArrowUp") {
-                if(arrows[arrowIndex].direction == 0) {
+                if(arrows[arrowIndex].direction === 0) {
                     setScore(score + 1);
                     isCorrect = 1;
                     if (isPlaySound) playScoreSound();
@@ -140,7 +140,7 @@ function SkyblueGamePage() {
             }
             // 아래쪽 방향키
             else if (event.key === 39 || event.key === "ArrowDown") {
-                if(arrows[arrowIndex].direction == 1) {
+                if(arrows[arrowIndex].direction === 1) {
                     setScore(score + 1);
                     isCorrect = 1;
                     if (isPlaySound) playScoreSound();
@@ -193,15 +193,15 @@ function SkyblueGamePage() {
 
         // 게임 진행 중이면, 키보드 입력 이벤트마다 함수 호출
         if (step === "PLAY" && countDown === "Game start") {
-            window.addEventListener("keyup", handleKeyUp);
+            window.addEventListener("keydown", handleKeyDown);
         }
         else {
-            window.removeEventListener("keyup", handleKeyUp);
+            window.removeEventListener("keydown", handleKeyDown);
         }
 
         // 이벤트 리스너 제거
         return () => {
-            window.removeEventListener("keyup", handleKeyUp);
+            window.removeEventListener("keydown", handleKeyDown);
         };
 
     }, [score, isPlaySound, step, arrowIndex, arrows]);
@@ -260,7 +260,7 @@ function SkyblueGamePage() {
     function play() {
         setStep("PLAY");
         setCurrentMusic(skyblueBackgroundMusic);
-        setCurrentMusicVolume(0.15);
+        setCurrentMusicVolume(0.25);
     }
 
     // 재시도 버튼

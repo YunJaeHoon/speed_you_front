@@ -1,0 +1,20 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_232_11)">
+<circle cx="30" cy="30" r="30" fill="#0085FF"/>
+<circle cx="30" cy="30" r="22.8" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M30 43.2C37.2901 43.2 43.2 37.2902 43.2 30C43.2 22.7098 37.2901 16.8 30 16.8C22.7098 16.8 16.8 22.7098 16.8 30C16.8 37.2902 22.7098 43.2 30 43.2ZM30 36.6C33.6451 36.6 36.6 33.6451 36.6 30C36.6 26.3549 33.6451 23.4 30 23.4C26.3549 23.4 23.4 26.3549 23.4 30C23.4 33.6451 26.3549 36.6 30 36.6Z" fill="#0085FF"/>
+<rect x="27" y="4.8" width="6" height="15.6" fill="#0085FF"/>
+<rect x="27" y="39.6" width="6" height="14.4" fill="#0085FF"/>
+<rect x="55.2" y="27" width="6" height="15.6" transform="rotate(90 55.2 27)" fill="#0085FF"/>
+<rect x="20.4" y="27" width="6" height="15.6" transform="rotate(90 20.4 27)" fill="#0085FF"/>
+<rect x="24.8735" y="20.6309" width="6" height="15.6" transform="rotate(135 24.8735 20.6309)" fill="#0085FF"/>
+<rect x="39.0426" y="24.8735" width="6" height="15.6" transform="rotate(-135 39.0426 24.8735)" fill="#0085FF"/>
+<rect x="34.8" y="39.0426" width="6" height="15.6" transform="rotate(-45 34.8 39.0426)" fill="#0085FF"/>
+<rect x="20.6309" y="34.8" width="6" height="15.6" transform="rotate(45 20.6309 34.8)" fill="#0085FF"/>
+</g>
+<defs>
+<clipPath id="clip0_232_11">
+<rect width="60" height="60" fill="white"/>
+</clipPath>
+</defs>
+</svg>

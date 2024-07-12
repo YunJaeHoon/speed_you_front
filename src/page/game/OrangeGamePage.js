@@ -207,7 +207,7 @@ function OrangeGamePage() {
     function play() {
         setStep("PLAY");
         setCurrentMusic(orangeBackgroundMusic);
-        setCurrentMusicVolume(0.3);
+        setCurrentMusicVolume(0.4);
     }
 
     // 재시도 버튼

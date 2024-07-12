@@ -17,6 +17,7 @@ import orangeIcon from '../image/orange-icon.svg';
 import yellowIcon from '../image/yellow-icon.svg';
 import greenIcon from '../image/green-icon.svg';
 import skyblueIcon from '../image/skyblue-icon.svg';
+import blueIcon from '../image/blue-icon.svg';
 import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
@@ -122,12 +123,12 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="blue-background" title="Blue" link="/game/blue"
+            <GameIntroduction iconSource={blueIcon} iconSize={"8vw"} color="blue-background" title="Blue" link="/game/blue"
                 description={
                     <div>
-                        내용<br />
-                        내용<br />
-                        내용
+                        어이, 돛을 올리고 뱃머리를 북동쪽으로 돌려라!<br />
+                        이제는 내 키잡이가 되어, 우리 배를 인도할 시간이다.<br />
+                        출항 준비 완료, 바다로 나가자고!
                     </div>
                 }
             />
