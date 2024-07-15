@@ -1,0 +1,12 @@
+#game-container {
+  width: 65vw;
+  height: 65vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#direction {
+  width: 10vw;
+}

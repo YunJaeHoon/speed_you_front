@@ -189,7 +189,7 @@ function BlueGamePage() {
                 setWheelRotate(wheelRotate + 45);
             }
 
-            playMoveSound();
+            if (isPlaySound) playMoveSound();
         }
         // 점수 제어 (스페이스 바)
         else if(event.key === 32 || event.key === " " || event.key === "Spacebar") {
@@ -244,6 +244,7 @@ function BlueGamePage() {
                         }
                     );
                 }
+                catch {}
                 finally {
                     try {
                         const response = await sendApi(

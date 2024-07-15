@@ -150,6 +150,7 @@ function RedGamePage() {
                         }
                     );
                 }
+                catch {}
                 finally {
                     try {
                         const response = await sendApi(
