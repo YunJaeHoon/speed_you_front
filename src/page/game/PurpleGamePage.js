@@ -48,7 +48,7 @@ function PurpleGamePage() {
     const [rank, setRank] = useState(0);                    // 순위
     const [percentile, setPercentile] = useState(0);        // 상위 퍼센트
 
-    const [direction, setDirection] = useState(0);
+    const [direction, setDirection] = useState(0);          // 방향
 
     // 효과음
     const [playScoreSound] = useSound(score_sound, { volume: 0.4 });
@@ -160,12 +160,17 @@ function PurpleGamePage() {
                 if (isPlaySound) playWrongSound();
             }
         }
+        else {
+            nextDirection = "this is not arrow key";
+        }
 
-        do {
-            nextDirection = Math.floor(Math.random() * 8) + 1;
-        } while(currentDirection === nextDirection)
-            
-        setDirection(nextDirection);
+        if(nextDirection === null) {
+            do {
+                nextDirection = Math.floor(Math.random() * 8) + 1;
+            } while(currentDirection === nextDirection)
+                
+            setDirection(nextDirection);
+        }
 
     }, [score, isPlaySound, direction]);
 
