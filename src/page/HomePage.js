@@ -19,6 +19,8 @@ import greenIcon from '../image/green-icon.svg';
 import skyblueIcon from '../image/skyblue-icon.svg';
 import blueIcon from '../image/blue-icon.svg';
 import purpleIcon from '../image/purple-icon.svg';
+import pinkIcon from '../image/pink-icon.svg';
+import blackIcon from '../image/black-icon.svg';
 import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
@@ -144,22 +146,20 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction title="Pink" link="/game/pink"
+            <GameIntroduction iconSource={pinkIcon} iconSize={"8vw"}  title="Pink" link="/game/pink"
                 description={
                     <div>
-                        내용<br />
-                        내용<br />
-                        내용
+                        사랑이라는 감정은 생명체가 가지고 있는 가장 순수하고도, 가장 강력한 힘입니다.<br />
+                        그것을 온전히 느끼기 위해서는 자신을 뛰어넘는 용기가 필요합니다.<br />
+                        당신의 감정을 표현함으로써 완전해지세요.
                     </div>
                 }
             />
             <Divider />
-            <GameIntroduction title="Black" link="/game/black"
+            <GameIntroduction iconSource={blackIcon} iconSize={"7.6vw"}  title="Black" link="/game/black"
                 description={
                     <div>
-                        내용<br />
-                        내용<br />
-                        내용
+                        매 순간 최선을 다해 살아라.<br />
                     </div>
                 }
             />

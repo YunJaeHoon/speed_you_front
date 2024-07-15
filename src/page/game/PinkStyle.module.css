@@ -1,0 +1,13 @@
+#game-container {
+  width: 65vw;
+  height: 60vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#alphabet-container {
+  font-size: 12vw;
+  font-variation-settings: "wght" 900;
+}
