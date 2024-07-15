@@ -224,6 +224,7 @@ function SkyblueGamePage() {
                         }
                     );
                 }
+                catch {}
                 finally {
                     try {
                         const response = await sendApi(

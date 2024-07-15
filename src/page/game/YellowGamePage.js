@@ -220,6 +220,7 @@ function YellowGamePage() {
                         }
                     );
                 }
+                catch {}
                 finally {
                     try {
                         const response = await sendApi(

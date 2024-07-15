@@ -145,6 +145,7 @@ function OrangeGamePage() {
                         }
                     );
                 }
+                catch {}
                 finally {
                     try {
                         const response = await sendApi(

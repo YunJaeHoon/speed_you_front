@@ -18,6 +18,7 @@ import yellowIcon from '../image/yellow-icon.svg';
 import greenIcon from '../image/green-icon.svg';
 import skyblueIcon from '../image/skyblue-icon.svg';
 import blueIcon from '../image/blue-icon.svg';
+import purpleIcon from '../image/purple-icon.svg';
 import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
@@ -74,7 +75,7 @@ function HomePage() {
                 <img src={theme === "LIGHT" ? lightCircleIcon : darkCircleIcon} className={style["circle-icon"]} alt="circle-icon" />
                 <img src={theme === "LIGHT" ? lightCircleIcon : darkCircleIcon} className={style["circle-icon"]} alt="circle-icon" />
             </div>
-            <GameIntroduction iconSource={redIcon} iconSize={"7.5vw"} color="red-background" title="Red" link="/game/red"
+            <GameIntroduction iconSource={redIcon} iconSize={"7.5vw"} title="Red" link="/game/red"
                 description={
                     <div>
                         붉은색은 열정과 에너지, 그리고 강렬한 감정을 상징합니다.<br />
@@ -84,7 +85,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={orangeIcon} iconSize={"8vw"} color="orange-background" title="Orange" link="/game/orange"
+            <GameIntroduction iconSource={orangeIcon} iconSize={"8vw"} title="Orange" link="/game/orange"
                 description={
                     <div>
                         황야 그 어딘가, 주황색 석양은 지고 있으며, 방아쇠는 서늘하게 때를 기다립니다.<br />
@@ -93,7 +94,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={yellowIcon} iconSize={"7.5vw"} color="yellow-background" title="Yellow" link="/game/yellow"
+            <GameIntroduction iconSource={yellowIcon} iconSize={"7.5vw"} title="Yellow" link="/game/yellow"
                 description={
                     <div>
                         어둠이 깊어질수록 빛은 더욱 밝게 타오릅니다.<br />
@@ -103,7 +104,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={greenIcon} iconSize={"8vw"} color="green-background" title="Green" link="/game/green"
+            <GameIntroduction iconSource={greenIcon} iconSize={"8vw"} title="Green" link="/game/green"
                 description={
                     <div>
                         생명은 그 자체로 엄청난 가치를 갖고 있습니다.<br />
@@ -113,7 +114,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={skyblueIcon} iconSize={"7.5vw"} color="skyblue-background" title="Skyblue" link="/game/skyblue"
+            <GameIntroduction iconSource={skyblueIcon} iconSize={"7.5vw"} title="Skyblue" link="/game/skyblue"
                 description={
                     <div>
                         무한한 시간 속에서, 우리는 영원함을 꿈꾸며 허덕입니다.<br />
@@ -123,17 +124,27 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction iconSource={blueIcon} iconSize={"8vw"} color="blue-background" title="Blue" link="/game/blue"
+            <GameIntroduction iconSource={blueIcon} iconSize={"8vw"} title="Blue" link="/game/blue"
                 description={
                     <div>
-                        어이, 돛을 올리고 뱃머리를 북동쪽으로 돌려라!<br />
+                        돛을 올리고 뱃머리를 북쪽으로 돌려라!<br />
                         이제는 내 키잡이가 되어, 우리 배를 인도할 시간이다.<br />
-                        출항 준비 완료, 바다로 나가자고!
+                        출항 준비 완료! 바다로 나가자고!
                     </div>
                 }
             />
             <Divider />
-            <GameIntroduction color="purple-background" title="Purple" link="/game/purple"
+            <GameIntroduction iconSource={purpleIcon} iconSize={"8vw"} title="Purple" link="/game/purple"
+                description={
+                    <div>
+                        네온 불빛이 흐릿하게 빛나는 거리에서, 당신은 방향을 정해야 합니다.<br />
+                        세계 너머의 초월적인 세상을 좇을 것인가요?<br />
+                        혹은 당신과 당신이 사는 세계를 믿을 것인가요?
+                    </div>
+                }
+            />
+            <Divider />
+            <GameIntroduction title="Pink" link="/game/pink"
                 description={
                     <div>
                         내용<br />
@@ -143,17 +154,7 @@ function HomePage() {
                 }
             />
             <Divider />
-            <GameIntroduction color="pink-background" title="Pink" link="/game/pink"
-                description={
-                    <div>
-                        내용<br />
-                        내용<br />
-                        내용
-                    </div>
-                }
-            />
-            <Divider />
-            <GameIntroduction color="black-background" title="Black" link="/game/black"
+            <GameIntroduction title="Black" link="/game/black"
                 description={
                     <div>
                         내용<br />
