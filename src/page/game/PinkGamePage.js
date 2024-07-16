@@ -201,7 +201,7 @@ function PinkGamePage() {
         setCurrentMusicVolume(1);
 
         setCountDown(3);
-        setStopwatch(30);
+        setStopwatch(45);
         setScore(0);
 
         setAlphabet();

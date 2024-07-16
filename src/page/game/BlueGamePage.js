@@ -93,7 +93,7 @@ function BlueGamePage() {
     const [percentile, setPercentile] = useState(0);        // 상위 퍼센트
 
     const [directionIndex, setDirectionIndex] = useState(0);        // 방향 index
-    const [wheelRotate, setWheelRotate] = useState(0);              // 타륜 회전갹
+    const [wheelRotate, setWheelRotate] = useState(0);              // 타륜 회전각
 
     // 효과음
     const [playMoveSound] = useSound(move_sound, { volume: 0.4 });
@@ -157,7 +157,7 @@ function BlueGamePage() {
     useEffect(() => {
 
         if (countDown === "Game start") {
-            setDirectionIndex(Math.floor(Math.random() * 7) + 1)
+            setDirectionIndex(Math.floor(Math.random() * 7) + 1);
         }
 
     }, [countDown]);

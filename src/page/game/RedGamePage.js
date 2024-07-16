@@ -36,10 +36,11 @@ function RedGamePage() {
     const [countDown, setCountDown] = useState(3);          // 카운트다운
     const [stopwatch, setStopwatch] = useState(30);         // 제한 시간
     const [score, setScore] = useState(0);                  // 점수
-    const [whichBlock, setWhichBlock] = useState(10);       // red-block index
     const [countAll, setCountAll] = useState(0);            // 전체 결과 개수
     const [rank, setRank] = useState(0);                    // 순위
     const [percentile, setPercentile] = useState(0);        // 상위 퍼센트
+
+    const [whichBlock, setWhichBlock] = useState(10);       // red-block index
 
     // 효과음
     const [playScoreSound] = useSound(score_sound, { volume: 0.4 });
@@ -112,6 +113,7 @@ function RedGamePage() {
             }
             else if (whichBlock.toString() !== event.key && event.location === 3) {
                 setScore(score - 1);
+                setWhichBlock(Math.floor(Math.random() * 9) + 1);
                 if (isPlaySound) playWrongSound();
             }
 

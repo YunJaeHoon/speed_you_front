@@ -178,7 +178,7 @@ function OrangeGamePage() {
         }
     }, [step]);
 
-    // 과녁 클릭 성공
+    // 과녁 클릭 성공 처리 함수
     function getScore() {
         if (step === "PLAY" && countDown === "Game start") {
             let randomNumber = Math.floor(Math.random() * 5);   // 0 ~ 4
@@ -195,13 +195,12 @@ function OrangeGamePage() {
         }
     }
 
-    // 과녁 클릭 실패
+    // 과녁 클릭 실패 처리 함수
     function downScore() {
         if (step === "PLAY" && countDown === "Game start") {
-            setScore(score - 1);                // 점수 - 1
+            setScore(score - 1);                  // 점수 - 1
             if (isPlaySound) playWrongSound();    // 효과음
         }
-
     }
 
     // 게임 시작 버튼
