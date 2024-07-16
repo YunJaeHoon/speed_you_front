@@ -1,0 +1,192 @@
+#game-container-RED {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 9vh;
+}
+
+.line-RED {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block-RED {
+  width: 12vh;
+  height: 12vh;
+  background-color: #6c6c6c;
+
+  margin: 0.6vh;
+}
+
+.red-block-RED {
+  width: 12vh;
+  height: 12vh;
+  background-color: #ffffff;
+  margin: 0.6vh;
+}
+
+#game-container-ORANGE {
+  width: 65vw;
+  height: 72vh;
+  z-index: 10;
+
+  position: relative;
+}
+
+#target-ORANGE {
+  width: 13vh;
+  height: 13vh;
+  z-index: 15;
+  cursor: pointer;
+
+  position: absolute;
+  transform: translate(-100%, -100%);
+}
+
+#game-container-YELLOW {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 9vh;
+}
+
+.line-YELLOW {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block-YELLOW {
+  width: 6vh;
+  height: 6vh;
+  background-color: #6c6c6c;
+
+  margin: 0.5vh;
+}
+
+.player-block-YELLOW {
+  width: 6vh;
+  height: 6vh;
+  background-color: #000000;
+
+  margin: 0.5vh;
+}
+
+.target-block-YELLOW {
+  width: 6vh;
+  height: 6vh;
+  background-color: #ffffff;
+
+  margin: 0.5vh;
+}
+
+#game-container-GREEN {
+  width: 85vw;
+
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: 25px;
+}
+
+#circle-container-GREEN {
+  width: 25vw;
+  height: 25vw;
+  z-index: 10;
+  cursor: pointer;
+
+  background-color: #ffffff;
+
+  border-radius: 50%;
+}
+
+.score-container-GREEN {
+  width: 25vw;
+}
+
+#game-container-SKYBLUE {
+  width: 100vw;
+  height: 45vh;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#arrow-container-SKYBLUE {
+  white-space: nowrap;
+  position: absolute;
+  left: 48.2%;
+}
+
+.arrow-SKYBLUE {
+  width: 8vh;
+
+  position: absolute;
+  transition: 0.1s ease-in-out;
+}
+
+#here-container-SKYBLUE {
+  width: 11vh;
+  height: 19vh;
+
+  position: absolute;
+  left: -1.5vh;
+  top: -1.5vh;
+
+  border: 0.3vh solid #FFFFFF;
+}
+
+#game-container-BLUE {
+  width: 65vw;
+  height: 70vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#wheel-container-BLUE {
+  position: absolute;
+  left: 50%;
+}
+
+#wheel-BLUE {
+  position: absolute;
+  transition: 0.25s ease-in-out;
+}
+
+#direction-BLUE {
+  position: absolute;
+}
+
+#game-container-PURPLE {
+  width: 65vw;
+  height: 65vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#direction-PURPLE {
+  width: 10vw;
+}
+
+#game-container-PINK {
+  width: 65vw;
+  height: 60vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#alphabet-container-PINK {
+  font-size: 12vw;
+  font-variation-settings: "wght" 900;
+}

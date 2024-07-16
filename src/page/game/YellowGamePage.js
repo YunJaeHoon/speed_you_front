@@ -134,7 +134,6 @@ function YellowGamePage() {
     // 키보드 입력 처리 함수
     const handleKeyDown = useCallback((event) => {
         let newPlayerLocation = playerLocation;
-        console.log(event.key);
 
         // 왼쪽 방향키
         if ((event.key === 36 || event.key === "ArrowLeft") && (playerLocation - 1) % 7 !== 0) {

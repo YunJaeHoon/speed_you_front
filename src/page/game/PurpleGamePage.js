@@ -103,7 +103,7 @@ function PurpleGamePage() {
     useEffect(() => {
 
         if (countDown === "Game start") {
-            setDirection(Math.floor(Math.random() * 8) + 1)
+            setDirection(Math.floor(Math.random() * 8) + 1);
         }
 
     }, [countDown]);
@@ -119,44 +119,44 @@ function PurpleGamePage() {
         // 왼쪽 방향키
         if (event.key === 36 || event.key === "ArrowLeft") {
             if(direction === 4 || direction === 6) {
-                setScore(score + 1)
+                setScore(score + 1);
                 if (isPlaySound) playScoreSound();
             }
             else {
-                setScore(score - 1)
+                setScore(score - 1);
                 if (isPlaySound) playWrongSound();
             }
         }
         // 오른쪽 방향키
         else if (event.key === 37 || event.key === "ArrowRight") {
             if(direction === 2 || direction === 8) {
-                setScore(score + 1)
+                setScore(score + 1);
                 if (isPlaySound) playScoreSound();
             }
             else {
-                setScore(score - 1)
+                setScore(score - 1);
                 if (isPlaySound) playWrongSound();
             }
         }
         // 위쪽 방향키
         else if (event.key === 38 || event.key === "ArrowUp") {
             if(direction === 1 || direction === 7) {
-                setScore(score + 1)
+                setScore(score + 1);
                 if (isPlaySound) playScoreSound();
             }
             else {
-                setScore(score - 1)
+                setScore(score - 1);
                 if (isPlaySound) playWrongSound();
             }
         }
         // 아래쪽 방향키
         else if (event.key === 39 || event.key === "ArrowDown") {
             if(direction === 3 || direction === 5) {
-                setScore(score + 1)
+                setScore(score + 1);
                 if (isPlaySound) playScoreSound();
             }
             else {
-                setScore(score - 1)
+                setScore(score - 1);
                 if (isPlaySound) playWrongSound();
             }
         }
@@ -247,7 +247,7 @@ function PurpleGamePage() {
     function play() {
         setStep("PLAY");
         setCurrentMusic(purpleBackgroundMusic);
-        setCurrentMusicVolume(0.8);
+        setCurrentMusicVolume(0.5);
     }
 
     // 재시도 버튼
