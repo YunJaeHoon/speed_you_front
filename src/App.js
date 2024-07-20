@@ -110,7 +110,10 @@ function App() {
                                 </Routes>
                             </CSSTransition>
                         </TransitionGroup>
-                        <Footer />
+                        {
+                            !location.pathname.startsWith('/game') &&
+                            <Footer isExistScrollbar={location.pathname === '/' ? true : false} />
+                        }
                     </SoundContext.Provider>
                 </ThemeContext.Provider>
             </LoginContext.Provider>
