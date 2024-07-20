@@ -66,7 +66,7 @@
     display: block;
     transition: all 0.1s ease;
     
-    margin: 1vh 0px;
+    margin: 0.8vh 0px;
 }
 
 .game-button:hover {

@@ -14,7 +14,6 @@ import lightLogo from '../image/logo-light.svg';
 import lightProfileIcon from '../image/profile-icon-light.svg';
 import lightRankingIcon from '../image/ranking-icon-light.svg';
 import lightSuggestionIcon from '../image/suggestion-icon-light.svg';
-import lightAnnouncementIcon from '../image/announcement-icon-light.svg';
 import lightMusicIcon from '../image/music-icon-light.svg';
 import lightMusicMuteIcon from '../image/music-mute-icon-light.svg';
 import lightSoundIcon from '../image/sound-icon-light.svg';
@@ -24,7 +23,6 @@ import darkLogo from '../image/logo-dark.svg';
 import darkProfileIcon from '../image/profile-icon-dark.svg';
 import darkRankingIcon from '../image/ranking-icon-dark.svg';
 import darkSuggestionIcon from '../image/suggestion-icon-dark.svg';
-import darkAnnouncementIcon from '../image/announcement-icon-dark.svg';
 import darkMusicIcon from '../image/music-icon-dark.svg';
 import darkMusicMuteIcon from '../image/music-mute-icon-dark.svg';
 import darkSoundIcon from '../image/sound-icon-dark.svg';
@@ -56,13 +54,6 @@ function Header() {
                     link="/"
                     alt="suggestion-icon"
                     source={theme === "LIGHT" ? lightSuggestionIcon : darkSuggestionIcon}
-                    direction="left"
-                />
-                <Icon
-                    name="공지사항"
-                    link="/"
-                    alt="announcement-icon"
-                    source={theme === "LIGHT" ? lightAnnouncementIcon : darkAnnouncementIcon}
                     direction="left"
                 />
                 <div className={theme === "LIGHT" ? style["divider-light"] : style["divider-dark"]}></div>

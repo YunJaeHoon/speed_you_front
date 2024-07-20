@@ -17,9 +17,9 @@
 
 #title-agreeTerm {
   text-align: center;
-  font-size: 7vh;
+  font-size: 6vh;
 
-  margin-top: 10vh;
+  margin-top: 8vh;
   margin-bottom: 0;
 }
 
@@ -152,7 +152,7 @@ input.checkbox + label {
   text-align: center;
   font-size: 6.5vh;
 
-  margin-top: 11vh;
+  margin-top: 8vh;
   margin-bottom: 0;
 }
 
