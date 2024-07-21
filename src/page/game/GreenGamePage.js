@@ -217,7 +217,7 @@ function GreenGamePage() {
 
     // 게임 종료
     useEffect(() => {
-        if (step === "OVER") {
+        if (step === "OVER" && score < 25000) {
             const getResult = async () => {
 
                 await refreshAccessToken();
@@ -264,6 +264,10 @@ function GreenGamePage() {
 
             getResult();
         }
+        else if(step === "OVER" && score >= 25000) {
+            if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
+            setStep("RESULT");
+        }
     }, [step]);
 
     // 게임 시작 버튼
@@ -300,6 +304,9 @@ function GreenGamePage() {
         setStopwatch(0);
         setCountDown(3);
         setScore(0);
+        setCountAll(0);
+        setRank(0);
+        setPercentile(0);
 
         setRound(1);
         setScore_1(".");
@@ -325,6 +332,7 @@ function GreenGamePage() {
                     </div>
                 }
                 stopwatch="-"
+                isValid={score < 25000}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["green-background"]} onClick={play} >
                 Start

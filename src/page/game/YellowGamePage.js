@@ -203,7 +203,7 @@ function YellowGamePage() {
 
     // 게임 종료
     useEffect(() => {
-        if (step === "OVER") {
+        if (step === "OVER" && score > 0) {
             const getResult = async () => {
 
                 await refreshAccessToken();
@@ -250,6 +250,10 @@ function YellowGamePage() {
 
             getResult();
         }
+        else if(step === "OVER" && score <= 0) {
+            if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
+            setStep("RESULT");
+        }
     }, [step]);
 
     // 게임 시작 버튼
@@ -268,6 +272,9 @@ function YellowGamePage() {
         setCountDown(3);
         setStopwatch(45);
         setScore(0);
+        setCountAll(0);
+        setRank(0);
+        setPercentile(0);
 
         setPlayerLocation(99);
         setBeginLocation(99);
@@ -325,6 +332,7 @@ function YellowGamePage() {
                 countAll={countAll}
                 rank={rank}
                 percentile={percentile}
+                isValid={score > 0}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["yellow-background"]} onClick={retry} >
                 재시도
