@@ -228,7 +228,7 @@ function BlueGamePage() {
 
     // 게임 종료
     useEffect(() => {
-        if (step === "OVER") {
+        if (step === "OVER" && score > 0) {
             const getResult = async () => {
 
                 await refreshAccessToken();
@@ -275,6 +275,10 @@ function BlueGamePage() {
 
             getResult();
         }
+        else if(step === "OVER" && score <= 0) {
+            if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
+            setStep("RESULT");
+        }
     }, [step]);
 
     // 게임 시작 버튼
@@ -293,6 +297,9 @@ function BlueGamePage() {
         setCountDown(3);
         setStopwatch(30);
         setScore(0);
+        setCountAll(0);
+        setRank(0);
+        setPercentile(0);
 
         setDirectionIndex(0);
         setWheelRotate(0);
@@ -373,6 +380,7 @@ function BlueGamePage() {
                 countAll={countAll}
                 rank={rank}
                 percentile={percentile}
+                isValid={score > 0}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["blue-background"]} onClick={retry} >
                 재시도

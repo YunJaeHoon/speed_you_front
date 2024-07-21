@@ -34,7 +34,7 @@ function PinkGamePage() {
     // state
     const [step, setStep] = useState("READY");              // 게임 절차
     const [countDown, setCountDown] = useState(3);          // 카운트다운
-    const [stopwatch, setStopwatch] = useState(45);         // 제한 시간
+    const [stopwatch, setStopwatch] = useState(30);         // 제한 시간
     const [score, setScore] = useState(0);                  // 점수
     const [countAll, setCountAll] = useState(0);            // 전체 결과 개수
     const [rank, setRank] = useState(0);                    // 순위
@@ -138,7 +138,7 @@ function PinkGamePage() {
 
     // 게임 종료
     useEffect(() => {
-        if (step === "OVER") {
+        if (step === "OVER" && score > 0) {
             const getResult = async () => {
 
                 await refreshAccessToken();
@@ -185,6 +185,10 @@ function PinkGamePage() {
 
             getResult();
         }
+        else if(step === "OVER" && score <= 0) {
+            if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
+            setStep("RESULT");
+        }
     }, [step]);
 
     // 게임 시작 버튼
@@ -201,8 +205,11 @@ function PinkGamePage() {
         setCurrentMusicVolume(1);
 
         setCountDown(3);
-        setStopwatch(45);
+        setStopwatch(30);
         setScore(0);
+        setCountAll(0);
+        setRank(0);
+        setPercentile(0);
 
         setAlphabet();
     }
@@ -219,7 +226,7 @@ function PinkGamePage() {
                         잘못된 버튼을 누르면, 점수가 깎입니다.<br />
                     </div>
                 }
-                stopwatch="45초"
+                stopwatch="30초"
             />
             <div id={gameStyle["start-button"]} className={colorStyle["pink-background"]} onClick={play} >
                 Start
@@ -260,6 +267,7 @@ function PinkGamePage() {
                 countAll={countAll}
                 rank={rank}
                 percentile={percentile}
+                isValid={score > 0}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["pink-background"]} onClick={retry} >
                 재시도

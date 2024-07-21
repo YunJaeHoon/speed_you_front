@@ -208,7 +208,7 @@ function SkyblueGamePage() {
 
     // 게임 종료
     useEffect(() => {
-        if (step === "OVER") {
+        if (step === "OVER" && score > 0) {
             const getResult = async () => {
 
                 await refreshAccessToken();
@@ -255,6 +255,10 @@ function SkyblueGamePage() {
 
             getResult();
         }
+        else if(step === "OVER" && score <= 0) {
+            if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
+            setStep("RESULT");
+        }
     }, [step]);
 
     // 게임 시작 버튼
@@ -273,6 +277,9 @@ function SkyblueGamePage() {
         setCountDown(3);
         setStopwatch(30);
         setScore(0);
+        setCountAll(0);
+        setRank(0);
+        setPercentile(0);
 
         setArrowIndex(0);
         setArrows(Array.from({ length: arrowNumber }, (_, index) => ({
@@ -353,6 +360,7 @@ function SkyblueGamePage() {
                 countAll={countAll}
                 rank={rank}
                 percentile={percentile}
+                isValid={score > 0}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["skyblue-background"]} onClick={retry} >
                 재시도

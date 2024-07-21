@@ -129,7 +129,7 @@ function OrangeGamePage() {
 
     // 게임 종료
     useEffect(() => {
-        if (step === "OVER") {
+        if (step === "OVER" && score > 0) {
             const getResult = async () => {
 
                 await refreshAccessToken();
@@ -176,6 +176,10 @@ function OrangeGamePage() {
 
             getResult();
         }
+        else if(step === "OVER" && score <= 0) {
+            if (isPlaySound) playGameOverSound();    // 게임 종료 효과음
+            setStep("RESULT");
+        }
     }, [step]);
 
     // 과녁 클릭 성공 처리 함수
@@ -219,6 +223,9 @@ function OrangeGamePage() {
         setCountDown(3);
         setStopwatch(30);
         setScore(0);
+        setCountAll(0);
+        setRank(0);
+        setPercentile(0);
 
         setShowTarget(false);
     }
@@ -287,6 +294,7 @@ function OrangeGamePage() {
                 countAll={countAll}
                 rank={rank}
                 percentile={percentile}
+                isValid={score > 0}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["orange-background"]} onClick={retry} >
                 재시도
