@@ -24,6 +24,8 @@ import BlueGamePage from './page/game/BlueGamePage';
 import PurpleGamePage from './page/game/PurpleGamePage';
 import PinkGamePage from './page/game/PinkGamePage';
 import BlackGamePage from './page/game/BlackGamePage';
+import RankPage from './page/RankPage.js';
+import SuggestionPage from './page/SuggestionPage.js';
 
 import style from './App.module.css';
 import colorStyle from './style/Color.module.css';
@@ -107,6 +109,8 @@ function App() {
                                     <Route path="/game/purple" element={<PurpleGamePage />}></Route>
                                     <Route path="/game/pink" element={<PinkGamePage />}></Route>
                                     <Route path="/game/black" element={<BlackGamePage />}></Route>
+                                    <Route path="/rank" element={<RankPage />}></Route>
+                                    <Route path="/suggestion" element={<SuggestionPage />}></Route>
                                 </Routes>
                             </CSSTransition>
                         </TransitionGroup>

@@ -1,0 +1,26 @@
+.game-select-button {
+  width: 5vh;
+  height: 5vh;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.1s ease;
+
+  margin-left: 1vh;
+}
+
+.game-select-button-light {
+  border: 0.3vh solid #20201E;
+}
+
+.game-select-button-dark {
+  border: 0.3vh solid #ffffff;
+}
+
+.current-game {
+  width: 7vh;
+  height: 7vh;
+}
