@@ -544,7 +544,7 @@ function BlackGamePage() {
 
     // GREEN: 원 클릭
     function click_GREEN() {
-        setScore(score + 5);                    // 점수 반영
+        setScore(score + 1);                    // 점수 반영
         setRemaining(remaining - 1);
         if (isPlaySound) playScoreSound();      // 초록색 원 클릭 효과음
     }

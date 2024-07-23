@@ -32,15 +32,17 @@
     margin: 1vh 2.8vh 0px 0px;
 }
 
+#logo-container {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
 #logo {
     height: 7vh;
     z-index: 10;
 
     position: relative;
     transition: all 0.1s ease;
-
-    margin-top: 3vh;
-    margin-bottom: 3vh;
 }
 
 #logo:hover {

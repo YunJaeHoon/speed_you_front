@@ -39,19 +39,19 @@ function Header() {
     return (
         <div id={style["background"]}>
             <div id={style["left-container"]}>
-                <Link to="/">
+                <Link to="/" id={style["logo-container"]}>
                     <img src={theme === "LIGHT" ? lightLogo : darkLogo} id={style["logo"]} alt="Speed.you logo" />
                 </Link>
                 <Icon
                     name="랭킹"
-                    link="/"
+                    link="/rank"
                     alt="ranking-icon"
                     source={theme === "LIGHT" ? lightRankingIcon : darkRankingIcon}
                     direction="left"
                 />
                 <Icon
                     name="건의사항"
-                    link="/"
+                    link="/suggestion"
                     alt="suggestion-icon"
                     source={theme === "LIGHT" ? lightSuggestionIcon : darkSuggestionIcon}
                     direction="left"
