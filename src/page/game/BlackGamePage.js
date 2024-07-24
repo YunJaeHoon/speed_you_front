@@ -161,7 +161,7 @@ function BlackGamePage() {
     const [playScoreSound] = useSound(score_sound, { volume: 0.6 });
     const [playWrongSound] = useSound(wrong_sound, { volume: 1 });
     const [playMoveSound] = useSound(move_sound, { volume: 0.4 });
-    const [playChangeSound] = useSound(change_sound, { volume: 0.35 });
+    const [playChangeSound] = useSound(change_sound, { volume: 0.3 });
     const [playCountDownSound] = useSound(countDown_sound, { volume: 0.35 });
     const [playGameStartSound, { stop: stopGameStartSound }] = useSound(gameStart_sound, { volume: 0.7 });
     const [playGameOverSound, { stop: stopGameOverSound }] = useSound(gameOver_sound);

@@ -11,7 +11,7 @@
     font-size: 7vh;
     font-variation-settings: "wght" 700;
 
-    margin-top: 8vh;
+    margin-top: 9vh;
 }
 
 #subtitle-container {
@@ -21,7 +21,7 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-top: 3vh;
+    margin-top: 2vh;
 }
 
 #game-icon-container {
@@ -53,12 +53,12 @@
     width: 80vw;
     height: 0.1vh;
 
-    margin: 3.5vh 0;
+    margin-top: 3.5vh;
 }
 
 #content-container {
     width: 80vw;
-    height: 55vh;
+    height: 57vh;
     z-index: 5;
 
     display: flex;
@@ -66,6 +66,107 @@
 }
 
 #topTen-container {
-    width: 45%;
+    width: 52.5%;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-left: 0.1vh solid #20201E;
+    padding: 0 2vh;
+}
+
+#topTen-title {
+    font-size: 4.5vh;
+    font-variation-settings: "wght" 750;
+
+    margin-top: 3vh;
+}
+
+#topTen-subcontainer {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#topTen-description-container {
+    height: 4vh;
+
+    font-size: 3vh;
+    font-variation-settings: "wght" 600;
+
+    margin-top: 1.5vh;
+    margin-bottom: 1vh;
+}
+
+#topTen-order-description {
+    width: 10%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+#topTen-username-description {
+    width: 40%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+#topTen-score-description {
+    width: 20%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+#topTen-createdAt-description {
+    width: 29%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+.topTen-score-container {
+    height: 4vh;
+
+    font-size: 3vh;
+}
+
+.topTen-order {
+    width: 10%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+.topTen-username {
+    width: 40%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+.topTen-score {
+    width: 20%;
+
+    text-align: center;
+
+    display: inline-block;
+}
+
+.topTen-createdAt {
+    width: 29%;
+
+    text-align: center;
+
+    display: inline-block;
 }
