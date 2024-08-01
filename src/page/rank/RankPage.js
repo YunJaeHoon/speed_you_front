@@ -1,26 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer, CartesianGrid, YAxis, Legend } from 'recharts';
-import { sendApi } from '../util/apiUtil.js';
+import { sendApi } from '../../util/apiUtil.js';
 
-import GameSelectButton from '../component/GameSelectButton.js';
-import WaitServer from '../component/WaitServer.js';
+import GameSelectButton from '../../component/GameSelectButton.js';
+import WaitServer from '../../component/WaitServer.js';
 
-import SoundContext from "../context/SoundContext.js";
-import ThemeContext from "../context/ThemeContext.js";
+import SoundContext from "../../context/SoundContext.js";
+import ThemeContext from "../../context/ThemeContext.js";
 
 import style from './RankStyle.module.css';
-import colorStyle from '../style/Color.module.css';
+import colorStyle from '../../style/Color.module.css';
 
-import redIcon from '../image/red-icon.svg';
-import orangeIcon from '../image/orange-icon.svg';
-import yellowIcon from '../image/yellow-icon.svg';
-import greenIcon from '../image/green-icon.svg';
-import skyblueIcon from '../image/skyblue-icon.svg';
-import blueIcon from '../image/blue-icon.svg';
-import purpleIcon from '../image/purple-icon.svg';
-import pinkIcon from '../image/pink-icon.svg';
-import blackIcon from '../image/black-icon.svg';
-import homeBackgroundMusic from '../sound/home_background_music.mp3';
+import redIcon from '../../image/red-icon.svg';
+import orangeIcon from '../../image/orange-icon.svg';
+import yellowIcon from '../../image/yellow-icon.svg';
+import greenIcon from '../../image/green-icon.svg';
+import skyblueIcon from '../../image/skyblue-icon.svg';
+import blueIcon from '../../image/blue-icon.svg';
+import purpleIcon from '../../image/purple-icon.svg';
+import pinkIcon from '../../image/pink-icon.svg';
+import blackIcon from '../../image/black-icon.svg';
+
+import homeBackgroundMusic from '../../sound/home_background_music.mp3';
 
 function RankPage() {
 
@@ -31,7 +32,7 @@ function RankPage() {
     // state
     const [game, setGame] = useState("Red");                    // 게임 종류
     const [data, setData] = useState(null);                     // 랭킹 데이터
-    const [finishLoading, setFinishLoading] = useState(false)   // 데이터 요청 중 여부
+    const [finishLoading, setFinishLoading] = useState(false)   // 데이터 응답 여부
 
     // 페이지 마운트 시, 게임 변경 시, 실행
     useEffect(() => {

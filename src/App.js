@@ -11,7 +11,6 @@ import LoginContext from "./context/LoginContext.js";
 import ThemeContext from "./context/ThemeContext.js";
 
 import HomePage from './page/HomePage';
-import MyPage from './page/MyPage';
 import LoginPage from './page/login/LoginPage';
 import JoinPage from './page/login/JoinPage';
 import ResetPasswordPage from './page/login/ResetPasswordPage';
@@ -24,8 +23,11 @@ import BlueGamePage from './page/game/BlueGamePage';
 import PurpleGamePage from './page/game/PurpleGamePage';
 import PinkGamePage from './page/game/PinkGamePage';
 import BlackGamePage from './page/game/BlackGamePage';
-import RankPage from './page/RankPage.js';
-import SuggestionPage from './page/SuggestionPage.js';
+import RankPage from './page/rank/RankPage.js';
+import SuggestionPage from './page/suggestion/SuggestionPage.js';
+import MyPage from './page/mypage/MyPage.js';
+import UpdateInfo from './page/mypage/UpdateInfo.js';
+import UpdatePassword from './page/mypage/UpdatePassword.js';
 
 import style from './App.module.css';
 import colorStyle from './style/Color.module.css';
@@ -68,7 +70,7 @@ function App() {
     // 특정 경로에서는 body의 overflow 속성을 변경
     useEffect(() => {
 
-        if (location.pathname === '/') {
+        if (location.pathname === '/' || location.pathname === '/mypage') {
             document.body.style.overflow = 'auto';
         } else {
             document.body.style.overflow = 'hidden';
@@ -99,7 +101,6 @@ function App() {
                                     <Route path="/login" element={<LoginPage />}></Route>
                                     <Route path="/join" element={<JoinPage />} ></Route>
                                     <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
-                                    <Route path="/myPage" element={<MyPage />}></Route>
                                     <Route path="/game/red" element={<RedGamePage />}></Route>
                                     <Route path="/game/orange" element={<OrangeGamePage />}></Route>
                                     <Route path="/game/yellow" element={<YellowGamePage />}></Route>
@@ -111,12 +112,15 @@ function App() {
                                     <Route path="/game/black" element={<BlackGamePage />}></Route>
                                     <Route path="/rank" element={<RankPage />}></Route>
                                     <Route path="/suggestion" element={<SuggestionPage />}></Route>
+                                    <Route path="/mypage" element={<MyPage />}></Route>
+                                    <Route path="/myPage/update-info" element={<UpdateInfo />}></Route>
+                                    <Route path="/myPage/update-password" element={<UpdatePassword />}></Route>
                                 </Routes>
                             </CSSTransition>
                         </TransitionGroup>
                         {
                             !location.pathname.startsWith('/game') &&
-                            <Footer isExistScrollbar={location.pathname === '/' ? true : false} />
+                            <Footer isExistScrollbar={location.pathname === '/' || location.pathname === '/mypage' ? true : false} />
                         }
                     </SoundContext.Provider>
                 </ThemeContext.Provider>

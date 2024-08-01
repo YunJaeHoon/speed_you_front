@@ -99,7 +99,7 @@ function Header() {
             <div id={style["right-container"]}>
                 <Icon
                     name={role !== null ? "마이페이지" : "로그인"}
-                    link={role !== null ? "/myPage" : "/login"}
+                    link={role !== null ? "/mypage" : "/login"}
                     alt="profile-icon"
                     source={theme === "LIGHT" ? lightProfileIcon : darkProfileIcon}
                     direction="right"

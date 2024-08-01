@@ -24,17 +24,15 @@ const sendApi = async (url, method, authorization, requestData) => {
             });
         }
 
-        return response.data.data;
+        return response.data?.data;
 
     }
     catch (error) {
-        if (authorization && error.response && error.response.data && error.response.data.code === "UNAUTHORIZED") {
+        if (authorization && error.response && error.response?.data && error.response?.data?.code === "UNAUTHORIZED") {
             const accesstoken = await refreshAccessToken();
 
-            headers = authorization ? {
+            headers = {
                 Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-                'Content-Type': 'application/json'
-            } : {
                 'Content-Type': 'application/json'
             };
 
@@ -52,9 +50,9 @@ const sendApi = async (url, method, authorization, requestData) => {
                         });
                     }
 
-                    return response.data.data;
+                    return response.data?.data;
                 }
-                catch {
+                catch (error) {
                     throw error;
                 }
             }
@@ -74,7 +72,7 @@ const refreshAccessToken = async () => {
             headers: { Authorization: `Bearer ${window.localStorage.getItem('refreshToken')}` }
         });
 
-        const newAccessToken = response.data.data;
+        const newAccessToken = response.data?.data;
 
         axios.defaults.headers.common['Authorization'] = newAccessToken;
         window.localStorage.setItem("accessToken", newAccessToken);
