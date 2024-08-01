@@ -56,14 +56,14 @@ function LoginPage() {
         .then((response) => {
 
             // header에 Authorization 값으로 access token 넣기
-            axios.defaults.headers.common['Authorization'] = response.data.data.accessToken;
+            axios.defaults.headers.common['Authorization'] = response.data?.data?.accessToken;
 
             // localStorage에 access token 넣기
-            window.localStorage.setItem("accessToken", response.data.data.accessToken);
+            window.localStorage.setItem("accessToken", response.data?.data?.accessToken);
 
             // localStroage에 refresh token 넣기
             if (rememberMe)
-                window.localStorage.setItem("refreshToken", response.data.data.refreshToken);
+                window.localStorage.setItem("refreshToken", response.data?.data?.refreshToken);
 
             const getRole = async () => {
                 try {

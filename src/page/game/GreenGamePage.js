@@ -332,7 +332,6 @@ function GreenGamePage() {
                     </div>
                 }
                 stopwatch="-"
-                isValid={score < 25000}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["green-background"]} onClick={play} >
                 Start
@@ -402,6 +401,7 @@ function GreenGamePage() {
                 countAll={countAll}
                 rank={rank}
                 percentile={percentile}
+                isValid={score < 25000}
             />
             <div id={gameStyle["start-button"]} className={colorStyle["green-background"]} onClick={retry} >
                 재시도

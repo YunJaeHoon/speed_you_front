@@ -344,7 +344,7 @@ function JoinPage() {
                 <div className={style["input-description-container"]}>
                     <span className={`${style["input-description"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>닉네임</span>
                     <span className={`${style["input-invalid-message"]} ${colorStyle["red-font"]}`}>
-                        {!validUsername && "* 닉네임은 영문 또는 한글 또는 숫자를 포함한 2~16자리입니다."}
+                        {!validUsername && "* 닉네임은 2~16자리입니다."}
                     </span>
                 </div>
                 <input type="text" name="username" value={username} onChange={changeUsername} className={`${style["input-join"]} ${colorStyle["black-font"]} ${validUsername ? style["input-join-valid"] : style["input-join-invalid"]}`} required />
