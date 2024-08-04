@@ -453,7 +453,7 @@ function MyPage() {
                                         </span>
                                     </div>
                                 ) :
-                                <div className={style["history-error"]}>
+                                <div className={style["history-error"]} style={theme === "LIGHT" ? {borderColor: "#20201E"} : {borderColor: "#FFFFFF"}}>
                                     해당 게임의 전적 검색 결과가 존재하지 않습니다.
                                 </div>
                             }
