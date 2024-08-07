@@ -28,6 +28,7 @@ import SuggestionPage from './page/suggestion/SuggestionPage.js';
 import MyPage from './page/mypage/MyPage.js';
 import UpdateInfo from './page/mypage/UpdateInfo.js';
 import UpdatePassword from './page/mypage/UpdatePassword.js';
+import TermPage from './page/term/TermPage.js';
 
 import style from './App.module.css';
 import colorStyle from './style/Color.module.css';
@@ -70,7 +71,11 @@ function App() {
     // 특정 경로에서는 body의 overflow 속성을 변경
     useEffect(() => {
 
-        if (location.pathname === '/' || location.pathname === '/mypage') {
+        if (
+            location.pathname === '/' ||
+            location.pathname === '/mypage' ||
+            location.pathname.startsWith('/term')
+        ) {
             document.body.style.overflow = 'auto';
         } else {
             document.body.style.overflow = 'hidden';
@@ -115,12 +120,14 @@ function App() {
                                     <Route path="/mypage" element={<MyPage />}></Route>
                                     <Route path="/myPage/update-info" element={<UpdateInfo />}></Route>
                                     <Route path="/myPage/update-password" element={<UpdatePassword />}></Route>
+                                    <Route path="/term/service" element={<TermPage about="SERVICE" />}></Route>
+                                    <Route path="/term/privacy" element={<TermPage about="PRIVACY" />}></Route>
                                 </Routes>
                             </CSSTransition>
                         </TransitionGroup>
                         {
                             !location.pathname.startsWith('/game') &&
-                            <Footer isExistScrollbar={location.pathname === '/' || location.pathname === '/mypage' ? true : false} />
+                            <Footer isExistScrollbar={location.pathname === '/' || location.pathname === '/mypage' || location.pathname.startsWith('/term') ? true : false} />
                         }
                     </SoundContext.Provider>
                 </ThemeContext.Provider>

@@ -41,6 +41,9 @@ function HomePage() {
             setCurrentMusicVolume(1);
         }
 
+        // 스크롤을 최상단으로 위치
+        window.scrollTo(0, 0);
+
         // 스크롤 위치 최신화 함수
         function onScroll() {
             setPosition(window.scrollY);
