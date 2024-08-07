@@ -73,6 +73,9 @@ function MyPage() {
             setCurrentMusic(homeBackgroundMusic);
             setCurrentMusicVolume(1);
         }
+
+        // 스크롤을 최상단으로 위치
+        window.scrollTo(0, 0);
         
         // 프로필 데이터, 최고 기록 데이터, 전적 개수, 모든 게임 전적(최신순) 데이터 요청
         const getData = async () => {

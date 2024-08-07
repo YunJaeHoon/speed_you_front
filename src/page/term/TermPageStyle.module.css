@@ -1,0 +1,19 @@
+#container {
+  width: 100%;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  font-size: 12vh;
+  font-variation-settings: "wght" 760;
+  
+  margin-top: 20vh;
+}
+
+#text-term {
+  padding: 14vh 20vw;
+}
