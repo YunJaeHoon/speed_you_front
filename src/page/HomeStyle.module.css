@@ -43,16 +43,43 @@
     margin-top: 1vh;
 }
 
+#warning-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 70vh;
+}
+
+#phone-icon {
+    width: 10vh;
+}
+
+#headset-icon {
+    width: 8vh;
+
+    margin-top: 8vh;
+}
+
+.warning-text {
+    font-size: 3vh;
+    font-variation-settings: "wght" 500;
+
+    margin-top: 3.5vh;
+}
+
 #quote {
     font-size: 8.5vh;
-    font-variation-settings: "wght" 650;
+    font-variation-settings: "wght" 750;
 
-    margin-top: 90vh;
+    margin-top: 40vh;
 }
 
 #quote-person {
     font-size: 3.8vh;
-    font-variation-settings: "wght" 550;
+    font-variation-settings: "wght" 700;
 
     margin-top: 3vh;
 }
