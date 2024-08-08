@@ -9,8 +9,12 @@ import style from './HomeStyle.module.css';
 import colorStyle from '../style/Color.module.css';
 
 import lightScrollIcon from '../image/scroll-icon-light.svg';
-import lightCircleIcon from '../image/circle-icon-light.svg';
 import darkScrollIcon from '../image/scroll-icon-dark.svg';
+import lightTurnPhoneIcon from '../image/turn-phone-icon-light.svg';
+import darkTurnPhoneIcon from '../image/turn-phone-icon-dark.svg';
+import lightHeadsetIcon from '../image/headset-icon-light.svg';
+import darkHeadsetIcon from '../image/headset-icon-dark.svg';
+import lightCircleIcon from '../image/circle-icon-light.svg';
 import darkCircleIcon from '../image/circle-icon-dark.svg';
 import redIcon from '../image/red-icon.svg';
 import orangeIcon from '../image/orange-icon.svg';
@@ -68,6 +72,16 @@ function HomePage() {
             <div id={style["scroll-container"]} style={{ opacity: 1.6 - position / 250 }}>
                 <div className={`${style["scroll-text"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>아래로 스크롤</div>
                 <img src={theme === "LIGHT" ? lightScrollIcon : darkScrollIcon} alt="scroll-icon" className={style["scroll-icon"]} />
+            </div>
+            <div id={style["warning-container"]}>
+                <img src={theme === "LIGHT" ? lightTurnPhoneIcon : darkTurnPhoneIcon} alt="phone-icon" id={style["phone-icon"]} />
+                <div className={`${style["warning-text"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>
+                    모바일 기기라면, 가로로 돌려주세요.
+                </div>
+                <img src={theme === "LIGHT" ? lightHeadsetIcon : darkHeadsetIcon} alt="phone-icon" id={style["headset-icon"]} />
+                <div className={`${style["warning-text"]} ${theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}`}>
+                    사운드와 함께 플레이하기를 권장합니다.
+                </div>
             </div>
             <div id={style["quote"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 "속도는 전쟁의 정수이다."
@@ -166,7 +180,7 @@ function HomePage() {
                     </div>
                 }
             />
-            <div style={{ "height": "300px" }}></div>
+            <div style={{ "height": "22vh" }}></div>
         </div>
     );
 }
