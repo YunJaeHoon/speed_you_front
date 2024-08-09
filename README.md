@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Speed.you - FE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Speed.you 프로젝트의 프론트엔드 리포지토리입니다.
 
-## Available Scripts
+## 기술 스택
 
-In the project directory, you can run:
+React 18.3.1
 
-### `npm start`
+## 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 다양한 반응속도 테스트 게임들
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+게임 종류는 다음과 같습니다.
 
-### `npm test`
+<span style="color: #FF1F00">**Red**</span> : 게임 화면과 동일한 숫자 키패드를 누르는 게임
+<span style="color: #FF7900">**Oragne**</span> : 무작위 위치에서 나타나는 과녁을 클릭하는 게임
+<span style="color: #FFC700">**Yellow**</span> : 오브젝트를 목표 위치로 옮기는 게임
+<span style="color: #20CC20">**Green**</span> : 게임 화면에 초록색 원이 나타나자마자 클릭하는 게임
+<span style="color: #43C9FF">**Skyblue**</span> : 화살표 위치와 동일한 방향키를 누르는 게임
+<span style="color: #0085FF">**Blue**</span> : 키의 방향을 화면 상단으로 배치하는 게임
+<span style="color: #C465FF">**Purple**</span> : 올바른 방향의 방향키를 누르는 게임
+<span style="color: #FF7596">**Pink**</span> : 게임 화면에 나타난 알파벳에 해당하는 자판을 누르는 게임
+<span style="color: #20201E">**Black**</span> : 위의 게임들이 무작위로 등장하는 게임
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 로그인
 
-### `npm run build`
+로그인을 한다면, 해당 계정으로 수행한 모든 게임 전적과 게임마다 자신의 최고 기록에 대한 정보를 확인할 수 있습니다.
+또한, 건의사항을 등록할 수 있습니다.
+( 단, 관리자 계정은 건의사항을 등록하는 대신, 건의사항을 조회할 수 있습니다. )
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+닉네임과 비밀번호를 변경할 수 있으며, 비밀번호를 잊었다면 초기화를 할 수 있습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 랭킹
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+각각의 게임의 기록들을 확인할 수 있습니다.
+그래프를 통해, 전체 사용자들의 점수 분포를 볼 수 있으며, 상위 10등의 기록을 조회할 수 있습니다.
 
-### `npm run eject`
+### 건의사항
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+로그인을 한 일반 사용자는 건의사항을 등록할 수 있습니다.
+건의사항의 종류로는 '버그 신고', '문의', '신규 기능 제안' 항목이 있습니다.
+관리자 계정은 모든 건의사항을 조회할 수 있습니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 사운드 지원
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+적절한 배경음과 효과음을 지원합니다.
+배경음과 효과음 각각을 키고, 끌 수 있습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 라이트, 다크 모드 지원
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+라이트 모드, 다크 모드를 지정할 수 있습니다.
+( 단, Black 게임에서는 다크 모드만 가능합니다. )
