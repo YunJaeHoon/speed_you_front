@@ -58,6 +58,7 @@ function RankPage() {
                 setData(response);
             } catch (error) {
                 setData(null);
+                console.log(error);
             } finally {
                 setFinishLoading(true);
             }
