@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import style from './index.css';
 
-axios.defaults.baseURL = 'http://43.203.196.229:8080';   // axios 기본 경로 설정
+axios.defaults.baseURL = 'http://3.35.55.224:8080';   // axios 기본 경로 설정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
