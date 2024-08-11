@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://3.38.253.165:8080',	  // 서버 URL
+      target: 'http://43.203.196.229:8080',	  // 서버 URL
       changeOrigin: true,
     })
   );
