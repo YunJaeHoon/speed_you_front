@@ -7,7 +7,7 @@ import axios from 'axios';
 import style from './index.css';
 
 axios.defaults.baseURL = 'http://3.35.230.96:8080';   // axios 기본 경로 설정
-axios.defaults.withCredentials = true;              // CORS 설정
+axios.defaults.withCredentials = true;                // CORS 설정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
