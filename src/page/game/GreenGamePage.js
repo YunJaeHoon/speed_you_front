@@ -25,7 +25,7 @@ import WaitServer from '../../component/WaitServer.js';
 
 function GreenGamePage() {
 
-    let content = null;   // 시간을 측정하기 시작한 시간
+    let content = null;
 
     // context
     const { isPlaySound, currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
@@ -47,7 +47,6 @@ function GreenGamePage() {
     const [score_4, setScore_4] = useState(".");                    // 4라운드 점수
     const [score_5, setScore_5] = useState(".");                    // 5라운드 점수
     const [circleActivate, setCircleActivate] = useState(false);    // 원 활성화 여부
-    const [startTime, setStartTime] = useState(null);               // 시간을 측정하기 시작한 시간
 
     const [waitId, setWaitId] = useState(null);                 // activateCircle 함수 호출 전, 일정 시간 기다리는 setTimeout
     const [randomWaitId, setRandomWaitId] = useState(null);     // 랜덤 시간 기다리는 setTimeout
@@ -107,7 +106,10 @@ function GreenGamePage() {
                 setRandomWaitId(null);
             }
 
-            setWaitId(setTimeout(waitRandomNumber, 3000));        // 3초 delay
+            // 3초 딜레이
+            const id = setTimeout(waitRandomNumber, 3000);
+            setWaitId(id);
+            return () => clearTimeout(id);
         }
 
     }, [countDown]);
@@ -115,48 +117,32 @@ function GreenGamePage() {
     // 랜덤 수만큼 기다렸다가, activateCircle 함수 호출
     function waitRandomNumber() {
         const randomNumber = Math.floor(Math.random() * 5000);      // 0 ~ 4999
-        setRandomWaitId(setTimeout(activateCircle, randomNumber));  // 랜덤 수만큼 delay
+
+        // 랜덤 수만큼 딜레이
+        const id = setTimeout(activateCircle, randomNumber);
+        setRandomWaitId(id);
+        return () => clearTimeout(id);
     }
 
     // 원 활성화
     function activateCircle() {
         setCircleActivate(true);        // 원 활성화
+        setStopwatch(0);                // 스톱워치 초기화
+
+        const startTime = Date.now()
+        console.log("Date.now() : " + startTime);
+        updateStopwatch(startTime);
     }
 
     // 시간 측정
-    useEffect(() => {
+    function updateStopwatch(startTime) {
+        console.log(startTime);
+        setStopwatch(Date.now() - startTime);      // 경과 시간을 스톱워치에 반영
 
-        setStopwatch(0);
-
-        if (step === "PLAY" && circleActivate) {
-            setStartTime(Date.now());
-        }
-        else {
-            setStartTime("round-finish");
-        }
-
-    }, [step, circleActivate]);
-
-    useEffect(() => {
-
-        setStopwatch(0);
-
-        if (step === "PLAY" && circleActivate && startTime) {
-            updateStopwatch();
-        }
-
-    }, [step, circleActivate, startTime]);
-
-    function updateStopwatch() {
-        if(startTime !== "round-finish") {
-            const currentTime = Date.now();
-
-            setStopwatch(currentTime - startTime);                      // 경과 시간을 스톱워치에 반영
-            setStopwatchId(requestAnimationFrame(updateStopwatch));     // 다음 애니메이션 프레임에 업데이트
-        }
-        else {
-            setStopwatch(0);
-        }
+        // 다음 애니메이션 프레임에 업데이트
+        const id = requestAnimationFrame(() => updateStopwatch(startTime));
+        setStopwatchId(id);
+        return () => cancelAnimationFrame(id);
     }
 
     // 초록색 원 클릭
@@ -167,11 +153,8 @@ function GreenGamePage() {
         if (isPlaySound) playScoreSound();      // 초록색 원 클릭 효과음
 
         // 스톱워치 중단
-        if (stopwatchId) {
-            cancelAnimationFrame(stopwatchId);
-            setStopwatchId(null);
-        }
-
+        cancelAnimationFrame(stopwatchId);
+        setStopwatchId(null);
         setStopwatch(0);
         
         if(round === 5) {
@@ -179,7 +162,11 @@ function GreenGamePage() {
         }
         else {
             setRound(round + 1);                                // 라운드 증가
-            setWaitId(setTimeout(waitRandomNumber, 3000));      // 3초 delay
+            
+            // 3초 delay
+            const id = setTimeout(waitRandomNumber, 3000);
+            setWaitId(id);
+            return () => clearTimeout(id);
         }
     }
 
@@ -212,7 +199,11 @@ function GreenGamePage() {
         setScore_4(".");    // 4라운드 점수 초기화
         setScore_5(".");    // 5라운드 점수 초기화
         setRound(1);        // 라운드 초기화
-        setWaitId(setTimeout(waitRandomNumber, 3000));  // 3초 delay
+        
+        // 3초 delay
+        const id = setTimeout(waitRandomNumber, 3000);
+        setWaitId(id);
+        return () => clearTimeout(id);
     }
 
     // 게임 종료
@@ -315,7 +306,6 @@ function GreenGamePage() {
         setScore_4(".");
         setScore_5(".");
         setCircleActivate(false);
-        setStartTime(null);
     }
 
     if (step === "READY") {
@@ -343,7 +333,7 @@ function GreenGamePage() {
             <div id={gameStyle["top-container"]} className={theme === "LIGHT" ? colorStyle["black-font"] : colorStyle["white-font"]}>
                 <div className={gameStyle["top-subcontainer"]}>
                     <div className={gameStyle["information-title"]}>시간</div>
-                    <div className={gameStyle["information"]}>{stopwatch / 1000}</div>
+                    <div className={gameStyle["information"]}>{stopwatch}</div>
                 </div>
                 <div id={countDown === "Game start" ? gameStyle["game-start"] : gameStyle["count-down"]}>{countDown}</div>
                 <div className={gameStyle["top-subcontainer"]}>

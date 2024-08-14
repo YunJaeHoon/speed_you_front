@@ -168,6 +168,9 @@ function SuggestionPage() {
         if(suggestionType === null) {
             setErrorMessage("건의사항 종류를 선택해야 합니다.");
         }
+        else if(detailLength <= 0) {
+            setErrorMessage("건의사항 내용을 작성해야 합니다.");
+        }
         else if(detailLength > 1000) {
             setErrorMessage("건의사항 내용의 글자 수는 1000자까지 가능합니다.");
         }
