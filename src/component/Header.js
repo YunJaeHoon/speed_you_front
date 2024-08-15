@@ -11,7 +11,8 @@ import iconStyle from './IconStyle.module.css';
 import colorStyle from '../style/Color.module.css';
 
 import lightLogo from '../image/logo-light.svg';
-import lightProfileIcon from '../image/profile-icon-light.svg';
+import lightLoginIcon from '../image/login-icon-light.svg';
+import lightMypageIcon from '../image/mypage-icon-light.svg';
 import lightRankingIcon from '../image/ranking-icon-light.svg';
 import lightSuggestionIcon from '../image/suggestion-icon-light.svg';
 import lightMusicIcon from '../image/music-icon-light.svg';
@@ -20,7 +21,8 @@ import lightSoundIcon from '../image/sound-icon-light.svg';
 import lightSoundMuteIcon from '../image/sound-mute-icon-light.svg';
 import lightModeIcon from '../image/light-mode-icon.svg';
 import darkLogo from '../image/logo-dark.svg';
-import darkProfileIcon from '../image/profile-icon-dark.svg';
+import darkLoginIcon from '../image/login-icon-dark.svg';
+import darkMypageIcon from '../image/mypage-icon-dark.svg';
 import darkRankingIcon from '../image/ranking-icon-dark.svg';
 import darkSuggestionIcon from '../image/suggestion-icon-dark.svg';
 import darkMusicIcon from '../image/music-icon-dark.svg';
@@ -101,7 +103,11 @@ function Header() {
                     name={role !== null ? "마이페이지" : "로그인"}
                     link={role !== null ? "/mypage" : "/login"}
                     alt="profile-icon"
-                    source={theme === "LIGHT" ? lightProfileIcon : darkProfileIcon}
+                    source={
+                        theme === "LIGHT" && role !== null ? lightMypageIcon :
+                        theme !== "LIGHT" && role !== null ? darkMypageIcon :
+                        theme === "LIGHT" ? lightLoginIcon : darkLoginIcon
+                    }
                     direction="right"
                 />
                 <div id={style["game-list"]}>
