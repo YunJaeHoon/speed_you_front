@@ -506,7 +506,7 @@ function MyPage() {
                                     onClick={clickNextDouble}
                                 />
                             </div>
-                            <Adfit unit={"DAN-vMQHw1u0CYghMJBe"} width={"728"} height={"90"} disabled={false} />
+                            <Adfit unit={"DAN-DzYJGrZGCENkbABn"} width={"728"} height={"90"} disabled={false} />
                             <div style={{ "height": "5vh" }}></div>
                         </div> :
                         <div
