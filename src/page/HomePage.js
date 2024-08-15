@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
+import SoundContext from "../context/SoundContext.js";
+import ThemeContext from "../context/ThemeContext.js";
 
 import GameIntroduction from '../component/GameIntroduction';
 import Divider from '../component/Divider';
-import SoundContext from "../context/SoundContext.js";
-import ThemeContext from "../context/ThemeContext.js";
+import Adfit from '../component/KakaoAdfitHorizontal';
 
 import style from './HomeStyle.module.css';
 import colorStyle from '../style/Color.module.css';
@@ -28,8 +30,6 @@ import blackIcon from '../image/black-icon.svg';
 import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
-
-    const adElement = useRef(null);     // 광고 element
 
     // context
     const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
@@ -58,21 +58,9 @@ function HomePage() {
         // 스크롤 이벤트마다, 스크롤 위치 최신화
         window.addEventListener("scroll", onScroll);
 
-        // 광고를 동적으로 생성
-        const script = document.createElement("script");
-        script.setAttribute("src", "https://t1.daumcdn.net/kas/static/ba.min.js");
-        script.setAttribute("charset", "utf-8");
-        script.setAttribute("async", "true");
-        adElement.current.appendChild(script);
-
         // 언마운트 시, 실행
         return () => {
-            // 스크롤 이벤트 리스너 제거
-            window.removeEventListener("scroll", onScroll);
-
-            // 광고 제거
-            const globalAdfit = "adfit" in window ? window.adfit : null;
-            if (globalAdfit) globalAdfit.destroy("DAN-vMQHw1u0CYghMJBe");
+            window.removeEventListener("scroll", onScroll); // 스크롤 이벤트 리스너 제거
         };
 
     }, []);
@@ -194,16 +182,9 @@ function HomePage() {
                     </div>
                 }
             />
-            <div ref={adElement}>
-                <ins
-                    style={{ display: "none" }}
-                    data-ad-unit = "DAN-vMQHw1u0CYghMJBe"
-                    data-ad-width = "728"
-                    data-ad-height = "90"
-                >
-                </ins>
-            </div>
-            <div style={{ "height": "22vh" }}></div>
+            <div style={{ "height": "17vh" }}></div>
+            <Adfit unit={"DAN-vMQHw1u0CYghMJBe"} width={"728"} height={"90"} disabled={false} />
+            <div style={{ "height": "5vh" }}></div>
         </div>
     );
 }
