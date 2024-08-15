@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import GameSelectButton from '../../component/GameSelectButton.js';
 import WaitServer from '../../component/WaitServer.js';
+import Adfit from '../../component/KakaoAdfitHorizontal';
 
 import SoundContext from "../../context/SoundContext.js";
 import LoginContext from "../../context/LoginContext.js";
@@ -505,6 +506,8 @@ function MyPage() {
                                     onClick={clickNextDouble}
                                 />
                             </div>
+                            <Adfit unit={"DAN-vMQHw1u0CYghMJBe"} width={"728"} height={"90"} disabled={false} />
+                            <div style={{ "height": "5vh" }}></div>
                         </div> :
                         <div
                             id={style["history-container"]}
