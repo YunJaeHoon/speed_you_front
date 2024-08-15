@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 
 import GameIntroduction from '../component/GameIntroduction';
 import Divider from '../component/Divider';
@@ -29,6 +29,8 @@ import homeBackgroundMusic from '../sound/home_background_music.mp3';
 
 function HomePage() {
 
+    const adElement = useRef(null);     // 광고 element
+
     // context
     const { currentMusic, setCurrentMusic, setCurrentMusicVolume } = useContext(SoundContext);
     const { theme } = useContext(ThemeContext);
@@ -56,9 +58,21 @@ function HomePage() {
         // 스크롤 이벤트마다, 스크롤 위치 최신화
         window.addEventListener("scroll", onScroll);
 
-        // 다른 페이지로 넘어갈 때, 이벤트 리스너 제거
+        // 광고를 동적으로 생성
+        const script = document.createElement("script");
+        script.setAttribute("src", "https://t1.daumcdn.net/kas/static/ba.min.js");
+        script.setAttribute("charset", "utf-8");
+        script.setAttribute("async", "true");
+        adElement.current.appendChild(script);
+
+        // 언마운트 시, 실행
         return () => {
+            // 스크롤 이벤트 리스너 제거
             window.removeEventListener("scroll", onScroll);
+
+            // 광고 제거
+            const globalAdfit = "adfit" in window ? window.adfit : null;
+            if (globalAdfit) globalAdfit.destroy("DAN-vMQHw1u0CYghMJBe");
         };
 
     }, []);
@@ -180,6 +194,15 @@ function HomePage() {
                     </div>
                 }
             />
+            <div ref={adElement}>
+                <ins
+                    style={{ display: "none" }}
+                    data-ad-unit = "DAN-vMQHw1u0CYghMJBe"
+                    data-ad-width = "728"
+                    data-ad-height = "90"
+                >
+                </ins>
+            </div>
             <div style={{ "height": "22vh" }}></div>
         </div>
     );
