@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://speed-you-back.link',	  // 서버 URL
+      target: 'https://speed-you-back.shop',	  // 서버 URL
       changeOrigin: true,
     })
   );
