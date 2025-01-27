@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import style from './index.css';
 
-axios.defaults.baseURL = 'https://speed-you-back.link';   // axios 기본 경로 설정
+axios.defaults.baseURL = 'https://speed-you-back.shop';   // axios 기본 경로 설정
 axios.defaults.withCredentials = true;                // CORS 설정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
